@@ -1,3 +1,4 @@
-= shane_and_peter_design
+= Shane and Peter Design plugin
 
-Description goes here
+This is a plugin to implement a custom design for Shane and Peter.
+
