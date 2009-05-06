@@ -1,0 +1,1182 @@
+/**
+ * ToC
+ * 00 - Base Typography
+ * 01 - Header
+ * 02 - Main Menu
+ * 03 - Main Content
+ * 04 - Issue Tables
+ * 05 - Single Issue Page
+ * 06 - Projects Page
+ * 07 - Behavior Styles
+ * 08 - Reusable classes
+ * 09 - New Issue Form 
+*/
+
+/*-------------------------------------------------------------------------------
+ * =00 - Base Typography
+ *
+ * This section includes the typography base for the body and heading elements.
+ ------------------------------------------------------------------------------*/
+
+body {
+	font: normal normal normal 12px/1.5 'lucida grande','lucida sans unicode',tahoma,arial,sans-serif;
+	background:#f3f3f3;
+	color:#333;
+}
+
+h1,h2,h3,h4,h5,h6 {
+	font-weight:bold;
+}
+h1 {
+	font-size:21px;
+}
+h2 {
+	font-size:18px;
+}
+h3 {
+	font-size:16px;
+	font-weight:normal;
+	margin-bottom:16px;
+}
+h4 {
+	font-size:14px;
+	margin-bottom:16px;
+}
+h5 {
+	font-size:12px;
+	text-transform: uppercase;
+	margin-bottom:18px;
+}
+a {
+	color:#226D81;
+	text-decoration:none;
+}
+a:hover {
+	text-decoration:underline;
+}
+
+/*-------------------------------------------------------------------------------
+ * =01 - Header
+ *
+ * This section includes the site logo, main navigation background, and styles 
+ * the header and navigation links.
+ ------------------------------------------------------------------------------*/
+
+
+#top-menu {
+	background: #277D94 url(../images/sap-logo.png) no-repeat 24px bottom;
+	height: 88px;
+	position:relative;
+}
+#top-menu.open { /*IE 6-7 z-index stacking issue*/
+	z-index:5;
+}
+#account {
+	background: #6DABC2 url(../images/sap-logo.png) no-repeat 24px 15px;
+	height:67px;
+	border-bottom:1px solid #fff;
+}
+#account ul {
+	float:right;
+	color:#90C0D1;
+	font-size:11px;
+	background:#277D94;
+	border:1px solid #444;
+	border-top:0;
+	-moz-border-radius-bottomleft:5px;
+	-moz-border-radius-bottomright:5px;
+	-webkit-border-bottom-left-radius:5px;
+	-webkit-border-bottom-right-radius:5px;
+	border-bottom-left-radius:5px;
+	border-bottom-right-radius:5px;
+	height:22px;
+}
+#account ul#account-info {
+	margin-right:15px;
+}
+#account ul#account-nav {
+	margin-right:6px;
+}
+#account li {
+	float:left;
+	border-left:1px solid #444;
+	padding:2px 9px 3px;	
+	position:relative;
+	z-index:5;
+}
+#account li:first-child {
+	border:0;
+}
+#account li a {
+	text-decoration:none;
+	color:#fff;
+	height:17px;
+}
+#account li.drop-down a {
+	background:url(../images/arrow-down-white.png) no-repeat right center;
+	padding-right:24px;
+}
+#account-nav li{
+	padding:0;
+}
+#account-nav li a {
+	display:block;
+	padding:2px 9px 3px;
+}
+#account .search {
+	text-indent:-9999em;
+	width:17px;
+	background-image:url(../images/search.png);
+	background-repeat:no-repeat;
+	background-position:center center;
+}
+#account li.open a {
+	background-color:#277D94;
+	position:relative;
+	top:1px;
+	z-index:21;
+}
+#account li ul {
+	display:none;
+	position:absolute;
+	border-top:1px solid #555;
+	top:22px;
+	height:auto;
+	left:-1px;
+	z-index:20;
+	-moz-box-shadow:1px 1px 3px rgba(0,0,0,.3);
+	-webkit-box-shadow:1px 1px 3px rgba(0,0,0,.3);
+	box-shadow:1px 1px 3px rgba(0,0,0,.3);
+}
+#account li li {
+	float:none;
+	white-space:nowrap;
+	border-style:solid;
+	border-width:1px 0;
+	border-color:#5D9DAE #fff #1D5D6E;
+}
+#account li li:first-child {
+	border-bottom:1px solid #1D5D6E;
+}
+#account li li:last-child {
+	border-bottom:0;
+}
+#account li.drop-down li a {
+	padding:5px 9px;
+	background:none;
+	position:static;
+}
+#account-nav li a:hover, #account li li a:hover {
+	background-color:#2791AD;
+}
+#nav-search {
+	display:none;
+	position:absolute;
+	right:-1px;
+	top:23px;
+	background:#30849c url(../images/search-gradient.png) repeat-x left top;
+	border:1px solid #194E60;
+	border-top:0;
+	-moz-border-radius-bottomleft:5px;
+	-moz-border-radius-bottomright:5px;
+	-webkit-border-bottom-left-radius:5px;
+	-webkit-border-bottom-right-radius:5px;
+	border-bottom-left-radius:5px;
+	border-bottom-right-radius:5px;
+}
+#nav-search input 	{
+	margin:5px 5px;
+	width:94%;
+}
+
+/*-------------------------------------------------------------------------------
+ * =02 - Main Menu
+ *
+ * This section includes the layout and styles for the left navigation column.
+ ------------------------------------------------------------------------------*/
+
+#main-menu {
+	width:185px;
+	position:absolute;
+	margin:10px 0 0;
+	left:0;
+}
+#main-menu ul {
+	border-top:1px solid #ddd;
+	border-bottom:1px solid #fff;
+}
+#main-menu ul ul {
+	border-top:2px solid #aaa;
+	border-bottom-color:#ddd;
+	background-color:#eee;
+	font-size:11px;
+	display:none;
+}
+#main-menu ul ul.filters {
+	border-top:1px solid #ddd;
+}
+#main-menu ul ul ul {
+	position:absolute;
+	left:185px;
+	z-index:20;
+	width:100%;
+	top:0;
+	border:1px solid #AFAFAF;
+	background:#f3f3f3;
+}
+#main-menu li {
+	border-top:1px solid #fff;
+	border-bottom:1px solid #ddd;
+	position:relative;
+}
+#main-menu li li {
+	border:0;
+}
+#main-menu li li li {
+	padding:0;
+	width:100%;
+	border-bottom:1px solid #DDDDDD;
+	border-top:1px solid #FFFFFF;
+}
+#main-menu li li li:first-child {
+	border-top:0;
+}
+#main-menu a {
+	color:#222;
+	text-decoration:none;
+	line-height:2.5;
+	padding-left:24px;
+	display:block;
+	position:relative;
+}
+#main-menu a.selected {
+	background-color:#fff;
+}
+#main-menu li li a {
+	padding-left:34px;
+}
+#main-menu li li.current a {
+	font-weight:bold;
+}
+#main-menu li li a span {
+	font-weight:normal;
+	color:#999;
+	float:right;
+	padding-right:9px;
+}
+#main-menu li li li a span {
+	padding:0;
+}
+#main-menu a:hover, #main-menu a.open:hover {
+	background-color:#fafafa;
+}
+#main-menu .toggler {
+	display:block;
+	position:absolute;
+	right:6px;
+	top:10px;
+	background:url(../images/arrow-right.png) no-repeat left top;
+	width:9px;
+	height:9px;
+}
+#main-menu .open .toggler {
+	background-image:url(../images/arrow-down.png);
+}
+#main-menu li li .toggler {
+	display:none;
+}
+#main-menu li li li a {
+	padding:0 12px;
+}
+#main-menu li li ul.profile-box li {
+	padding:6px 12px;
+}
+#main-menu li li ul.profile-box li a {
+	display:inline;
+	padding:0;
+	color:#226D81;
+	line-height:1.5;
+}
+#main-menu li li ul.profile-box li a:hover {
+	background-color:transparent;
+	text-decoration:underline;
+}
+
+/*-------------------------------------------------------------------------------
+ * =03 - Main Content
+ *
+ * This section includes the layout and styles for the main content area.
+ ------------------------------------------------------------------------------*/
+h1.title {
+	margin:12px 24px 9px;
+}
+#main {
+	margin:0 15px 10px 185px;
+	background-color:#fff;
+	border:1px solid #e6e6e6;
+	padding:10px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+	font-size:11px;
+}
+#main .title-bar {
+	background: #277D94;
+	position:relative;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+	margin-bottom:10px;
+}
+.title-bar h2 {
+	padding:9px 100px 9px 12px;
+	color:#fff;
+	font-weight:normal;
+	font-size:14px;
+	font-weight:bold;
+}
+.title-bar h2 span {
+	font-weight:bold;
+}
+
+.button-large {
+	background:#f3f3f3 url(../images/gradient-down.png) repeat-x;
+	border:1px solid #e5e5e5;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+	position:absolute;
+	top:8px;
+}
+.button-large:hover {
+	border-color:#6DABC2;
+}
+.button-large a {
+	padding:3px 9px;
+	text-decoration:none;
+	display:block;
+	color:#333;
+}
+.title-bar .add-filter {
+	right:155px;
+}
+.title-bar .add-filter a {
+	background:url(../images/arrow-down-2.png) no-repeat right 7px;
+	padding-right:26px;
+}
+.title-bar .new-issue {
+	right:10px;
+}
+.title-bar .new-issue a {
+	background:url(../images/add.png) no-repeat 6px center;
+	padding-left:26px;
+}
+.title-bar-extras {
+	background-color:#1F7086;
+	-moz-border-radius-bottomleft:5px;
+	-moz-border-radius-bottomright:5px;
+	-webkit-border-bottom-left-radius:5px;
+	-webkit-border-bottom-right-radius:5px;
+	border-bottom-left-radius:5px;
+	border-bottom-right-radius:5px;
+	color:#fff;
+}
+.title-bar-extras ul {
+	padding:10px;
+	background:url(../images/shadow-down.png) repeat-x top left;
+	border-bottom:1px solid #154E5D;
+	overflow:auto;
+}
+.title-bar-extras li {
+	padding-bottom:5px;
+}
+.title-bar-extras select {
+	margin-right:10px;
+}
+.title-bar-extras label {
+	width:120px;
+	display:block;
+	float:left;
+}
+.title-bar-extras label input {
+	margin-right:5px;
+	
+}
+.extras-actions {
+	padding:5px 10px;
+	border-top:1px solid #408598;
+	position:relative;
+}
+.extras-actions input {
+	border:0;
+	background: transparent;
+	color:#fff;
+	padding-left:18px;
+	background-repeat:no-repeat;
+	background-position:left center;
+	margin-right:10px;
+	cursor:pointer;
+	font-family:inherit;
+	font-size:11px;
+}
+input.apply {
+	background-image:url(../images/check.png);
+}
+input.clear {
+	background-image:url(../images/refresh.png);
+}
+input.save {
+	background-image:url(../images/disk.png);
+}
+a#extras-close {
+	position:absolute;
+	color:#fff;
+	background:url(../images/arrow-up-white.png) no-repeat right center;
+	right:10px;
+	padding-right:15px;
+	display:none; /* Remove to show the Hide Filters thing */
+}
+
+/*-------------------------------------------------------------------------------
+ * =04 - Issue Table
+ *
+ * This section includes the layout and styles for the main issues table.
+ ------------------------------------------------------------------------------*/
+
+form#issue-list {
+	position:relative;
+}
+#main table {
+	width:100%;
+}
+#main table th {
+	font-weight:normal;
+	background:#f3f3f3 url(../images/gradient-down.png) repeat-x;
+}
+#main table td, #main table th {
+	border:1px solid #e6e6e6;
+	padding:6px;
+	text-align:left;
+	position:relative;
+	vertical-align:top;
+}
+#main table th a {
+	color:#111;
+	text-decoration:none;
+}
+#main table th.current-sort {
+	background:#fff url(../images/gradient-up.png) repeat-x;
+}
+#main table th.current-sort a {
+	background:url(../images/arrow-down-3.png) no-repeat right center;
+	padding-right:16px;
+	display:block;
+}
+#main table tr.even {
+	background-color:#f9f9f9;
+}
+#main table tr:hover {
+	background:#dbf0f7 url(../images/tr-hover.png) repeat-x left top;
+}
+#main table tr.context-menu-selection {
+	background:#FEFBD0 url(../images/selected-gradient.jpg) repeat-x left top;
+}
+#main table td a {
+	color:#333;
+	text-decoration:none;
+}
+#main table td.subject a {
+	color:#226D81;
+}
+#main table td.priority {
+	text-align:center;
+}
+#main table td.issue {
+	background:url(../images/arrow-bottom-right.png) no-repeat right bottom;
+	width:42px;
+	cursor:context-menu;
+}
+#main table td.updated {
+	width:80px;
+}
+#main table a.toggle-select {
+	background:url(../images/check.png) no-repeat center center;
+	display:block;
+	text-indent:-9999em;
+}
+/* Priority Coloring */
+.priority-5 td.priority {
+	background-color:#FFE5E5;
+}
+.priority-4 td.priority {
+	background-color:#FFEFCF;
+}
+#multiple-action-buttons {
+	float:left;
+	margin:10px 0;
+}
+#multiple-action-buttons li {
+	float:left;
+	margin-right:10px;
+}
+.pagination, .other-formats {
+	float:right;
+	clear:right;
+	margin:10px 0;
+}
+.pagination a {
+	padding:1px 2px;
+}
+
+/*-------------------------------------------------------------------------------
+ * =05 - Single Issue Page
+ *
+ * This section includes the layout and styles for the single issues page.
+ ------------------------------------------------------------------------------*/
+
+.title-bar-actions {
+	position:absolute; 
+	right:10px; 
+	top:0; 
+	padding:0 100px 0 10px;
+	border-left:1px solid #237084;
+	height:100%;
+}
+.title-bar-actions span {
+	line-height:3.5;
+}
+.title-bar-actions span a {
+	color:#fff;
+}
+.title-bar-actions span.meta-sep {
+	color:#6DABC2;
+	padding:0 2px;
+}
+.title-bar .update {
+	right:0;
+}
+.title-bar .update a {
+	padding-left:26px;
+	background:url(../images/edit.png) no-repeat 5px center;
+	font-weight:bold;
+}
+div.issue {
+	background:#E8F4F8;
+	border:1px solid #D5E6ED;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+	padding:10px;
+}
+div.issue hr {
+	height:0; 
+	border-style:solid;
+	border-width:1px 0;
+	border-color:#ddd #fff #fff;
+	margin:10px -10px;
+	clear:both;
+}
+div.issue h3 {
+	font-size:14px;
+}
+#main .meta table {
+	border:0 none;
+}
+#main .meta table tr:hover {
+	background:none;
+}
+#main .meta table td {
+	border:0 none;
+	padding:0 3px;
+}
+#main .meta table td.title {
+	font-weight:bold;
+}
+#main .meta table td a {
+	color:#226D81;
+}
+#main .meta table td a:hover {
+	text-decoration:underline;
+}
+.gravatar {
+	border:1px solid #aaa;
+}
+.issue p {
+	margin-bottom:5px;
+}
+.issue .description {
+	float:left;
+	width:58%;
+}
+#watchers {
+	float:right;
+	width:37%;
+}
+#watchers .contextual {
+	float:right;
+}
+#watchers li.user {
+	float:left;
+	margin-right:6px;
+}
+.user {
+	position:relative;
+}
+.attachments h4 {
+	margin-bottom:6px;
+	background:url(../images/files-showhide.png) no-repeat right bottom;
+	cursor:pointer;
+}
+.attachments h4.closed {
+	background-position:right 5px;
+}
+#main table.files td, #main table.files th, #main table.files {
+	border:0;
+	background:none;
+}
+#main table.files th {
+	font-weight:bold;
+	padding:1px;
+}
+#main table.files td {
+	color:#555;
+	padding:1px;
+}
+#main table.files .opt-desc {
+	width:60%;
+}
+#main table.files td a {
+	color:#226D81;
+	position:relative;
+}
+#history {
+	margin:20px 0;
+}
+#history h3 {
+	font-size:14px;
+	border-bottom:1px solid #ddd;
+	padding-left:10px;
+	margin-bottom:20px;
+}
+#history .journal {
+	position:relative;
+	padding-left:50px;
+	margin:0 0 15px;
+	clear:both;
+	min-height:40px;
+}
+.journal .profile-wrap {
+	float:none;
+	position:absolute;
+	left:0;
+	top:0;
+}
+.journal h4 {
+	font-size:12px;
+	font-weight:normal;
+	margin-bottom:-1px;
+	padding-bottom:12px;
+	background:url(../images/speech-white.png) no-repeat 30px bottom;
+	position:relative;
+	z-index:5;
+}
+.journal.question h4 {
+	background-image:url(../images/speech-blue.png);
+}
+.journal h4 .history-id {
+	float:right;
+	color:#999;
+}
+.journal .wiki {
+	background-color:#f8f8f8;
+	border:1px solid #f5f5f5;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+	padding:10px 10px 5px;
+	overflow:auto;
+}
+.journal .contextual {
+	float:right;
+}
+.journal .contextual a {
+	float:left;
+	display:block;
+	margin:0 0 0 5px;
+	height:16px;
+	width:16px;
+	text-indent:-9999em;
+	background-repeat:no-repeat;
+	background-position:center center;
+}
+.contextual .edit {
+	background-image:url(../images/edit.png);
+}
+.contextual .comment {
+	background-image:url(../images/comment.png);
+}
+.question-line {
+	display:block;
+}
+.question .wiki p:first-child {
+	background:#277D94;
+	color:#fff;
+	margin:-10px -10px 10px;
+	padding:10px;
+	-moz-border-radius-topleft:5px;
+	-moz-border-radius-topright:5px;
+	-webkit-border-top-left-radius:5px;
+	-webkit-border-top-right-radius:5px;
+	border-top-left-radius:5px;
+	border-top-right-radius:5px;
+}
+#main blockquote, .wiki ol, .wiki ul {
+	padding-left:40px;
+}
+.wiki p {
+	margin-bottom:5px;
+}
+blockquote {
+	font-style:italic;
+	color:#666;
+	background:url(../images/blockquote-bg.png) no-repeat 25px 3px;
+}
+.wiki ul li {
+	list-style: disc outside none;
+}
+.file-thumbs {
+	margin:20px 0 0;
+	overflow:hidden;
+}
+.file-thumbs a {
+	display:block;
+	float:left;
+	margin-right:10px;
+	text-align:center;
+}
+.file-thumbs a img {
+	display:block;
+	margin:0 auto 5px;
+	border:1px solid #226D81;
+}
+.file-thumbs a img.pdf {
+	border:0;
+}
+
+.journal > ul {
+	display:none;
+} /*
+	TODO remove this once I know what to do with status updates, etc.
+*/
+
+/*-------------------------------------------------------------------------------
+ * =06 - Projects Page
+ *
+ * This section defines the styles for the projects "home" page.
+ ------------------------------------------------------------------------------*/
+
+#main.nosidebar {
+	margin-left:20px;
+	padding:15px 60px 15px 25px;
+	font-size:12px;
+}
+#project-links {
+	position:absolute;
+	right:30px;
+	top:110px;
+	color:#ccc;
+	font-weight:bold;
+}
+.nosidebar blockquote {
+	margin:1em 0;
+}
+.nosidebar p {
+	margin-bottom:1em;
+}
+li.root {
+	font-size:18px;
+	margin-bottom:24px;
+}
+li.child {
+	font-size:14px;
+}
+.nosidebar ul.projects {
+	margin:24px 0 0;
+}
+.nosidebar ul.projects ul {
+	margin:0;
+}
+ul.projects .description {
+	font-size:12px;
+}
+.nosidebar ul.projects li {
+	padding:0 0 0 24px;
+	background:url(../images/star.png) no-repeat left top;
+	list-style:none outside none;
+}
+ul.projects a {
+	font-weight:bold;
+}
+ul.projects li div.root {
+	margin-bottom:12px;
+}
+.nosidebar ol li {
+	list-style: decimal outside none;
+	margin-left:24px;
+}
+.nosidebar ul li {
+	background:url(../images/dot-blue.png) no-repeat left top;
+	padding-left:24px;
+}
+.nosidebar ol, .nosidebar ul {
+	margin:0 0 12px 18px;
+}
+
+
+/*-------------------------------------------------------------------------------
+ * =07 - Behavior Styles
+ *
+ * This section defines the styles for handling behaviors - popups, flyouts, etc.
+ ------------------------------------------------------------------------------*/
+
+.profile-wrap {
+	float:right;
+	position:relative;
+	width:42px;
+	height:42px;
+}
+.profile-box {
+	position:absolute;
+	right:0;
+	top:45px;
+	width:205px;
+	background:#f3f3f3;
+	border:1px solid #afafaf;
+	-moz-box-shadow:1px 1px 3px rgba(0,0,0,.3);
+	-webkit-box-shadow:1px 1px 3px rgba(0,0,0,.3);
+	display:none;
+	z-index:10;
+}
+.issue .profile-box ul, .journal .profile-box ul {	
+	background:url(../images/profile-arrow-up.png) no-repeat 175px top;
+	position:relative;
+	z-index:11;
+	top:-8px;
+	padding-top:8px;
+	margin-bottom:-8px;
+}
+.journal .profile-box {
+	right:auto;
+	left:0;
+}
+.journal .profile-box ul {	
+	background-position: 13px top;
+}
+.profile-box ul li {
+	border-top:1px solid #fff;
+	border-bottom:1px solid #ddd;
+	padding:5px 10px;
+}
+.profile-box ul li:first-child {
+	border-top:0;
+}
+.profile-box ul li:last-child {
+	border-bottom:0;
+}
+.profile-box .gravatar {
+	border:0;
+	float:left;
+	margin-right:6px;
+}
+.profile-box .vcard {
+	padding-left:20px !important;
+	background:url(../images/vcard.png) no-repeat left center;
+	display:block;
+}
+
+/* file table hovers */
+a.has-thumb img {
+	position:absolute;
+	display:none;
+	border:1px solid #a6c6cf;
+	padding:4px;
+	background:#fff;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+	
+}
+a.has-thumb.active {
+	left:-10px;
+	background:url(../images/thumb-arrow-right.png) no-repeat left center;
+	padding-left:10px;
+	margin-right:-10px;
+}
+
+td.issue div.issue-wrap-outer {
+	position:relative;
+}
+td.issue.dropdown .issue-wrap {
+	position:absolute;
+	left:-7px;
+	top:-7px;
+	border:1px solid #afafaf;
+	border-bottom-color:#f4f4f4;
+	background:#f4f4f4 url(../images/arrow-bottom-right.png) no-repeat right bottom;
+	padding:6px;
+	z-index:21;
+}
+#issue-drop, ul.issue-dropdown {
+	display:none;
+}
+
+.dropdown ul.issue-dropdown, .issue-dropdown ul {
+	width:140px;
+	position:absolute;
+	left:-7px;
+	z-index:20;
+	display:block;
+}
+td .issue-dropdown li {
+	padding:6px 6px 6px 28px;
+	background-position:6px center;
+	background-repeat:no-repeat;
+	cursor:pointer;
+}
+li.edit {background-image:url(../images/edit.png);}
+li.status {background-image:url(../images/tag.png);}
+li.priority {background-image:url(../images/clock.png);}
+li.assigned {background-image:url(../images/user.png);}
+li.copy {background-image:url(../images/copy.png);}
+li.move {background-image:url(../images/move.png);}
+li.delete {background-image:url(../images/delete.png);}
+.issue-dropdown li:hover {
+	background-color:#fff;
+}
+.has-sub {
+	position:absolute;
+	width:7px;
+	height:9px;
+	background:url(../images/arrow-right.png) no-repeat left top;
+	right:6px;
+	top:11px;
+}
+ul.issue-dropdown ul {
+	display:none;
+	left:140px;
+	top:-1px;
+	width:auto;
+	z-index:19;
+}
+.issue-dropdown li li {
+	padding:6px 12px;
+	width:auto;
+	display:block;
+	white-space:nowrap;
+}
+.issue-dropdown li:hover ul {
+	display:block;
+}
+
+/* table tooltips */
+.js-tooltip {
+	position:absolute;
+	left:-30px;
+	z-index:20;
+}
+.js-tooltip-inner {
+	position:absolute;
+	bottom:5px;
+	background:#F7F7F7;
+	padding:10px;
+	border:1px solid #c3c3c3;
+	width:500px;
+	font-size:11px;
+	max-height:200px;
+	overflow:hidden;
+	-moz-box-shadow:1px 1px 3px rgba(0,0,0,.3);
+	-webkit-box-shadow:1px 1px 3px rgba(0,0,0,.3);
+	box-shadow:1px 1px 3px rgba(0,0,0,.3);
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+	z-index:15;
+}
+.js-tooltip .arrow {
+	width:16px;
+	height:12px;
+	position:absolute;
+	bottom:-6px;
+	left:76px;
+	z-index:16;
+	background:url(../images/tooltip-arrow.png) no-repeat left top;
+}
+.js-tooltip .meta {
+	margin-top:20px;
+	overflow:hidden;
+}
+.js-tooltip .meta li {
+	float:left;
+	margin-right:30px;
+}
+.button-large ul {
+	position:absolute;
+	right:-1px;
+	top:20px;
+	z-index:5;
+	display:none;
+}
+.button-large ul li {
+	padding:0;
+	white-space:nowrap;
+}
+.title-bar .button-large ul li a {
+	background-image:none;
+	padding:6px 12px;
+}
+.title-bar .button-large ul li a:hover {
+	background-color:#fff;
+}
+
+/*-------------------------------------------------------------------------------
+ * =08 - Reusable Classes
+ *
+ * This section defines reusable classes for menus, etc.
+ ------------------------------------------------------------------------------*/
+
+/* Menus are assumed to be a <ul> element */
+.menu, .menu ul {
+	background:#f4f4f4;
+	border:1px solid #afafaf;
+	-moz-box-shadow:1px 1px 3px rgba(0,0,0,.3);
+	-webkit-box-shadow:1px 1px 3px rgba(0,0,0,.3);
+}
+.menu li {
+	border-top:1px solid #fff;
+	border-bottom:1px solid #ddd;
+	position:relative;
+	padding:6px;
+}
+.menu li:first-child {
+	border-top:0;
+}
+.menu li:last-child {
+	border-bottom:0;
+}
+
+/*-------------------------------------------------------------------------------
+ * =09 - New Issue Form
+ *
+ * This section defines reusable classes for menus, etc.
+ ------------------------------------------------------------------------------*/
+#issue-form-wrap {
+	display:none;
+}
+#issue-form {
+	background:#fff;
+	font-size:11px;
+	width:100%;
+	height:510px;
+	overflow:hidden;
+	position:absolute;
+}
+#issue-form label {
+	width:125px;
+	text-align:right;
+	float:left;
+	margin-left:-130px;
+	font-weight:bold;
+	font-size:12px;
+}
+#issue-form label.floating {
+	width:150px;
+	margin-left:0;
+	font-weight:normal;
+	font-size:11px;
+	text-align:left;
+}
+html > body .tabular p {
+	overflow:hidden;
+}
+#issue-form p {
+	clear:left;
+	margin:0;
+	padding:3px 0 5px 130px !important;
+}
+#issue-form .tracker p {
+	padding-top:10px !important;
+}
+#issue-form p.watchers {
+	width:300px;
+}
+.jstElements button {
+	background-color:#F7F7F7;
+	background-position:50% 50%;
+	background-repeat:no-repeat;
+	border:1px solid #DDDDDD;
+	height:24px;
+	margin-right:6px;
+	padding:4px;
+	width:24px;
+}
+.jstElements button span {
+	display:none;
+}
+#issue-form .help {
+	display:block;
+	float:right;
+	padding-right:20px;
+}
+#issue-form div.submit, #issue-form div.tracker {
+	position:absolute;
+	left:0;
+	height:45px;
+	width:100%;
+	overflow:hidden;
+}
+#issue-form div.box {
+	position: relative;
+	top:47px;
+	height:396px;
+	overflow:auto;
+	padding:10px 0;
+}
+#issue-form .tracker {
+	top:0;
+	border-bottom:2px solid #ccc;
+}
+#issue-form .submit {
+	bottom:0;
+	border-top:2px solid #ccc;
+	text-align:right;
+}
+#issue-form .submit input {
+	margin:8px 10px 0 0;
+	border:1px solid #ccc;
+	background:#F3F3F3 url(../images/gradient-down.png) repeat-x;
+	padding:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+	font: 12px/1.5 'lucida grande','lucida sans unicode',tahoma,arial,sans-serif;
+}
+#issue-form .submit input:hover {
+	border-color:#277D94;
+}
+#issue-form textarea {
+	width:570px;
+	height:100px;
+	overflow:auto;
+	margin-top:5px;
+}
+#issue-form .splitcontentleft {
+	width:45%;
+	float:left;
+}
+#issue-form .splitcontentright {
+	width:45%;
+	float:right;
+}
+#issue-form #attachments_fields input[type=file] {
+	margin-right:10px;
+}

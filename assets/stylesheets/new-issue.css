@@ -1,0 +1,112 @@
+body {
+	font: 12px/1.5 'lucida grande','lucida sans unicode',tahoma,arial,sans-serif;
+	color:#333;
+}
+#issue-form {
+	background:#fff;
+	font-size:11px;
+	width:100%;
+	height:510px;
+	overflow:hidden;
+	position:absolute;
+}
+#issue-form label {
+	width:125px;
+	text-align:right;
+	float:left;
+	margin-left:-130px;
+	font-weight:bold;
+	font-size:12px;
+}
+#issue-form label.floating {
+	width:150px;
+	margin-left:0;
+	font-weight:normal;
+	font-size:11px;
+	text-align:left;
+}
+html > body .tabular p {
+	overflow:hidden;
+}
+#issue-form p {
+	clear:left;
+	margin:0;
+	padding:3px 0 5px 130px !important;
+}
+#issue-form .tracker p {
+	padding-top:10px !important;
+}
+#issue-form p.watchers {
+	width:300px;
+}
+.jstElements button {
+	background-color:#F7F7F7;
+	background-position:50% 50%;
+	background-repeat:no-repeat;
+	border:1px solid #DDDDDD;
+	height:24px;
+	margin-right:6px;
+	padding:4px;
+	width:24px;
+}
+.jstElements button span {
+	display:none;
+}
+#issue-form .help {
+	display:block;
+	float:right;
+	padding-right:20px;
+}
+#issue-form div.submit, #issue-form div.tracker {
+	position:absolute;
+	left:0;
+	height:45px;
+	width:100%;
+	overflow:hidden;
+}
+#issue-form div.box {
+	position: relative;
+	top:47px;
+	height:396px;
+	overflow:auto;
+	padding:10px 0;
+}
+#issue-form .tracker {
+	top:0;
+	border-bottom:2px solid #ccc;
+}
+#issue-form .submit {
+	bottom:0;
+	border-top:2px solid #ccc;
+	text-align:right;
+}
+#issue-form .submit input {
+	margin:8px 10px 0 0;
+	border:1px solid #ccc;
+	background:#F3F3F3 url(../images/gradient-down.png) repeat-x;
+	padding:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+	font: 12px/1.5 'lucida grande','lucida sans unicode',tahoma,arial,sans-serif;
+}
+#issue-form .submit input:hover {
+	border-color:#277D94;
+}
+#issue-form textarea {
+	width:570px;
+	height:100px;
+	overflow:auto;
+	margin-top:5px;
+}
+#issue-form .splitcontentleft {
+	width:45%;
+	float:left;
+}
+#issue-form .splitcontentright {
+	width:45%;
+	float:right;
+}
+#issue-form #attachments_fields input[type=file] {
+	margin-right:10px;
+}
