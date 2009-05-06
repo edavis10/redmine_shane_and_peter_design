@@ -1063,6 +1063,9 @@ ul.issue-dropdown ul {
 .menu li:last-child {
 	border-bottom:0;
 }
+.inline {
+    display: inline;
+}
 
 /*-------------------------------------------------------------------------------
  * =09 - New Issue Form
