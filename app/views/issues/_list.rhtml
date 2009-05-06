@@ -1,0 +1,30 @@
+<% form_tag({},{ :id => 'issue-list'}) do -%>	
+<table class="list issues">
+    <thead><tr id="issue-header" class="no-select hascontextmenu">
+      <th><%= check_box_tag("header_context_menu", false, false, :style => 'display: none;', :class => 'no-select' ) %>
+      <%= hidden_field_tag("query_id", @query.id) %>
+          <%= link_to image_tag('toggle_check.png'), {}, :onclick => 'toggleIssuesSelection(this.up("form")); return false;',
+                                                           :title => "#{l(:button_check_all)}/#{l(:button_uncheck_all)}" %>
+        </th>
+		<%= sort_header_tag('id', :caption => '#', :default_order => 'desc') %>
+        <% query.columns.each do |column| %>
+          <%= column_header(column) %>
+        <% end %>
+	</tr></thead>
+	<% group = false %>
+	<tbody id="issue-list-body">
+      <% issues.each do |issue| %>
+      <% if query.grouped? && issue.send(query.group_by) != group %>
+        <% group = issue.send(query.group_by) %>
+        <% reset_cycle %>
+        <tr class="group">
+          <td colspan="<%= query.columns.size + 2 %>">
+          <%= group.blank? ? 'None' : group %> <span class="count">(<%= @issue_count_by_group[group] %>)</span>
+          </td>
+        </tr>
+      <% end %>
+      <%= render :partial => 'issue', :object => issue, :locals => { :query => query, :group => group } %>
+      <% end %>
+	</tbody>
+</table>
+<% end -%>
