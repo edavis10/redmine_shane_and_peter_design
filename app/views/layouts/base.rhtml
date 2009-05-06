@@ -46,10 +46,11 @@
     
   <div id="main-menu">
     <%= render_main_menu(@project) %>
-  </div>
-  <div id="sidebar">        
-    <%= yield :sidebar %>
-    <%= call_hook :view_layouts_base_sidebar %>
+    <!-- Sidebar -->
+    <div id="">        
+      <%= yield :sidebar %>
+      <%= call_hook :view_layouts_base_sidebar %>
+    </div>
   </div>
 
   <div class="" id="main">
