@@ -138,11 +138,6 @@ jQuery(document).ready(function($) {
 		$(this).find("ul").slideUp(animRate);
 	});
 
-	// prepare issue # dropdown
-	$("#issue-drop li:has(ul)").append("<div class='has-sub'></div>");
-	var tdIssueDrop = $("#issue-drop").html();
-	$("#content td.issue").wrapInner("<div class='issue-wrap-outer'><div class='issue-wrap'></div>"+tdIssueDrop+"</div>");
-
 	// issue # click functionality -> open dropdown menu
 	$("#content td.issue").click(function(event) {
 		var tgt = $(event.target);
@@ -156,12 +151,22 @@ jQuery(document).ready(function($) {
 			var tdIssueHeight = $(this).height();
 			var tdIssueWidth = $(this).width();
 
-			$(this).addClass("dropdown");
-			$(this).find(".issue-wrap").css({width: tdIssueWidth, height: tdIssueHeight});
-			$(this).find(".issue-dropdown").css('top', tdIssueHeight+6);
+	        // Connect via Ajax to pull in dropdown content
+		    var tdElement = this;
+		    $.post(context_menu.url,
+				   $('form#issue-list').serialize(),
+				   function(data){
+				     // prepare issue # dropdown
+				     var formatted_response = $(data).wrapInner('<ul class="issue-dropdown menu"></ul>');
+				     $(tdElement).wrapInner("<div class='issue-wrap-outer'><div class='issue-wrap'></div>"+formatted_response.html()+"</div>");
 
-			// don't go anywhere is td.issue is a link (but *do* go if it's in the dropdown)
-			if ($(event.target).is("a") && !($(event.target).parents().is(".issue-dropdown")) ) {return false;};
+				     $(tdElement).addClass("dropdown");
+				     $(tdElement).find(".issue-wrap").css({width: tdIssueWidth, height: tdIssueHeight});
+				     $(tdElement).find(".issue-dropdown").css('top', tdIssueHeight+6);
+
+				     // don't go anywhere is td.issue is a link (but *do* go if it's in the dropdown)
+				     if ($(event.target).is("a") && !($(event.target).parents().is(".issue-dropdown")) ) {return false;};
+				   }, 'html');
 
 		} else {// we clicked on an open one. let's close it.
 			// making sure we don't close when clicking on the menu itself
