@@ -360,6 +360,7 @@ h1.title {
 .title-bar .add-filter {
 	right:155px;
 }
+/* Not used, add-filter is a select now an 'a' */
 .title-bar .add-filter a {
 	background:url(../images/arrow-down-2.png) no-repeat right 7px;
 	padding-right:26px;
