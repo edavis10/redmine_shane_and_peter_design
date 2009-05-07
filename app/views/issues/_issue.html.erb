@@ -1,0 +1,13 @@
+	<tr id="issue-<%= issue.id %>" class="hascontextmenu <%= cycle('odd', 'even') %> <%= issue.css_classes %> js-tooltip">
+	    <td class="checkbox"><%= check_box_tag("ids[]", issue.id, false, :id => nil) %></td>
+		<td><%= link_to issue.id, :controller => 'issues', :action => 'show', :id => issue %></td>
+        <% query.columns.each do |column| %><%= content_tag 'td', column_content(column, issue), :class => column.name %><% end %>
+	</tr>
+
+	<div id="tooltip_<%= issue.id %>" class="js-tooltip" style="display:none;">
+        <%= render_detailed_issue_tooltip(issue) %>
+	</div>
+
+        <script type="text/javascript">
+          var my_tooltip = new Tooltip('issue-<%= issue.id %>', 'tooltip_<%= issue.id %>')
+        </script>
