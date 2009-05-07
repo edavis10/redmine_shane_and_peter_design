@@ -28,6 +28,7 @@
     <% if User.current.allowed_to?(:save_queries, @project, :global => true) %>
     <%= link_to l(:button_save), {}, :onclick => "$('query_form').submit(); return false;", :class => 'icon icon-save' %>
     <% end %>
+        </div>
       </div>
     </div>
     <% end %>
@@ -42,6 +43,7 @@
     <div id="query_form"></div>
     <% html_title @query.name %>
 <% end %>
+</div>
 
 <%= error_messages_for 'query' %>
 <% if @query.valid? %>
