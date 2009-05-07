@@ -77,3 +77,9 @@
 
 <div id="context-menu" style="display: none;"></div>
 <%= javascript_tag "new ContextMenu('#{url_for(:controller => 'issues', :action => 'context_menu')}')" %>
+
+<%# Override a few methods so jQuery will get the event and handle it %>
+<%= javascript_tag "ContextMenu.addMethods({
+  RightClick: function(e) { },
+  showMenu: function(e) {}
+});" %>
