@@ -6,11 +6,12 @@
     <% form_tag({ :controller => 'queries', :action => 'new' }, :id => 'query_form') do %>
     <%= hidden_field_tag('project_id', @project.to_param) if @project %>
     <div id="query_form_content">
-      <%= render :partial => 'queries/filters', :locals => {:query => @query} %>
       <div class="title-bar-extras">
-        <%= l(:field_group_by) %>
-        <%= select_tag('group_by', options_for_select([[]] + @query.groupable_columns.collect {|c| [c.caption, c.name.to_s]}, @query.group_by)) %>
-
+        <%= render :partial => 'queries/filters', :locals => {:query => @query} %>
+        <div class="grouping">
+          <%= l(:field_group_by) %>
+          <%= select_tag('group_by', options_for_select([[]] + @query.groupable_columns.collect {|c| [c.caption, c.name.to_s]}, @query.group_by)) %>
+        </div>
         <div class="extras-actions">
 
     <%= link_to_remote l(:button_apply), 

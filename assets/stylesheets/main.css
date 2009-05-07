@@ -408,13 +408,10 @@ h1.title {
 	border-top:1px solid #408598;
 	position:relative;
 }
-.extras-actions input {
+.extras-actions a {
 	border:0;
-	background: transparent;
 	color:#fff;
 	padding-left:18px;
-	background-repeat:no-repeat;
-	background-position:left center;
 	margin-right:10px;
 	cursor:pointer;
 	font-family:inherit;
