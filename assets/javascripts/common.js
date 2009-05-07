@@ -1,10 +1,10 @@
 jQuery.noConflict();
 
 jQuery(document).ready(function($) {
-		
+
 	// a few constants for animations speeds, etc.
 	var animRate = 100;
-	
+
 	// header menu hovers
 	$("#account .drop-down").hover(function() {
 		$(this).addClass("open").find("ul").slideDown(animRate);
@@ -13,41 +13,41 @@ jQuery(document).ready(function($) {
 		$(this).removeClass("open").find("ul").slideUp(animRate);
 		$("#top-menu").toggleClass("open");
 	});
-	
+
 	// show/hide header search box
 	$("#account a.search").click(function() {
 		var searchWidth = $("#account-nav").width();
-		
+
 		$(this).toggleClass("open");
 		$("#nav-search").width(searchWidth).slideToggle(animRate, function(){
 			$("#nav-search-box").select();
 		});
-				
+
 		return false;
 	});
-	
+
 	// issue table info tooltips
 	$(".js-tooltip").wrapInner("<div class='js-tooltip-inner'></div>").append("<span class='arrow'></span>"); // give an extra div for styling
-	
+
 	$("table.issues td.issue").hover(function(event) {
 		var $thisTR = $(event.target).parents("tr");
 		var trPos = $thisTR.position();
 		var tTarget = $thisTR.attr("id");
-		
+
 		$("form#issue-list").toggleClass("tooltip-active");
 		$("div[rel="+tTarget+"]").css('top', trPos.top).fadeIn(animRate*2, function(){
 			//ie cleartype uglies
-			if ($.browser.msie) {this.style.removeAttribute('filter'); }; 
+			if ($.browser.msie) {this.style.removeAttribute('filter'); };
 			});
 
 	}, function(event) {
 		var $thisTR = $(event.target).parents("tr");
 		var tTarget = $thisTR.attr("id");
-		
+
 		$("form#issue-list").toggleClass("tooltip-active");
 		$("div[rel="+tTarget+"]").hide();
 	});
-	
+
 	// show/hide the profile box when hover over the gravatar
 	$(".profile-wrap").hover(function() {
 		/*
@@ -59,41 +59,41 @@ jQuery(document).ready(function($) {
 	}, function() {
 		$(this).find(".profile-box").slideUp(animRate);
 	});
-	
+
 	// set up functions for delayed profile views.
 	function profileShow(){
-		var thisTop = $(this).height() + 5; 
+		var thisTop = $(this).height() + 5;
 		$(this).find("a").removeAttr("title"); /* tooltips always mess with hovers */
 		$(this).find(".profile-box").css('top', thisTop).slideDown(animRate);
 	};
 	function profileHide(){
 		$(this).find(".profile-box").hide();
 	};
-	
+
 	// call a delayed profile view
 	$(".user").hoverIntent({
-		sensitivity: 3, // number = sensitivity threshold (must be 1 or higher)    
-		interval: 400, // number = milliseconds for onMouseOver polling interval    
-		over: profileShow, // function = onMouseOver callback (REQUIRED)    
-		timeout: 50, // number = milliseconds delay before onMouseOut    
-		out: profileHide // function = onMouseOut callback (REQUIRED)    
-		
+		sensitivity: 3, // number = sensitivity threshold (must be 1 or higher)
+		interval: 400, // number = milliseconds for onMouseOver polling interval
+		over: profileShow, // function = onMouseOver callback (REQUIRED)
+		timeout: 50, // number = milliseconds delay before onMouseOut
+		out: profileHide // function = onMouseOut callback (REQUIRED)
+
 	});
-	
+
 	// file table thumbnails
 	$("table a.has-thumb").hover(function() {
 		$(this).removeAttr("title").toggleClass("active");
-		
+
 		// grab the image dimensions to position it properly
 		var thumbImg = $(this).find("img");
 		var thumbImgLeft = -(thumbImg.outerWidth() );
 		var thumbImgTop = -(thumbImg.height() / 2 );
 		thumbImg.css({top: thumbImgTop, left: thumbImgLeft}).show();
-		
+
 	}, function() {
 		$(this).toggleClass("active").find("img").hide();
 	});
-	
+
 	// show/hide the files table
 	$(".attachments h4").click(function() {
 		$(this).toggleClass("closed").next().slideToggle(animRate);
@@ -109,17 +109,17 @@ jQuery(document).ready(function($) {
 		} else {
 			this.slideToggle(animRate);
 		}
-				
+
 		return this;
 	};
-	
+
 	// open and close the main-menu sub-menus
 	$("#main-menu li:has(ul) > a").not("ul ul a")
 		.append("<span class='toggler'></span>")
 		.click(function() {
-			
+
 			$(this).toggleClass("open").parent().find("ul").not("ul ul ul").mySlide();
-		
+
 			return false;
 	});
 
@@ -128,8 +128,8 @@ jQuery(document).ready(function($) {
 		$('.title-bar-extras').slideToggle(animRate);
 		return false;
 	});
-	
-	
+
+
 	// submenu flyouts
 	$("#main-menu li li:has(ul)").hover(function() {
 		$(this).find(".profile-box").show();
@@ -137,16 +137,16 @@ jQuery(document).ready(function($) {
 	}, function() {
 		$(this).find("ul").slideUp(animRate);
 	});
-	
+
 	// prepare issue # dropdown
 	$("#issue-drop li:has(ul)").append("<div class='has-sub'></div>");
 	var tdIssueDrop = $("#issue-drop").html();
-	$("#main td.issue").wrapInner("<div class='issue-wrap-outer'><div class='issue-wrap'></div>"+tdIssueDrop+"</div>");
-	
+	$("#content td.issue").wrapInner("<div class='issue-wrap-outer'><div class='issue-wrap'></div>"+tdIssueDrop+"</div>");
+
 	// issue # click functionality -> open dropdown menu
-	$("#main td.issue").click(function(event) {
+	$("#content td.issue").click(function(event) {
 		var tgt = $(event.target);
-		
+
 		// check if we're clicking on a currently closed menu
 		if ( !($(this).hasClass("dropdown")) ) {
 
@@ -155,11 +155,11 @@ jQuery(document).ready(function($) {
 
 			var tdIssueHeight = $(this).height();
 			var tdIssueWidth = $(this).width();
-		
+
 			$(this).addClass("dropdown");
 			$(this).find(".issue-wrap").css({width: tdIssueWidth, height: tdIssueHeight});
 			$(this).find(".issue-dropdown").css('top', tdIssueHeight+6);
-		
+
 			// don't go anywhere is td.issue is a link (but *do* go if it's in the dropdown)
 			if ($(event.target).is("a") && !($(event.target).parents().is(".issue-dropdown")) ) {return false;};
 
@@ -171,7 +171,7 @@ jQuery(document).ready(function($) {
 
 		}
 	});
-	
+
 	// close issue # dropdown
 	$("body").click(function(event) {
 		var tgt = $(event.target);
@@ -180,21 +180,21 @@ jQuery(document).ready(function($) {
 			$("td.dropdown").removeClass("dropdown");
 		}
 	});
-	
+
 	// add filter dropdown menu
 	$(".button-large:has(ul) > a").click(function(event) {
 		var tgt = $(event.target);
-		
+
 		// is this inside the title bar?
 		if (tgt.parents().is(".title-bar")) {
 			$(".title-bar-extras:hidden").slideDown(animRate);
 		}
-		
+
 		$(this).parent().find("ul").slideToggle(animRate);
-		
+
 		return false;
 	});
-	
+
 	// suckerfish-esque on those issue dropdown menus for IE6
 	if (parseInt($.browser.version, 10) < 7 && $.browser.msie) {
 		$(".issue-dropdown li").hover(function() {
@@ -203,6 +203,6 @@ jQuery(document).ready(function($) {
 			$(this).toggleClass("hover");
 		});
 	}
-	
-	
+
+
 });
