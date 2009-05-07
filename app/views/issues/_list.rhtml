@@ -1,5 +1,5 @@
 <% form_tag({},{ :id => 'issue-list'}) do -%>	
-<table class="list issues">
+<table class="list issues" cellspacing="0" border="0" cellpadding="0">
     <thead><tr id="issue-header" class="no-select hascontextmenu">
       <th><%= check_box_tag("header_context_menu", false, false, :style => 'display: none;', :class => 'no-select' ) %>
       <%= hidden_field_tag("query_id", @query.id) %>
@@ -27,4 +27,5 @@
       <% end %>
 	</tbody>
 </table>
+<%= render :partial => 'issues/tooltip', :collection => issues %>
 <% end -%>
