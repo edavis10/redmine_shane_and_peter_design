@@ -310,7 +310,7 @@ a:hover {
 h1.title {
 	margin:12px 24px 9px;
 }
-#main {
+#content {
 	margin:0 15px 10px 185px;
 	background-color:#fff;
 	border:1px solid #e6e6e6;
@@ -320,7 +320,7 @@ h1.title {
 	border-radius:5px;
 	font-size:11px;
 }
-#main .title-bar {
+#content .title-bar {
 	background: #277D94;
 	position:relative;
 	-moz-border-radius:5px;
@@ -444,60 +444,60 @@ a#extras-close {
 form#issue-list {
 	position:relative;
 }
-#main table {
+#content table {
 	width:100%;
 }
-#main table th {
+#content table th {
 	font-weight:normal;
 	background:#f3f3f3 url(../images/gradient-down.png) repeat-x;
 }
-#main table td, #main table th {
+#content table td, #content table th {
 	border:1px solid #e6e6e6;
 	padding:6px;
 	text-align:left;
 	position:relative;
 	vertical-align:top;
 }
-#main table th a {
+#content table th a {
 	color:#111;
 	text-decoration:none;
 }
-#main table th.current-sort {
+#content table th.current-sort {
 	background:#fff url(../images/gradient-up.png) repeat-x;
 }
-#main table th.current-sort a {
+#content table th.current-sort a {
 	background:url(../images/arrow-down-3.png) no-repeat right center;
 	padding-right:16px;
 	display:block;
 }
-#main table tr.even {
+#content table tr.even {
 	background-color:#f9f9f9;
 }
-#main table tr:hover {
+#content table tr:hover {
 	background:#dbf0f7 url(../images/tr-hover.png) repeat-x left top;
 }
-#main table tr.context-menu-selection {
+#content table tr.context-menu-selection {
 	background:#FEFBD0 url(../images/selected-gradient.jpg) repeat-x left top;
 }
-#main table td a {
+#content table td a {
 	color:#333;
 	text-decoration:none;
 }
-#main table td.subject a {
+#content table td.subject a {
 	color:#226D81;
 }
-#main table td.priority {
+#content table td.priority {
 	text-align:center;
 }
-#main table td.issue {
+#content table td.issue {
 	background:url(../images/arrow-bottom-right.png) no-repeat right bottom;
 	width:42px;
 	cursor:context-menu;
 }
-#main table td.updated {
+#content table td.updated {
 	width:80px;
 }
-#main table a.toggle-select {
+#content table a.toggle-select {
 	background:url(../images/check.png) no-repeat center center;
 	display:block;
 	text-indent:-9999em;
@@ -577,23 +577,23 @@ div.issue hr {
 div.issue h3 {
 	font-size:14px;
 }
-#main .meta table {
+#content .meta table {
 	border:0 none;
 }
-#main .meta table tr:hover {
+#content .meta table tr:hover {
 	background:none;
 }
-#main .meta table td {
+#content .meta table td {
 	border:0 none;
 	padding:0 3px;
 }
-#main .meta table td.title {
+#content .meta table td.title {
 	font-weight:bold;
 }
-#main .meta table td a {
+#content .meta table td a {
 	color:#226D81;
 }
-#main .meta table td a:hover {
+#content .meta table td a:hover {
 	text-decoration:underline;
 }
 .gravatar {
@@ -628,22 +628,22 @@ div.issue h3 {
 .attachments h4.closed {
 	background-position:right 5px;
 }
-#main table.files td, #main table.files th, #main table.files {
+#content table.files td, #content table.files th, #content table.files {
 	border:0;
 	background:none;
 }
-#main table.files th {
+#content table.files th {
 	font-weight:bold;
 	padding:1px;
 }
-#main table.files td {
+#content table.files td {
 	color:#555;
 	padding:1px;
 }
-#main table.files .opt-desc {
+#content table.files .opt-desc {
 	width:60%;
 }
-#main table.files td a {
+#content table.files td a {
 	color:#226D81;
 	position:relative;
 }
@@ -728,7 +728,7 @@ div.issue h3 {
 	border-top-left-radius:5px;
 	border-top-right-radius:5px;
 }
-#main blockquote, .wiki ol, .wiki ul {
+#content blockquote, .wiki ol, .wiki ul {
 	padding-left:40px;
 }
 .wiki p {
@@ -773,7 +773,7 @@ blockquote {
  * This section defines the styles for the projects "home" page.
  ------------------------------------------------------------------------------*/
 
-#main.nosidebar {
+#content.nosidebar {
 	margin-left:20px;
 	padding:15px 60px 15px 25px;
 	font-size:12px;
