@@ -74,6 +74,20 @@
           <%= content_tag(:li, link_to(h(item[1]), item[2])) %>
         <% end %>
         <li class="drop-down">
+          <a class="projects" href="#">Projects</a>
+          <ul style="display:none;">
+            <% 
+            project_content = ''
+            project_tree(User.current.projects.all) do |project, level|
+              name_prefix = (level > 0 ? ('&nbsp;' * 2 * level + '&#187; ') : '')
+              project_content << content_tag(:li,
+                                     link_to(name_prefix + h(project), {:controller => 'projects', :action => 'show', :id => project, :jump => current_menu_item}))
+            end
+            %>
+            <%= project_content %>
+          </ul>
+        </li>
+        <li class="drop-down">
           <a class="more" href="#">More</a>
           <ul style="display:none;">
             <% items_for_more_level.each do |item| %>
