@@ -39,7 +39,14 @@
 <div id="wrapper">
   <div id="top-menu">
     <div id="account">
-        <%= render_menu :account_menu -%>
+      <% account_items =  menu_items_for(:account_menu) %>
+
+      <ul id="account-info">
+        <%= content_tag('li', "#{l(:label_logged_as)} #{link_to_user(User.current, :format => :username)}", :id => '') if User.current.logged? %>
+        <% account_items.each do |item| %>
+          <%= content_tag(:li, link_to(h(item[1]), item[2])) %>
+        <% end %>
+      <%# render_menu :account_menu -%>
     </div>
   </div>
       
