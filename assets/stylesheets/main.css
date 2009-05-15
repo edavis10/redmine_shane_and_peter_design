@@ -268,7 +268,7 @@ a:hover {
 	padding:0;
 }
 #main-menu a:hover, #main-menu a.open:hover {
-	background-color:#fafafa;
+	background-color:#fafafa !important;
 }
 #main-menu .toggler {
 	display:block;
