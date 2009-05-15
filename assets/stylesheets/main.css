@@ -914,7 +914,8 @@ a.has-thumb.active {
 td.issue div.issue-wrap-outer {
 	position:relative;
 }
-td.issue.dropdown .issue-wrap {
+
+#context-menu {
 	position:absolute;
 	left:-7px;
 	top:-7px;
@@ -928,14 +929,14 @@ td.issue.dropdown .issue-wrap {
 	display:none;
 }
 
-.dropdown ul.issue-dropdown, .issue-dropdown ul {
+#context-menu ul {
 	width:140px;
 	position:absolute;
 	left:-7px;
 	z-index:20;
 	display:block;
 }
-td .issue-dropdown li {
+#context-menu li {
 	padding:6px 6px 6px 28px;
 	background-position:6px center;
 	background-repeat:no-repeat;
@@ -948,7 +949,7 @@ li.assigned {background-image:url(../images/user.png);}
 li.copy {background-image:url(../images/copy.png);}
 li.move {background-image:url(../images/move.png);}
 li.delete {background-image:url(../images/delete.png);}
-.issue-dropdown li:hover {
+#context-menu li:hover {
 	background-color:#fff;
 }
 .has-sub {
@@ -959,20 +960,20 @@ li.delete {background-image:url(../images/delete.png);}
 	right:6px;
 	top:11px;
 }
-ul.issue-dropdown ul {
+#context-menu li.folder ul {
 	display:none;
 	left:140px;
 	top:-1px;
 	width:auto;
 	z-index:19;
 }
-.issue-dropdown li li {
+#context-menu li li {
 	padding:6px 12px;
 	width:auto;
 	display:block;
 	white-space:nowrap;
 }
-.issue-dropdown li:hover ul {
+#context-menu li:hover ul {
 	display:block;
 }
 

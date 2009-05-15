@@ -138,54 +138,6 @@ jQuery(document).ready(function($) {
 		$(this).find("ul").slideUp(animRate);
 	});
 
-	// issue # click functionality -> open dropdown menu
-	$("#content td.issue").click(function(event) {
-		var tgt = $(event.target);
-
-		// check if we're clicking on a currently closed menu
-		if ( !($(this).hasClass("dropdown")) ) {
-
-			// hide other possibly open dropdowns
-			$("td.dropdown").removeClass("dropdown");
-
-			var tdIssueHeight = $(this).height();
-			var tdIssueWidth = $(this).width();
-
-	        // Connect via Ajax to pull in dropdown content
-		    var tdElement = this;
-		    $.post(context_menu.url,
-				   $('form#issue-list').serialize(),
-				   function(data){
-				     // prepare issue # dropdown
-				     var formatted_response = $(data).wrapInner('<ul class="issue-dropdown menu"></ul>');
-				     $(tdElement).wrapInner("<div class='issue-wrap-outer'><div class='issue-wrap'></div>"+formatted_response.html()+"</div>");
-
-				     $(tdElement).addClass("dropdown");
-				     $(tdElement).find(".issue-wrap").css({width: tdIssueWidth, height: tdIssueHeight});
-				     $(tdElement).find(".issue-dropdown").css('top', tdIssueHeight+6);
-
-				     // don't go anywhere is td.issue is a link (but *do* go if it's in the dropdown)
-				     if ($(event.target).is("a") && !($(event.target).parents().is(".issue-dropdown")) ) {return false;};
-				   }, 'html');
-
-		} else {// we clicked on an open one. let's close it.
-			// making sure we don't close when clicking on the menu itself
-			if ( !(tgt.is("a, li")) ) {
-				$(this).removeClass("dropdown");
-			}
-
-		}
-	});
-
-	// close issue # dropdown
-	$("body").click(function(event) {
-		var tgt = $(event.target);
-		// are we clicking outside of td.issue currently?
-		if ( !(tgt.is("td.issue") || tgt.parents().is("td.issue") ) ) {
-			$("td.dropdown").removeClass("dropdown");
-		}
-	});
-
 	// add filter dropdown menu
 	$(".button-large:has(ul) > a").click(function(event) {
 		var tgt = $(event.target);

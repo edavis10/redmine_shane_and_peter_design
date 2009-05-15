@@ -76,10 +76,92 @@
 <% end %>
 
 <div id="context-menu" style="display: none;"></div>
-<%= javascript_tag "var context_menu = new ContextMenu('#{url_for(:controller => 'issues', :action => 'context_menu')}')" %>
-
-<%# Override a few methods so jQuery will get the event and handle it %>
+<%# Override a few methods to add in left click behavior and only open context menu when on the ID column %>
 <%= javascript_tag "ContextMenu.addMethods({
-  RightClick: function(e) { },
-  showMenu: function(e) {}
+	RightClick: function(e) {
+      // Theme: Open the context menu if the clicked column is the issue ID column
+      var tdClicked = Event.findElement(e,'td');
+      if (tdClicked!=null && tdClicked!=document && tdClicked.hasClassName('issue')) {
+        this.OpenMenu(e);
+      }
+    },
+
+    // Theme: New method from RightClick
+    OpenMenu: function(e) {
+		this.hideMenu();
+		// do not show the context menu on links
+		if (Event.element(e).tagName == 'A') { return; }
+		// right-click simulated by Alt+Click with Opera
+		if (window.opera && !e.altKey) { return; }
+		var tr = Event.findElement(e, 'tr');
+		if (tr == document || tr == undefined  || !tr.hasClassName('hascontextmenu')) { return; }
+		Event.stop(e);
+    	        if (!this.isSelected(tr)) {
+			this.unselectAll();
+			this.addSelection(tr);
+			this.lastSelected = tr;
+		}
+		this.showMenu(e);
+	},
+
+  Click: function(e) {
+  	this.hideMenu();
+  	if (Event.element(e).tagName == 'A') { return; }
+    if (window.opera && e.altKey) {	return; }
+    if (Event.isLeftClick(e) || (navigator.appVersion.match(/\bMSIE\b/))) {
+      var tr = Event.findElement(e, 'tr');
+        if (tr!=null && tr!=document && tr.hasClassName('hascontextmenu') && !tr.hasClassName('no-select')) {
+        // a row was clicked, check if the click was on checkbox
+        var box = Event.findElement(e, 'input');
+        if (box!=document && box!=undefined) {
+          // a checkbox may be clicked
+          if (box.checked) {
+            tr.addClassName('context-menu-selection');
+          } else {
+            tr.removeClassName('context-menu-selection');
+          }
+        } else {
+          if (e.ctrlKey) {
+            this.toggleSelection(tr);
+          } else if (e.shiftKey) {
+            if (this.lastSelected != null) {
+              var toggling = false;
+              var rows = $$('.hascontextmenu');
+              for (i=0; i<rows.length; i++) {
+                if (toggling || rows[i]==tr) {
+                  this.addSelection(rows[i]);
+                }
+                if (rows[i]==tr || rows[i]==this.lastSelected) {
+                  toggling = !toggling;
+                }
+              }
+            } else {
+              this.addSelection(tr);
+            }
+          } else {
+            // Theme: Don't unselect other rows on left click, otherwise you can't multiple edit.
+            // this.unselectAll();
+            this.addSelection(tr);
+          }
+          this.lastSelected = tr;
+        }
+          // Theme: Open the context menu if the clicked column is the issue ID column
+          var tdClicked = Event.findElement(e,'td');
+          if (tdClicked!=null && tdClicked!=document && tdClicked.hasClassName('issue')) {
+            this.OpenMenu(e);
+          }
+
+      } else {
+        // click is outside the rows
+        var t = Event.findElement(e, 'a');
+        if ((t != document) && (Element.hasClassName(t, 'disabled') || Element.hasClassName(t, 'submenu'))) {
+          Event.stop(e);
+        }
+      }
+    }
+    else{
+    // nothing
+    }
+  }
 });" %>
+<%= javascript_tag "var context_menu = new ContextMenu('#{url_for(:controller => 'issues', :action => 'context_menu')}')" %>
