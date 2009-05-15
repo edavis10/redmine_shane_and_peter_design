@@ -1,6 +1,8 @@
 /* Reset some Redmine styles */
 
 #query_form_content { padding: 0; border: none; }
+#account { float:none; }
+#top-menu a { margin-right: 0px; }
 #main-menu { bottom: auto; }
 #main-menu li { float: none; }
 #main-menu li a { font-weight:normal; background: none; color: #222222; text-decoration: none; }
