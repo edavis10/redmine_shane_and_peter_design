@@ -63,7 +63,7 @@ function toggle_multi_select(field) {
 </div>
 
 <% if defined?(show_new_issue) && show_new_issue %>
-<div class="new-issue button-large"><a href="new-issue.html?KeepThis=true&amp;TB_iframe=true&amp;height=510&amp;width=735" title="Open a new issue" class="thickbox">Open a New Issue</a></div>
+<div class="new-issue button-large"><a href="#TB_inline?inlineId=issue-form-wrap&amp;height=510&amp;width=735" title="Open a new issue" class="thickbox">Open a New Issue</a></div>
 <% end %>
   <ul>
 <% query.available_filters.sort{|a,b| a[1][:order]<=>b[1][:order]}.each do |filter| %>

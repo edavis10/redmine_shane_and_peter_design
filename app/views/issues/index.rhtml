@@ -64,6 +64,10 @@
 
 <% end %>
 
+<div id="issue-form-wrap" style="display:none;">
+<%= render :partial => 'issues/new_issue', :locals => { :show => false } %>
+</div>
+
 <% content_for :sidebar do %>
     <%= render :partial => 'issues/sidebar' %>
 <% end %>
