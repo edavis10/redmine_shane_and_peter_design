@@ -9,13 +9,17 @@
                                   :update => update_field || params[:update_field] || :content,
                                   :with => "Form.serialize('issue-form')" %>
 <% end %>
+<div class="tracker">
 <p><%= f.select :tracker_id, @project.trackers.collect {|t| [t.name, t.id]}, :required => true %></p>
 <%= observe_field :issue_tracker_id, :url => { :action => :new },
                                      :update => update_field || params[:update_field] || :content,
                                      :with => "Form.serialize('issue-form')" %>
 <%= hidden_field_tag 'update_field', (update_field || params[:update_field] || :content) %>
-<hr />
+</div>
+
 <% end %>
+
+<div class="box">
 
 <div id="issue_descr_fields" <%= 'style="display:none"' unless @issue.new_record? || @issue.errors.any? %>>
 <p><%= f.text_field :subject, :size => 80, :required => true %></p>
@@ -66,7 +70,7 @@
 <% end %>
 
 <% if @issue.new_record? && User.current.allowed_to?(:add_issue_watchers, @project) -%>
-<p><label><%= l(:label_issue_watchers) %></label>
+<p class="watchers"><label><%= l(:label_issue_watchers) %></label>
 <% @issue.project.users.sort.each do |user| -%>
 <label class="floating"><%= check_box_tag 'issue[watcher_user_ids][]', user.id, @issue.watcher_user_ids.include?(user.id) %> <%=h user %></label>
 <% end -%>
@@ -76,3 +80,5 @@
 <%= call_hook(:view_issues_form_details_bottom, { :issue => @issue, :form => f }) %>
 
 <%= wikitoolbar_for 'issue_description' %>
+
+</div>
