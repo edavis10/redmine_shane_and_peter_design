@@ -340,14 +340,19 @@ h1.title {
 }
 
 .button-large {
-	background:#f3f3f3 url(../images/gradient-down.png) repeat-x;
-	border:1px solid #e5e5e5;
+}
+
+/* .button-large was too generic and targeted other pages with it's positioning */
+.title-bar .button-large {
 	-moz-border-radius:5px;
 	-webkit-border-radius:5px;
 	border-radius:5px;
+	background:#f3f3f3 url(../images/gradient-down.png) repeat-x;
+	border:1px solid #e5e5e5;
 	position:absolute;
 	top:8px;
 }
+
 .button-large:hover {
 	border-color:#6DABC2;
 }
@@ -365,6 +370,11 @@ h1.title {
 	background:url(../images/arrow-down-2.png) no-repeat right 7px;
 	padding-right:26px;
 }
+
+fieldset#filters div.add-filter {
+    text-align: right;
+}
+
 .title-bar .new-issue {
 	right:10px;
 }

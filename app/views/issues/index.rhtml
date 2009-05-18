@@ -7,7 +7,7 @@
     <%= hidden_field_tag('project_id', @project.to_param) if @project %>
     <div id="query_form_content">
       <div class="title-bar-extras">
-        <%= render :partial => 'queries/filters', :locals => {:query => @query} %>
+        <%= render :partial => 'queries/filters', :locals => {:query => @query, :show_new_issue => true} %>
         <div class="grouping">
           <%= l(:field_group_by) %>
           <%= select_tag('group_by', options_for_select([[]] + @query.groupable_columns.collect {|c| [c.caption, c.name.to_s]}, @query.group_by)) %>
