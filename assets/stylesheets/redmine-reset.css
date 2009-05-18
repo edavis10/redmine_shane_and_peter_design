@@ -1,5 +1,6 @@
 /* Reset some Redmine styles */
 
+.tabular p { height: auto; }
 #query_form_content { padding: 0; border: none; }
 #account { float:none; }
 #top-menu a { margin-right: 0px; }
