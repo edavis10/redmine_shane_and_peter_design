@@ -1,5 +1,7 @@
 require 'redmine'
 
+require 'shane_and_peter_design_themes_patch'
+
 Redmine::Plugin.register :redmine_shane_and_peter_design do
   name 'Redmine Shane And Peter Design plugin'
   author 'Eric Davis'
