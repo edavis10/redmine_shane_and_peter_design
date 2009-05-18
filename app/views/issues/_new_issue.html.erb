@@ -1,0 +1,21 @@
+<h2><%=l(:label_issue_new)%></h2>
+<% remote_form_for :issue, @issue, :url => {:controller => 'issues', :action => 'new', :create => "true", :project_id => @project },
+                           :method => :post, :builder => TabularFormBuilder, :lang => current_language,
+                           :html => {:multipart => true, :id => 'issue-form', :class => 'tabular'} do |f| %>
+    <%= error_messages_for 'issue' %>
+    <div class="box">
+    <%= render :partial => 'issues/form', :locals => {:f => f, :update_field => :new_issue, :hide_attachments => true} %>
+    <%= send_notification_option %>
+    </div>
+    <%= submit_tag l(:button_create) %>
+    <%= link_to_remote l(:label_preview), 
+                       { :url => { :controller => 'issues', :action => 'preview', :project_id => @project, :id => @issue },
+                         :method => 'post',
+                         :update => 'preview',
+                         :with => "Form.serialize('issue-form')",
+                         :complete => "Element.scrollTo('preview')"
+                       }, :accesskey => accesskey(:preview) %>
+<% end %>
+
+<div id="preview" class="wiki"></div>
+
