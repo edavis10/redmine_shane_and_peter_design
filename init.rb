@@ -1,6 +1,7 @@
 require 'redmine'
 
 require 'shane_and_peter_design_themes_patch'
+require 'shane_and_peter_design_themes_wiki_formatting_patch'
 
 Redmine::Plugin.register :redmine_shane_and_peter_design do
   name 'Redmine Shane And Peter Design plugin'
