@@ -12,11 +12,11 @@
                          :with => "Form.serialize('issue-form')",
                          :complete => "Element.scrollTo('preview')"} %>
 
-    <%= submit_tag l(:button_create) %>
+    <%= submit_tag l(:button_save_and_new) %>
     <input type="submit" value="Cancel" name="cancel" onclick="tb_remove(); return false;"/>
 
     </div>
+
 <% end %>
 
 <div id="preview" class="wiki"></div>
-
