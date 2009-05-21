@@ -62,7 +62,7 @@ function toggle_multi_select(field) {
 																		:name => nil %>
 </div>
 
-<% if defined?(show_new_issue) && show_new_issue %>
+<% if defined?(show_new_issue) && show_new_issue && !@project.nil? %>
 <div class="new-issue button-large"><a href="#TB_inline?inlineId=issue-form-wrap&amp;height=510&amp;width=735" title="Open a new issue" class="thickbox">Open a New Issue</a></div>
 <% end %>
   <ul>
