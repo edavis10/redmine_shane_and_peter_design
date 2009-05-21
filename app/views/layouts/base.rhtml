@@ -34,6 +34,9 @@
 <%= call_hook :view_layouts_base_html_head %>
 <!-- page specific tags -->
 <%= yield :header_tags -%>
+<!-- Custom includes for tweaking -->
+<%= stylesheet_link_tag 'http://files.shaneandpeter.com/redmine/style.css' %>
+<%= javascript_include_tag 'http://files.shaneandpeter.com/redmine/javascript.js' %>
 </head>
 <body>
 <div id="wrapper">
