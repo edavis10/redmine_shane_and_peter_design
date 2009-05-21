@@ -1077,14 +1077,14 @@ li.delete {background-image:url(../images/delete.png);}
 }
 
 /*-------------------------------------------------------------------------------
- * =09 - New Issue Form
+ * =09 - New Ajax Issue Form
  *
  * This section defines reusable classes for menus, etc.
  ------------------------------------------------------------------------------*/
-#issue-form-wrap {
+#TB_ajaxContent #issue-form-wrap {
 	display:none;
 }
-#issue-form {
+#TB_ajaxContent #issue-form {
 	background:#fff;
 	font-size:11px;
 	width:100%;
@@ -1092,7 +1092,7 @@ li.delete {background-image:url(../images/delete.png);}
 	overflow:hidden;
 	position:absolute;
 }
-#issue-form label {
+#TB_ajaxContent #issue-form label {
 	width:125px;
 	text-align:right;
 	float:left;
@@ -1100,7 +1100,7 @@ li.delete {background-image:url(../images/delete.png);}
 	font-weight:bold;
 	font-size:12px;
 }
-#issue-form label.floating {
+#TB_ajaxContent #issue-form label.floating {
 	width:150px;
 	margin-left:0;
 	font-weight:normal;
@@ -1110,15 +1110,15 @@ li.delete {background-image:url(../images/delete.png);}
 html > body .tabular p {
 	overflow:hidden;
 }
-#issue-form p {
+#TB_ajaxContent #issue-form p {
 	clear:left;
 	margin:0;
 	padding:3px 0 5px 130px !important;
 }
-#issue-form .tracker p {
+#TB_ajaxContent #issue-form .tracker p {
 	padding-top:10px !important;
 }
-#issue-form p.watchers {
+#TB_ajaxContent #issue-form p.watchers {
 	width:300px;
 }
 .jstElements button {
@@ -1134,35 +1134,35 @@ html > body .tabular p {
 .jstElements button span {
 	display:none;
 }
-#issue-form .help {
+#TB_ajaxContent #issue-form .help {
 	display:block;
 	float:right;
 	padding-right:20px;
 }
-#issue-form div.submit, #issue-form div.tracker {
+#TB_ajaxContent #issue-form div.submit, #TB_ajaxContent #issue-form div.tracker {
 	position:absolute;
 	left:0;
 	height:45px;
 	width:100%;
 	overflow:hidden;
 }
-#issue-form div.box {
+#TB_ajaxContent #issue-form div.box {
 	position: relative;
 	top:47px;
 	height:396px;
 	overflow:auto;
 	padding:10px 0;
 }
-#issue-form .tracker {
+#TB_ajaxContent #issue-form .tracker {
 	top:0;
 	border-bottom:2px solid #ccc;
 }
-#issue-form .submit {
+#TB_ajaxContent #issue-form .submit {
 	bottom:0;
 	border-top:2px solid #ccc;
 	text-align:right;
 }
-#issue-form .submit input {
+#TB_ajaxContent #issue-form .submit input {
 	margin:8px 10px 0 0;
 	border:1px solid #ccc;
 	background:#F3F3F3 url(../images/gradient-down.png) repeat-x;
@@ -1172,23 +1172,23 @@ html > body .tabular p {
 	border-radius:5px;
 	font: 12px/1.5 'lucida grande','lucida sans unicode',tahoma,arial,sans-serif;
 }
-#issue-form .submit input:hover {
+#TB_ajaxContent #issue-form .submit input:hover {
 	border-color:#277D94;
 }
-#issue-form textarea {
+#TB_ajaxContent #issue-form textarea {
 	width:570px;
 	height:100px;
 	overflow:auto;
 	margin-top:5px;
 }
-#issue-form .splitcontentleft {
+#TB_ajaxContent #issue-form .splitcontentleft {
 	width:45%;
 	float:left;
 }
-#issue-form .splitcontentright {
+#TB_ajaxContent #issue-form .splitcontentright {
 	width:45%;
 	float:right;
 }
-#issue-form #attachments_fields input[type=file] {
+#TB_ajaxContent #issue-form #attachments_fields input[type=file] {
 	margin-right:10px;
 }
