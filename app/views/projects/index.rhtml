@@ -6,6 +6,8 @@
 
 <h2><%=l(:label_project_plural)%></h2>
 
+<%= textilizable Setting.welcome_text %>
+
 <%= render_project_hierarchy(@projects)%>
 
 <% if User.current.logged? %>
