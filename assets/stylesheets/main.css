@@ -607,6 +607,9 @@ div.issue h3 {
 #content .meta table td a:hover {
 	text-decoration:underline;
 }
+#content .meta table td.priority {
+	text-align:left; /* Is set to center above */
+}
 .gravatar {
 	border:1px solid #aaa;
 }
