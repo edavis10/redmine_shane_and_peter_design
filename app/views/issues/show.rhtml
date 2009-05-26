@@ -32,15 +32,18 @@
   </div>
 </div>
 
-<h2><%= @issue.tracker.name %> #<%= @issue.id %></h2>
-
 <div class="<%= @issue.css_classes %> details">
-        <%= avatar(@issue.author, :size => "64") %>
-        <h3><%=h @issue.subject %></h3>
-        <p class="author">
-        <%= authoring @issue.created_on, @issue.author %>.
-        <%= l(:label_updated_time, distance_of_time_in_words(Time.now, @issue.updated_on)) + '.' if @issue.created_on != @issue.updated_on %>
-        </p>
+
+  <div class="profile-wrap">
+    <%= avatar(@issue.author, :size => "40") %>
+  </div>
+  <h3><%= @issue.tracker.name %> #<%= @issue.id %></h2>
+
+  <p class="author">
+    <%= authoring @issue.created_on, @issue.author %>.
+    <%= l(:label_updated_time, distance_of_time_in_words(Time.now, @issue.updated_on)) + '.' if @issue.created_on != @issue.updated_on %>
+  </p>
+  <hr />
 
 <table width="100%">
 <tr>
