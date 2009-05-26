@@ -319,6 +319,7 @@ h1.title {
 	-webkit-border-radius:5px;
 	border-radius:5px;
 	font-size:11px;
+    width: auto;
 }
 #content .title-bar {
 	background: #277D94;
