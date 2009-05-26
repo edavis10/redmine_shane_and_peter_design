@@ -120,7 +120,7 @@
     </div>
   </div>
 
-  <div class="" id="content">
+  <div class="<%= (has_content?(:sidebar) ? '' : 'nosidebar') %>" id="content">
     <%= render_flash_messages %>
     <%= yield %>
     <%= call_hook :view_layouts_base_content %>
