@@ -1,10 +1,35 @@
-<div class="contextual">
-<%= link_to_if_authorized(l(:button_update), {:controller => 'issues', :action => 'edit', :id => @issue }, :onclick => 'showAndScrollTo("update", "notes"); return false;', :class => 'icon icon-edit', :accesskey => accesskey(:edit)) %>
-<%= link_to_if_authorized l(:button_log_time), {:controller => 'timelog', :action => 'edit', :issue_id => @issue}, :class => 'icon icon-time-add' %>
-<%= watcher_tag(@issue, User.current) %>
-<%= link_to_if_authorized l(:button_copy), {:controller => 'issues', :action => 'new', :project_id => @project, :copy_from => @issue }, :class => 'icon icon-copy' %>
-<%= link_to_if_authorized l(:button_move), {:controller => 'issues', :action => 'move', :id => @issue }, :class => 'icon icon-move' %>
-<%= link_to_if_authorized l(:button_delete), {:controller => 'issues', :action => 'destroy', :id => @issue}, :confirm => l(:text_are_you_sure), :method => :post, :class => 'icon icon-del' %>
+<div class="title-bar">
+  <h2><%= h @issue.subject %></h2>
+  <div class="title-bar-actions">
+    <% if authorize_for('timelog', 'edit') %>
+    <%= content_tag(:span, link_to_if_authorized(l(:button_log_time), {:controller => 'timelog', :action => 'edit', :issue_id => @issue}, :class => '')) %>
+    <span class="meta-sep"> | </span>
+    <% end %>
+
+    <%= watcher_tag(@issue, User.current) %>
+    <span class="meta-sep"> | </span>
+
+    <% if authorize_for('issues', 'new') %>
+    <%= content_tag(:span, link_to_if_authorized(l(:button_copy), {:controller => 'issues', :action => 'new', :project_id => @project, :copy_from => @issue })) %>
+    <span class="meta-sep"> | </span>
+    <% end %>
+
+    <% if authorize_for('issues', 'move') %>
+    <%= content_tag(:span, link_to_if_authorized(l(:button_move), {:controller => 'issues', :action => 'move', :id => @issue })) %>
+    <span class="meta-sep"> | </span>
+    <% end %>
+
+    <% if authorize_for('issues', 'destroy') %>
+    <%= content_tag(:span, link_to_if_authorized(l(:button_delete), {:controller => 'issues', :action => 'destroy', :id => @issue}, :confirm => l(:text_are_you_sure), :method => :post)) %>
+    <span class="meta-sep"> | </span>
+    <% end %>
+
+    <% if authorize_for('issues', 'edit') %>
+    <div class="update button-large">
+      <%= link_to_if_authorized(l(:button_update), {:controller => 'issues', :action => 'edit', :id => @issue }, :onclick => 'showAndScrollTo("update", "notes"); return false;', :accesskey => accesskey(:edit)) %>
+    </div>
+    <% end %>
+  </div>
 </div>
 
 <h2><%= @issue.tracker.name %> #<%= @issue.id %></h2>
