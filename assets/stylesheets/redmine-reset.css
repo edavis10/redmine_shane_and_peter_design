@@ -5,6 +5,7 @@
 #account { float:none; }
 #top-menu { padding: 0; }
 #top-menu a { margin-right: 0px; }
+#wrapper { background: none; }
 #main-menu { bottom: auto; }
 #main-menu li { float: none; }
 #main-menu li a { font-weight:normal; background: none; color: #222222; text-decoration: none; }
