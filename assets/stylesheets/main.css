@@ -267,7 +267,7 @@ a:hover {
 #main-menu li li li a span {
 	padding:0;
 }
-#main-menu a:hover, #main-menu a.open:hover {
+#main-menu a:hover, #main-menu a.open:hover, #main-menu li a.selected:hover {
 	background-color:#fafafa !important;
 }
 #main-menu .toggler {
