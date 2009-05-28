@@ -121,7 +121,7 @@
   </div>
 
   <%# Use the nosidebar when there isn't a project.  i.e. No project menu %>
-  <div class="<%= ((@project.nil?) ? 'nosidebar' : '') %>" id="content">
+  <div class="<%= ((@project.nil? || @project.new_record?) ? 'nosidebar' : '') %>" id="content">
     <%= render_flash_messages %>
     <%= yield %>
     <%= call_hook :view_layouts_base_content %>
