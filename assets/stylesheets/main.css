@@ -775,7 +775,7 @@ blockquote {
 }
 
 .journal > ul {
-	display:none;
+/*	display:none;  Removed by Eric */
 } /*
 	TODO remove this once I know what to do with status updates, etc.
 */
