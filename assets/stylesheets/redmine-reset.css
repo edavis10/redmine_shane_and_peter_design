@@ -8,7 +8,7 @@
 #wrapper { background: none; }
 #main-menu { bottom: auto; }
 #main-menu li { float: none; }
-#main-menu li a { font-weight:normal; background: none; color: #222222; text-decoration: none; padding: 0;}
+#main-menu li a { font-weight:normal; background: none; color: #222222; text-decoration: none; padding: 0 0 0 24px}
 #main-menu li a:hover { background: none; color: #222222; text-decoration: none; }
 ul.projects ul {border: none; }
 /* Reset Questions */
