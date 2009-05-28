@@ -729,7 +729,7 @@ div.issue h3 {
 .question-line {
 	display:block;
 }
-.question .wiki p:first-child {
+.question .wiki {
 	background:#277D94;
 	color:#fff;
 	margin:-10px -10px 10px;

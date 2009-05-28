@@ -9,3 +9,5 @@
 #main-menu li a { font-weight:normal; background: none; color: #222222; text-decoration: none; }
 #main-menu li a:hover { background: none; color: #222222; text-decoration: none; }
 ul.projects ul {border: none; }
+/* Reset Questions */
+div.question { background: none; border: none; margin-bottom: 15px; padding: 0;}
