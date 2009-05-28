@@ -120,7 +120,8 @@
     </div>
   </div>
 
-  <div class="<%= (has_content?(:sidebar) ? '' : 'nosidebar') %>" id="content">
+  <%# Use the nosidebar when there isn't a project.  i.e. No project menu %>
+  <div class="<%= ((@project.nil?) ? 'nosidebar' : '') %>" id="content">
     <%= render_flash_messages %>
     <%= yield %>
     <%= call_hook :view_layouts_base_content %>
