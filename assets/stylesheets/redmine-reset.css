@@ -3,6 +3,7 @@
 .tabular p { height: auto; }
 #query_form_content { padding: 0; border: none; }
 #account { float:none; }
+#top-menu { padding: 0; }
 #top-menu a { margin-right: 0px; }
 #main-menu { bottom: auto; }
 #main-menu li { float: none; }
