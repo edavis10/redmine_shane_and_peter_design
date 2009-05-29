@@ -1,6 +1,6 @@
 <%# Added: classes to the li %>
 <%# Removed: icon-* on links %>
-<ul>
+<ul class="menu">
   <%= call_hook(:view_issues_context_menu_start, {:issues => @issues, :can => @can, :back => @back }) %>
 
 <% if !@issue.nil? -%>

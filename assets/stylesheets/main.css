@@ -940,9 +940,6 @@ td.issue div.issue-wrap-outer {
 	padding:6px;
 	z-index:21;
 }
-#issue-drop, ul.issue-dropdown {
-	display:none;
-}
 
 #context-menu ul {
 	width:140px;
@@ -950,12 +947,19 @@ td.issue div.issue-wrap-outer {
 	left:-7px;
 	z-index:20;
 	display:block;
+    /* From .menu */
+	background:#f4f4f4;
+	border:1px solid #afafaf;
+
 }
 #context-menu li {
-	padding:6px 6px 6px 28px;
+	padding:6px !important;
 	background-position:6px center;
 	background-repeat:no-repeat;
 	cursor:pointer;
+    /* From .menu */
+	border-top:1px solid #fff !important;
+	border-bottom:1px solid #ddd !important;
 }
 li.edit {background-image:url(../images/edit.png);}
 li.status {background-image:url(../images/tag.png);}
@@ -965,7 +969,7 @@ li.copy {background-image:url(../images/copy.png);}
 li.move {background-image:url(../images/move.png);}
 li.delete {background-image:url(../images/delete.png);}
 #context-menu li:hover {
-	background-color:#fff;
+	background-color:#fff !important;
 }
 .has-sub {
 	position:absolute;
