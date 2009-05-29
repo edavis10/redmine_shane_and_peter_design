@@ -123,13 +123,6 @@ jQuery(document).ready(function($) {
 			return false;
 	});
 
-	// open/close the filters dropdown
-	$('.title-bar h2, a#extras-close').click(function() {
-		$('.title-bar-extras').slideToggle(animRate);
-		return false;
-	});
-
-
 	// submenu flyouts
 	$("#main-menu li li:has(ul)").hover(function() {
 		$(this).find(".profile-box").show();
