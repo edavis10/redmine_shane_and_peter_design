@@ -777,6 +777,8 @@ blockquote {
 	border:0;
 }
 
+.journal-attributes {color: #999999;}
+
 .journal > ul {
 /*	display:none;  Removed by Eric */
 } /*
