@@ -12,10 +12,5 @@
 #main-menu li a:hover { background: none; color: #222222; text-decoration: none; }
 ul.projects ul {border: none; }
 
-#context-menu ul { background:#F4F4F4 none repeat scroll 0 0 !important;}
-#context-menu a { border: none !important; }
-#context-menu a:hover { border: none !important; background-color:#fff !important; color:#333333 !important; }
-#context-menu li.folder a:hover { background-color:#fff !important; }	
-
 /* Reset Questions */
 div.question { background: none; border: none; margin-bottom: 15px; padding: 0;}

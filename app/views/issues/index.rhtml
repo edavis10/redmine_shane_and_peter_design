@@ -79,6 +79,7 @@
     <%= auto_discovery_link_tag(:atom, {:action => 'changes', :query_id => @query, :format => 'atom', :page => nil, :key => User.current.rss_key}, :title => l(:label_changes_details)) %>
     <%= javascript_include_tag 'context_menu' %>
     <%= stylesheet_link_tag 'context_menu' %>
+    <%= stylesheet_link_tag 'context_menu-reset', :plugin => 'redmine_shane_and_peter_design' %>
 <% end %>
 
 <div id="context-menu" style="display: none;"></div>

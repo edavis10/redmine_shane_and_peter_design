@@ -958,23 +958,22 @@ td.issue div.issue-wrap-outer {
 	border-top:1px solid #fff !important;
 	border-bottom:1px solid #ddd !important;
 }
-li.edit {background-image:url(../images/edit.png);}
-li.status {background-image:url(../images/tag.png);}
-li.priority {background-image:url(../images/clock.png);}
-li.assigned {background-image:url(../images/user.png);}
-li.copy {background-image:url(../images/copy.png);}
-li.move {background-image:url(../images/move.png);}
-li.delete {background-image:url(../images/delete.png);}
-#context-menu li:hover {
-	background-color:#fff !important;
-}
-.has-sub {
-	position:absolute;
-	width:7px;
-	height:9px;
-	background:url(../images/arrow-right.png) no-repeat left top;
-	right:6px;
-	top:11px;
+
+#context-menu .edit a.context_item  {background-image:url(../images/edit.png) !important; background-position: left center !important;}
+#context-menu .status a.context_item {background-image:url(../images/tag.png) !important; background-position: left center !important;}
+#context-menu .priority a.context_item {background-image:url(../images/clock.png) !important; background-position: left center !important;}
+#context-menu .assigned a.context_item {background-image:url(../images/user.png) !important; background-position: left center !important;}
+#context-menu .copy a.context_item {background-image:url(../images/copy.png) !important; background-position: left center !important;}
+#context-menu .move a.context_item {background-image:url(../images/move.png) !important; background-position: left center !important;}
+#context-menu .delete a.context_item {background-image:url(../images/delete.png) !important; background-position: left center !important;}
+
+#context-menu li.folder div.submenu {
+    background:url(../images/arrow-right.png) no-repeat right;
+    position: absolute;
+    height: 9px;
+    width: 7px;
+    top: 11px;
+    right: 6px;
 }
 #context-menu li.folder ul {
 	display:none;
