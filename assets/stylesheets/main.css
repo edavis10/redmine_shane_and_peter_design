@@ -302,6 +302,9 @@ a:hover {
 	text-decoration:underline;
 }
 
+#sidebar { padding-left: 24px; }
+#main-menu #sidebar a { display: inline; }
+
 /*-------------------------------------------------------------------------------
  * =03 - Main Content
  *

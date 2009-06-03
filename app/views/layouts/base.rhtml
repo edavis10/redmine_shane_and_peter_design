@@ -109,22 +109,32 @@
 
   </div>
       
-  <h1 class="title"><%= page_header_title %></h1>
-    
-  <div id="main-menu">
-    <%= render_main_menu(@project) %>
-    <!-- Sidebar -->
-    <div id="">        
-      <%= yield :sidebar %>
-      <%= call_hook :view_layouts_base_sidebar %>
+  <% main_menu = render_main_menu(@project) %>
+  <% if has_content?(:sidebar) || !main_menu.blank? %>
+  <% display_sidebar = true %>
+  <% else %>
+  <% display_sidebar = false %>
+  <% end %>
+  <div id="main" class="<%= display_sidebar ? '' : "nosidebar" %>">
+  
+    <h1 class="title"><%= page_header_title %></h1>
+    <% if display_sidebar %>
+    <div id="main-menu">
+      <%= main_menu %>
+      <!-- Sidebar -->
+      <div id="sidebar">        
+        <%= yield :sidebar %>
+        <%= call_hook :view_layouts_base_sidebar %>
+      </div>
     </div>
-  </div>
+    <% end %>
 
-  <div class="" id="content">
-    <%= render_flash_messages %>
-    <%= yield %>
-    <%= call_hook :view_layouts_base_content %>
-    <div style="clear:both;"></div>
+    <div class="<%= display_sidebar ? '' : "nosidebar" %>" id="content">
+      <%= render_flash_messages %>
+      <%= yield %>
+      <%= call_hook :view_layouts_base_content %>
+      <div style="clear:both;"></div>
+    </div>
   </div>
 
   <div id="ajax-indicator" style="display:none;"><span><%= l(:label_loading) %></span></div>
