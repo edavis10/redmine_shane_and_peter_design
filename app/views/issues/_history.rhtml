@@ -11,12 +11,12 @@
     <div class="profile-wrap">
       <%= avatar(journal.user, :size => "40") %>
     </div>
-    <ul>
+    <%= render_notes(journal, :reply_links => reply_links) unless journal.notes.blank? %>
+    <ul class="journal-attributes">
     <% for detail in journal.details %>
        <li><%= show_detail(detail) %></li>
     <% end %>
     </ul>
-    <%= render_notes(journal, :reply_links => reply_links) unless journal.notes.blank? %>
   </div>
   <%= call_hook(:view_issues_history_journal_bottom, { :journal => journal }) %>
 <% end %>
