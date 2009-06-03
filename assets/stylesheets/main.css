@@ -934,9 +934,6 @@ td.issue div.issue-wrap-outer {
 	position:absolute;
 	left:-7px;
 	top:-7px;
-	border:1px solid #afafaf;
-	border-bottom-color:#f4f4f4;
-	background:#f4f4f4 url(../images/arrow-bottom-right.png) no-repeat right bottom;
 	padding:6px;
 	z-index:21;
 }
