@@ -645,6 +645,10 @@ div.issue h3 {
 .attachments h4.closed {
 	background-position:right 5px;
 }
+
+table.files {
+    display: table;
+}
 #content table.files td, #content table.files th, #content table.files {
 	border:0;
 	background:none;

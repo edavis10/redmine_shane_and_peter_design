@@ -96,7 +96,7 @@ jQuery(document).ready(function($) {
 
 	// show/hide the files table
 	$(".attachments h4").click(function() {
-		$(this).toggleClass("closed").next().slideToggle(animRate);
+	  $(this).toggleClass("closed").next().slideToggle(animRate);
 	});
 
 	// custom function for sliding the main-menu. IE6 & IE7 don't handle sliding very well
