@@ -126,30 +126,6 @@
           } else {
             tr.removeClassName('context-menu-selection');
           }
-        } else {
-          if (e.ctrlKey) {
-            this.toggleSelection(tr);
-          } else if (e.shiftKey) {
-            if (this.lastSelected != null) {
-              var toggling = false;
-              var rows = $$('.hascontextmenu');
-              for (i=0; i<rows.length; i++) {
-                if (toggling || rows[i]==tr) {
-                  this.addSelection(rows[i]);
-                }
-                if (rows[i]==tr || rows[i]==this.lastSelected) {
-                  toggling = !toggling;
-                }
-              }
-            } else {
-              this.addSelection(tr);
-            }
-          } else {
-            // Theme: Don't unselect other rows on left click, otherwise you can't multiple edit.
-            // this.unselectAll();
-            this.addSelection(tr);
-          }
-          this.lastSelected = tr;
         }
           // Theme: Open the context menu if the clicked column is the issue ID column
           var tdClicked = Event.findElement(e,'td');
