@@ -121,6 +121,7 @@ end %>
   </div>
 <% end %>
 
+  <% if @issue.attachments.any? %>
   <hr />
 
   <div class="attachments">
@@ -146,9 +147,9 @@ end %>
       <%   end %>
       <% end %>
     </table>
-  </div>
-
+    </div>
 </div>
+<% end %>
 
 <%= call_hook(:view_issues_show_description_bottom, :issue => @issue) %>
 
