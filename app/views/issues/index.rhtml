@@ -86,11 +86,7 @@
 <%# Override a few methods to add in left click behavior and only open context menu when on the ID column %>
 <%= javascript_tag "ContextMenu.addMethods({
 	RightClick: function(e) {
-      // Theme: Open the context menu if the clicked column is the issue ID column
-      var tdClicked = Event.findElement(e,'td');
-      if (tdClicked!=null && tdClicked!=document && tdClicked.hasClassName('issue')) {
-        this.OpenMenu(e);
-      }
+      this.OpenMenuWrapper(e);
     },
 
     // Theme: New method from RightClick
@@ -103,11 +99,6 @@
 		var tr = Event.findElement(e, 'tr');
 		if (tr == document || tr == undefined  || !tr.hasClassName('hascontextmenu')) { return; }
 		Event.stop(e);
-    	        if (!this.isSelected(tr)) {
-			this.unselectAll();
-			this.addSelection(tr);
-			this.lastSelected = tr;
-		}
 		this.showMenu(e);
 	},
 
@@ -128,12 +119,7 @@
             tr.removeClassName('context-menu-selection');
           }
         }
-          // Theme: Open the context menu if the clicked column is the issue ID column
-          var tdClicked = Event.findElement(e,'td');
-          if (tdClicked!=null && tdClicked!=document && tdClicked.hasClassName('issue')) {
-            this.OpenMenu(e);
-          }
-
+          this.OpenMenuWrapper(e);
       } else {
         // click is outside the rows
         var t = Event.findElement(e, 'a');
@@ -145,6 +131,19 @@
     else{
     // nothing
     }
-  }
+  },
+
+  // Theme: Open the context menu if the clicked column is the issue ID column and at least
+  //        one row is checked.
+  OpenMenuWrapper: function(e) {
+    var tdClicked = Event.findElement(e,'td');
+    if (tdClicked!=null && tdClicked!=document && tdClicked.hasClassName('issue')) {
+      if ($$('.context-menu-selection').size() > 0) {
+        this.OpenMenu(e);
+      }
+   }
+ }
+
+
 });" %>
 <%= javascript_tag "var context_menu = new ContextMenu('#{url_for(:controller => 'issues', :action => 'context_menu')}')" %>
