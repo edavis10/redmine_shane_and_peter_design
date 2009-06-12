@@ -47,15 +47,15 @@
       <ul id="account-info">
         <%= content_tag('li', "#{l(:label_logged_as)} #{link_to_user(User.current, :format => :username)}", :id => '') if User.current.logged? %>
         <% account_items.each do |item| %>
-          <%= content_tag(:li, link_to(h(item[1]), item[2])) %>
+            <%= render_menu_node(item) %>
         <% end %>
       </ul>
 
       <%
-      top_menu_items =  menu_items_for(:top_menu)
+      top_menu_items = menu_items_for(:top_menu)
 
       items_for_main_level = top_menu_items.collect do |item|
-        if item[0].name == :home || item[0].name == :my_page
+        if item.name == :home || item.name == :my_page
           item
         else
           nil
@@ -63,7 +63,7 @@
       end.compact
 
       items_for_more_level = top_menu_items.collect do |item|
-        if item[0].name == :home || item[0].name == :my_page
+        if item.name == :home || item.name == :my_page
           nil
         else
           item
@@ -74,7 +74,7 @@
       
       <ul id="account-nav">
         <% items_for_main_level.each do |item| %>
-          <%= content_tag(:li, link_to(h(item[1]), item[2])) %>
+            <%= render_menu_node(item) %>
         <% end %>
         <li class="drop-down">
           <a class="projects" href="#">Projects</a>
@@ -94,7 +94,7 @@
           <a class="more" href="#">More</a>
           <ul style="display:none;">
             <% items_for_more_level.each do |item| %>
-              <%= content_tag(:li, link_to(h(item[1]), item[2])) %>
+            <%= render_menu_node(item) %>
             <% end %>
           </ul>
         </li>
