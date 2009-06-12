@@ -52,24 +52,15 @@
       </ul>
 
       <%
-      top_menu_items = menu_items_for(:top_menu)
-
-      items_for_main_level = top_menu_items.collect do |item|
-        if item.name == :home || item.name == :my_page
-          item
-        else
-          nil
+        items_for_main_level = []
+        items_for_more_level = []
+        menu_items_for(:top_menu) do |item|
+          if item.name == :home || item.name == :my_page
+            items_for_main_level << item
+          else
+            items_for_more_level << item
+          end
         end
-      end.compact
-
-      items_for_more_level = top_menu_items.collect do |item|
-        if item.name == :home || item.name == :my_page
-          nil
-        else
-          item
-        end
-      end.compact
-
       %>
       
       <ul id="account-nav">
