@@ -13,3 +13,16 @@ Redmine::Plugin.register :redmine_shane_and_peter_design do
 
   requires_redmine :version_or_higher => '0.8.0'
 end
+
+# Move "New Issue" to be under the Issues group
+Redmine::MenuManager.map :project_menu do |menu|
+  menu.delete(:new_issue)
+  menu.push(:new_issue,
+            { :controller => 'issues', :action => 'new' },
+            {
+              :param => :project_id,
+              :caption => :label_issue_new,
+              :html => { :accesskey => Redmine::AccessKeys.key_for(:new_issue), :onclick => "return toggleNewIssue();" },
+              :parent_menu => :issues
+            })
+end
