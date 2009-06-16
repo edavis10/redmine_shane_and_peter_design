@@ -132,6 +132,16 @@ Redmine::MenuManager.map :project_menu do |menu|
               :if => Proc.new {|p| User.current.allowed_to?(:manage_news, p) }
             })
   
-  # TODO: Need Budget subitems
+  # Budget submenu
+  # TODO: plugin needs a new deliverable endpoint
+  menu.push(:new_deliverable,
+            { :controller => 'deliverables', :action => 'index' },
+            {
+              :param => :project_id,
+              :caption => :label_new_deliverable,
+              :parent_menu => :budget,
+              :if => Proc.new {|p| User.current.allowed_to?(:manage_budget, p) }
+            })
+
   # TODO: Need Settings tabs
 end
