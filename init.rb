@@ -3,6 +3,14 @@ require 'redmine'
 require 'shane_and_peter_design_themes_patch'
 require 'shane_and_peter_design_themes_wiki_formatting_patch'
 
+# Patches to the Redmine core.
+require 'dispatcher'
+require 'shane_and_peter_design_application_helper_patch'
+Dispatcher.to_prepare do
+  ApplicationHelper.send(:include, ShaneAndPeterDesignApplicationHelperPatch)
+end
+
+
 Redmine::Plugin.register :redmine_shane_and_peter_design do
   name 'Redmine Shane And Peter Design plugin'
   author 'Eric Davis'
