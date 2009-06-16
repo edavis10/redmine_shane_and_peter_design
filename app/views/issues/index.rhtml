@@ -84,6 +84,7 @@
 
 <div id="context-menu" style="display: none;"></div>
 <%# Override a few methods to add in left click behavior and only open context menu when on the ID column %>
+<%# TODO: Move to asset file after this is completed %>
 <%= javascript_tag "ContextMenu.addMethods({
 	RightClick: function(e) {
       this.OpenMenuWrapper(e);
