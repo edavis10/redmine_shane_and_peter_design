@@ -99,10 +99,29 @@ Redmine::MenuManager.map :project_menu do |menu|
               :if => Proc.new {|p| User.current.allowed_to?(:view_gantt, p, :global => true) }
             })
 
+  # Wiki submenu
+  menu.push(:wiki_home,
+            { :controller => 'wiki', :action => 'index', :page => nil },
+            {
+              :caption => :field_start_page,
+              :parent_menu => :wiki
+            })
+  menu.push(:wiki_by_title,
+            { :controller => 'wiki', :action => 'special', :page => 'Page_index' },
+            {
+              :caption => :label_index_by_title,
+              :parent_menu => :wiki
+            })
+  menu.push(:wiki_by_date,
+            { :controller => 'wiki', :action => 'index', :page => 'Date_index' },
+            {
+              :caption => :label_index_by_date,
+              :parent_menu => :wiki
+            })
+
   # TODO: Need to move Roadmap after Reports
   # TODO: Need Roadmap Items
   # TODO: Need new News subitem
-  # TODO: Need Wiki items
   # TODO: Need Budget subitems
   # TODO: Need Settings tabs
 end
