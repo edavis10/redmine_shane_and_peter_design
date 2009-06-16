@@ -41,4 +41,38 @@ Redmine::MenuManager.map :project_menu do |menu|
               :caption => :label_report_plural,
               :after => :issues
             })
+  menu.push(:time_details,
+            { :controller => 'timelog', :action => 'details' },
+            {
+              :param => :project_id,
+              :caption => :label_details,
+              :parent_menu => :reports,
+              :if => Proc.new {|p| User.current.allowed_to?(:view_time_entries, p) }
+            })
+  menu.push(:time_reports,
+            { :controller => 'timelog', :action => 'report' },
+            {
+              :param => :project_id,
+              :caption => :label_report,
+              :parent_menu => :reports,
+              :if => Proc.new {|p| User.current.allowed_to?(:view_time_entries, p) }
+            })
+  menu.push(:calendar,
+            { :controller => 'issues', :action => 'calendar' },
+            {
+              :param => :project_id,
+              :caption => :label_calendar,
+              :parent_menu => :reports,
+              :if => Proc.new {|p| User.current.allowed_to?(:view_calendar, p, :global => true) }
+            })
+  menu.push(:gantt,
+            { :controller => 'issues', :action => 'gantt' },
+            {
+              :param => :project_id,
+              :caption => :label_gantt,
+              :parent_menu => :reports,
+              :if => Proc.new {|p| User.current.allowed_to?(:view_gantt, p, :global => true) }
+            })
+
+  
 end
