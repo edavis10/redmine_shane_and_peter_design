@@ -33,7 +33,19 @@ Redmine::MenuManager.map :project_menu do |menu|
               :html => { :accesskey => Redmine::AccessKeys.key_for(:new_issue), :onclick => "return toggleNewIssue();" },
               :parent_menu => :issues
             })
+  menu.push(:all_issues,
+            { :controller => 'issues', :action => 'index', :set_filter => 1 },
+            {
+              :param => :project_id,
+              :caption => :label_issue_view_all_open,
+              :parent_menu => :issues
+            })
+  # TODO: Need all issues
+  # TODO: Need questions
+  # TODO: Need double line bar
+  # TODO: Need queries
 
+  
   # TODO: Where should this link to?
   menu.push(:reports,
             { :controller => 'projects', :action => 'show' },
@@ -74,5 +86,10 @@ Redmine::MenuManager.map :project_menu do |menu|
               :if => Proc.new {|p| User.current.allowed_to?(:view_gantt, p, :global => true) }
             })
 
-  
+  # TODO: Need to move Roadmap after Reports
+  # TODO: Need Roadmap Items
+  # TODO: Need new News subitem
+  # TODO: Need Wiki items
+  # TODO: Need Budget subitems
+  # TODO: Need Settings tabs
 end
