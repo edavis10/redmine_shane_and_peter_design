@@ -40,8 +40,21 @@ Redmine::MenuManager.map :project_menu do |menu|
               :caption => :label_issue_view_all_open,
               :parent_menu => :issues
             })
+  begin
+    require 'question' unless Object.const_defined?('Question')
+
+    menu.push(:questions,
+              { :controller => 'questions', :action => 'my_issue_filter'},
+              {
+                :param => :project,
+                :caption => :text_questions_for_me,
+                :parent_menu => :issues
+              })
+  rescue LoadError
+    # question_plugin is not installed, skip
+  end
+  
   # TODO: Need all issues
-  # TODO: Need questions
   # TODO: Need double line bar
   # TODO: Need queries
 
