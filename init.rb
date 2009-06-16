@@ -121,7 +121,17 @@ Redmine::MenuManager.map :project_menu do |menu|
 
   # TODO: Need to move Roadmap after Reports
   # TODO: Need Roadmap Items
-  # TODO: Need new News subitem
+
+  # News submenu
+  menu.push(:new_news,
+            { :controller => 'news', :action => 'new' },
+            {
+              :param => :project_id,
+              :caption => :label_news_new,
+              :parent_menu => :news,
+              :if => Proc.new {|p| User.current.allowed_to?(:manage_news, p) }
+            })
+  
   # TODO: Need Budget subitems
   # TODO: Need Settings tabs
 end
