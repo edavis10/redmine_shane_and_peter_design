@@ -161,3 +161,4 @@
 <%= javascript_tag "var context_menu = new ContextMenu('#{url_for(:controller => 'issues', :action => 'context_menu')}')" %>
 
 <%= javascript_tag 'tb_init("a.thickbox")' %>
+<%= javascript_tag "jQuery(document).ready(function($) { $('#main-menu a.issues.selected .toggler').click(); });" %>
