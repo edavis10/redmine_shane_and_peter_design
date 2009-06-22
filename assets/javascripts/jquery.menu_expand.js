@@ -8,6 +8,6 @@
           menuItem: '.selected'
       }, options);
 
-      $(opts.menu +' '+ opts.menuItem +' .toggler').click();
+      $(opts.menu +' '+ opts.menuItem).click();
 
   }})(jQuery);
