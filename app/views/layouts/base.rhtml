@@ -58,6 +58,8 @@
         menu_items_for(:top_menu) do |item|
           if item.name == :home || item.name == :my_page
             items_for_main_level << item
+          elsif item.name == :projects
+            # Remove
           else
             items_for_more_level << item
           end
@@ -69,7 +71,7 @@
             <%= render_menu_node(item) %>
         <% end %>
         <li class="drop-down">
-          <a class="projects" href="#">Projects</a>
+          <%= link_to l(:label_project_plural), { :controller => 'projects', :action => 'index' }, :class => "projects" %>
           <ul style="display:none;">
             <% 
             project_content = ''
