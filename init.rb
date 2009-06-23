@@ -59,12 +59,13 @@ Redmine::MenuManager.map :project_menu do |menu|
   # TODO: Need queries
 
   
-  # TODO: Where should this link to?
   menu.push(:reports,
-            { :controller => 'projects', :action => 'show' },
+            { :controller => 'timelog', :action => 'details' },
             {
+              :param => :project_id,
               :caption => :label_report_plural,
-              :after => :issues
+              :after => :issues,
+              :if => Proc.new {|p| User.current.allowed_to?(:view_time_entries, p) }
             })
   menu.push(:time_details,
             { :controller => 'timelog', :action => 'details' },
