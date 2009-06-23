@@ -1,6 +1,15 @@
 ContextMenu.addMethods({
   RightClick: function(e) {
-    this.OpenMenuWrapper(e);
+	this.hideMenu();
+	// do not show the context menu on links
+	if (Event.element(e).tagName == 'A') { return; }
+	// right-click simulated by Alt+Click with Opera
+	if (window.opera && !e.altKey) { return; }
+	var tr = Event.findElement(e, 'tr');
+	if (tr == document || tr == undefined  || !tr.hasClassName('hascontextmenu')) { return; }
+	Event.stop(e);
+
+    this.OpenMenuWrapper(e, tr);
   },
 
   // Theme: New method from RightClick
@@ -34,8 +43,9 @@ ContextMenu.addMethods({
         }
       } else {
         // Checkbox wasn't checked so see if the menu should open.
-        this.OpenMenuWrapper(e);
+        this.OpenMenuWrapper(e, tr);
       }
+
     } else {
       // click is outside the rows
       this.removeSingleSelectedItem();
@@ -57,17 +67,17 @@ ContextMenu.addMethods({
 
   // Theme: Open the context menu if the clicked column is the issue ID column and at least
   //        one row is checked.
-  OpenMenuWrapper: function(e) {
+  OpenMenuWrapper: function(e, tr) {
+    var issue_cell = $(Event.element(e));
     var tdClicked = Event.findElement(e,'td');
-    if (tdClicked!=null && tdClicked!=document && tdClicked.hasClassName('issue') && tdClicked.parentNode.hasClassName('context-menu-selection')) {
-      if ($$('.context-menu-selection').size() > 0) {
-        this.OpenMenu(e);
-      }
+
+    if (issue_cell && issue_cell.hasClassName('issue')) {
+      this.addSelection(tr);
+      this.lastSelected = tr;
+      this.showMenu(e);
     } else {
       // Menu wasn't requested on a selected item, see about removing the single item selection.
       this.removeSingleSelectedItem();
     }
   }
-
-
 });
