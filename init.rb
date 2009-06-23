@@ -125,6 +125,15 @@ Redmine::MenuManager.map :project_menu do |menu|
               :if => Proc.new {|p| User.current.allowed_to?(:view_gantt, p, :global => true) }
             })
 
+  menu.delete(:roadmap)
+  menu.push(:roadmap,
+            { :controller => 'projects', :action => 'roadmap' },
+            {
+              :if => Proc.new { |p| p.versions.any? },
+              :after => :reports
+            })
+  # TODO: Need Roadmap Items
+  
   # Wiki submenu
   menu.push(:wiki_home,
             { :controller => 'wiki', :action => 'index', :page => nil },
@@ -145,8 +154,6 @@ Redmine::MenuManager.map :project_menu do |menu|
               :parent_menu => :wiki
             })
 
-  # TODO: Need to move Roadmap after Reports
-  # TODO: Need Roadmap Items
 
   # News submenu
   menu.push(:new_news,
