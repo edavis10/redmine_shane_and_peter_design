@@ -13,7 +13,7 @@
 #main-menu li a:hover { background: none; color: #222222; text-decoration: none; }
 ul.projects ul {border: none; }
 
-#sidebar { float:none; min-height: none; width: 100%; position: static; }
+#sidebar { float:none; min-height: 0px; width: 100%; position: static; }
 #main-menu .calendar {border: none; cursor: pointer; font-family:'lucida grande','lucida sans unicode',tahoma,arial,sans-serif;}
 
 
