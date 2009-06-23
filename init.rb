@@ -22,6 +22,9 @@ Redmine::Plugin.register :redmine_shane_and_peter_design do
   requires_redmine :version_or_higher => '0.8.0'
 end
 
+require 'redmine/i18n'
+extend Redmine::I18n
+
 Redmine::MenuManager.map :project_menu do |menu|
   # Move "New Issue" to be under the Issues group
   menu.delete(:new_issue)
@@ -71,7 +74,17 @@ Redmine::MenuManager.map :project_menu do |menu|
             { :controller => 'timelog', :action => 'details' },
             {
               :param => :project_id,
-              :caption => :label_details,
+              :caption => Proc.new {|p|
+                # Taken from ProjectsController#show.
+                TimeEntry.visible_by(User.current) do
+                  @total_hours = TimeEntry.sum(:hours, 
+                                               :include => :project,
+                                               :conditions => p.project_condition(Setting.display_subprojects_issues?)).to_f
+                end
+
+                l_hours(@total_hours)
+
+              },
               :parent_menu => :reports,
               :if => Proc.new {|p| User.current.allowed_to?(:view_time_entries, p) }
             })

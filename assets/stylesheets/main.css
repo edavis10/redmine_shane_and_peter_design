@@ -304,6 +304,10 @@ a:hover {
 
 #sidebar { padding-left: 24px; }
 #main-menu #sidebar a { display: inline; }
+/* Mimic ".icon .icon-time" */
+#main-menu li a.time-details { background-image:url(../../../images/time.png); background-position:30px 40%; background-repeat:no-repeat; padding-left:50px; }
+
+
 
 /*-------------------------------------------------------------------------------
  * =03 - Main Content
