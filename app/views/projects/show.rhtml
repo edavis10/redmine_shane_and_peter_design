@@ -57,21 +57,6 @@
 </div>
 
 <% content_for :sidebar do %>
-    <% planning_links = []
-      planning_links << link_to_if_authorized(l(:label_calendar), :controller => 'issues', :action => 'calendar', :project_id => @project)
-      planning_links << link_to_if_authorized(l(:label_gantt), :controller => 'issues', :action => 'gantt', :project_id => @project)
-      planning_links.compact!
-      unless planning_links.empty? %>
-    <h3><%= l(:label_planning) %></h3>
-    <p><%= planning_links.join(' | ') %></p>
-    <% end %>
-    
-    <% if @total_hours && User.current.allowed_to?(:view_time_entries, @project) %>
-    <h3><%= l(:label_spent_time) %></h3>
-    <p><span class="icon icon-time"><%= l_hours(@total_hours) %></span></p>
-    <p><%= link_to(l(:label_details), {:controller => 'timelog', :action => 'details', :project_id => @project}) %> |
-    <%= link_to(l(:label_report), {:controller => 'timelog', :action => 'report', :project_id => @project}) %></p>
-    <% end %>
 <% end %>
 
 <% content_for :header_tags do %>
