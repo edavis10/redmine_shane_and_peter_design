@@ -46,7 +46,6 @@ Redmine::MenuManager.map :project_menu do |menu|
   menu.push(:all_issues,
             { :controller => 'all_issues', :action => 'index' },
             {
-              :param => :project_id,
               :caption => :label_issue_view_all,
               :parent_menu => :issues
             })
