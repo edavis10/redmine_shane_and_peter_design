@@ -1,49 +1,49 @@
 ContextMenu.addMethods({
-	RightClick: function(e) {
-      this.OpenMenuWrapper(e);
-    },
+  RightClick: function(e) {
+    this.OpenMenuWrapper(e);
+  },
 
-    // Theme: New method from RightClick
-    OpenMenu: function(e) {
-		this.hideMenu();
-		// do not show the context menu on links
-		if (Event.element(e).tagName == 'A') { return; }
-		// right-click simulated by Alt+Click with Opera
-		if (window.opera && !e.altKey) { return; }
-		var tr = Event.findElement(e, 'tr');
-		if (tr == document || tr == undefined  || !tr.hasClassName('hascontextmenu')) { return; }
-		Event.stop(e);
-		this.showMenu(e);
-	},
+  // Theme: New method from RightClick
+  OpenMenu: function(e) {
+	this.hideMenu();
+	// do not show the context menu on links
+	if (Event.element(e).tagName == 'A') { return; }
+	// right-click simulated by Alt+Click with Opera
+	if (window.opera && !e.altKey) { return; }
+	var tr = Event.findElement(e, 'tr');
+	if (tr == document || tr == undefined  || !tr.hasClassName('hascontextmenu')) { return; }
+	Event.stop(e);
+	this.showMenu(e);
+  },
 
   Click: function(e) {
   	this.hideMenu();
   	if (Event.element(e).tagName == 'A') { return; }
     if (window.opera && e.altKey) {	return; }
 
-      var tr = Event.findElement(e, 'tr');
-        if (tr!=null && tr!=document && tr.hasClassName('hascontextmenu') && !tr.hasClassName('no-select')) {
-        // a row was clicked, check if the click was on checkbox
-        var box = Event.findElement(e, 'input');
-        if (box!=document && box!=undefined) {
-          // a checkbox may be clicked
-          if (box.checked) {
-            tr.addClassName('context-menu-selection');
-          } else {
-            tr.removeClassName('context-menu-selection');
-          }
+    var tr = Event.findElement(e, 'tr');
+    if (tr!=null && tr!=document && tr.hasClassName('hascontextmenu') && !tr.hasClassName('no-select')) {
+      // a row was clicked, check if the click was on checkbox
+      var box = Event.findElement(e, 'input');
+      if (box!=document && box!=undefined) {
+        // a checkbox may be clicked
+        if (box.checked) {
+          tr.addClassName('context-menu-selection');
         } else {
-          // Checkbox wasn't checked so see if the menu should open.
-          this.OpenMenuWrapper(e);
+          tr.removeClassName('context-menu-selection');
         }
       } else {
-        // click is outside the rows
-        this.removeSingleSelectedItem();
-        var t = Event.findElement(e, 'a');
-        if ((t != document) && (Element.hasClassName(t, 'disabled') || Element.hasClassName(t, 'submenu'))) {
-          Event.stop(e);
-        }
+        // Checkbox wasn't checked so see if the menu should open.
+        this.OpenMenuWrapper(e);
       }
+    } else {
+      // click is outside the rows
+      this.removeSingleSelectedItem();
+      var t = Event.findElement(e, 'a');
+      if ((t != document) && (Element.hasClassName(t, 'disabled') || Element.hasClassName(t, 'submenu'))) {
+        Event.stop(e);
+      }
+    }
   },
 
   removeSingleSelectedItem: function() {
@@ -63,11 +63,11 @@ ContextMenu.addMethods({
       if ($$('.context-menu-selection').size() > 0) {
         this.OpenMenu(e);
       }
-   } else {
-     // Menu wasn't requested on a selected item, see about removing the single item selection.
-     this.removeSingleSelectedItem();
-   }
- }
+    } else {
+      // Menu wasn't requested on a selected item, see about removing the single item selection.
+      this.removeSingleSelectedItem();
+    }
+  }
 
 
 });
