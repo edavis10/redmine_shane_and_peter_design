@@ -1,8 +1,3 @@
-<h3><%= l(:label_issue_plural) %></h3>
-<% if @project %>
-<%= link_to l(:field_summary), :controller => 'reports', :action => 'issue_report', :id => @project %><br />
-<%= link_to l(:label_change_log), :controller => 'projects', :action => 'changelog', :id => @project %><br />
-<% end %>
 <%= call_hook(:view_issues_sidebar_issues_bottom) %>
 
 <% unless sidebar_queries.empty? -%>

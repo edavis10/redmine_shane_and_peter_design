@@ -2,3 +2,5 @@ en:
   button_save_and_new: "Save & New"
   button_save_and_close: "Save & Close"
   label_issue_view_all_open: "All Open Issues"
+  field_issue_summary: "Issue Summary"
+  label_change_log: "Issue Change Log"
