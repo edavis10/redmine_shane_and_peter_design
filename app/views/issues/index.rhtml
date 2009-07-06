@@ -88,5 +88,5 @@
 <%= javascript_include_tag 'context_menu_overrides', :plugin => 'redmine_shane_and_peter_design' %>
 <%= javascript_tag "var context_menu = new ContextMenu('#{url_for(:controller => 'issues', :action => 'context_menu')}')" %>
 
-<%= javascript_tag 'tb_init("a.thickbox")' %>
+<%= javascript_tag 'issuesPageActions()' %>
 
