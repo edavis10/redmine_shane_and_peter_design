@@ -24,6 +24,8 @@ end
 
 require 'redmine/i18n'
 extend Redmine::I18n
+require 'projects_helper'
+extend ProjectsHelper
 
 Redmine::MenuManager.map :project_menu do |menu|
   query_proc = Proc.new { |p|
@@ -230,5 +232,26 @@ Redmine::MenuManager.map :project_menu do |menu|
               :if => Proc.new {|p| User.current.allowed_to?(:manage_budget, p) }
             })
 
-  # TODO: Need Settings tabs
+  menu.delete :settings
+  menu.push(:settings,
+            { :controller => 'projects', :action => 'settings' },
+            {
+              :last => true,
+              :child_menus => Proc.new { |p|
+                returning [] do |children|
+                  @project = p # @project used in the helper
+                  project_settings_tabs.each do |tab|
+
+                    children << Redmine::MenuManager::MenuItem.new(
+                              "settings-#{tab[:name]}".to_sym,
+                              { :controller => 'projects', :action => 'settings', :id => p, :tab => tab[:name] },
+                              {
+                                :caption => tab[:label]
+                              })
+                    
+                  end
+                end
+              }
+            })
+
 end
