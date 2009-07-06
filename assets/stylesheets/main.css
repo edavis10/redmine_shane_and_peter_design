@@ -212,7 +212,7 @@ a:hover {
 	font-size:11px;
 	display:none;
 }
-#main-menu ul ul.filters {
+#main-menu ul ul.menu-children.unattached {
 	border-top:1px solid #ddd;
 }
 #main-menu ul ul ul {
