@@ -26,6 +26,42 @@ require 'redmine/i18n'
 extend Redmine::I18n
 
 Redmine::MenuManager.map :project_menu do |menu|
+  query_proc = Proc.new { |p|
+    ##### Taken from IssuesHelper
+    # User can see public queries and his own queries
+    visible = ARCondition.new(["is_public = ? OR user_id = ?", true, (User.current.logged? ? User.current.id : 0)])
+    # Project specific queries and global queries
+    visible << (@project.nil? ? ["project_id IS NULL"] : ["project_id IS NULL OR project_id = ?", @project.id])
+    sidebar_queries = Query.find(:all, 
+                                 :select => 'id, name',
+                                 :order => "name ASC",
+                                 :conditions => visible.conditions)
+
+    returning [] do |menu_items|
+      sidebar_queries.each do |query|
+        menu_items <<  Redmine::MenuManager::MenuItem.new(
+                                    "query-#{query.id}".to_sym,
+                                    { :controller => 'issues', :action => 'index', :project_id => p, :query_id => query },
+                                    {
+                                      :caption => query.name,
+                                      :param => :project_id,
+                                      :parent_menu => :issues
+                              })
+      end
+    end
+  }
+    
+  # Add Queries as child_submenus
+  menu.delete(:issues)
+  menu.push(:issues,
+            { :controller => 'issues', :action => 'index' },
+            {
+              :param => :project_id,
+              :caption => :label_issue_plural,
+              :child_menus => query_proc,
+              :after => :overview
+            })
+  
   # Move "New Issue" to be under the Issues group
   menu.delete(:new_issue)
   menu.push(:new_issue,
@@ -63,9 +99,7 @@ Redmine::MenuManager.map :project_menu do |menu|
     # question_plugin is not installed, skip
   end
   
-  # TODO: Need all issues
   # TODO: Need double line bar
-  # TODO: Need queries
 
   
   menu.push(:reports,
@@ -153,7 +187,6 @@ Redmine::MenuManager.map :project_menu do |menu|
               },
               :after => :reports
             })
-  # TODO: Need Roadmap Items
   
   # Wiki submenu
   menu.push(:wiki_home,
