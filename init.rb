@@ -136,6 +136,21 @@ Redmine::MenuManager.map :project_menu do |menu|
             { :controller => 'projects', :action => 'roadmap' },
             {
               :if => Proc.new { |p| p.versions.any? },
+              :child_menus => Proc.new { |p|
+                returning [] do |children|
+                  p.versions.each do |version|
+
+                    children << Redmine::MenuManager::MenuItem.new(
+                                                       "version-#{version.id}".to_sym,
+                              { :controller => 'versions', :action => 'show', :id => version },
+                              {
+                                :caption => version.name,
+                                :parent_menu => :roadmap
+                              })
+                    
+                  end
+                end
+              },
               :after => :reports
             })
   # TODO: Need Roadmap Items
