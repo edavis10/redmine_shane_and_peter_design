@@ -112,18 +112,6 @@ Redmine::MenuManager.map :project_menu do |menu|
               :after => :issues,
               :if => Proc.new {|p| User.current.allowed_to?(:view_time_entries, p) }
             })
-  menu.push(:issue_summary,
-            { :controller => 'reports', :action => 'issue_report' },
-            {
-              :caption => :field_issue_summary,
-              :parent_menu => :reports
-            })
-  menu.push(:issue_changelog,
-            { :controller => 'projects', :action => 'changelog' },
-            {
-              :caption => :label_change_log,
-              :parent_menu => :reports
-            })
   menu.push(:time_details,
             { :controller => 'timelog', :action => 'details' },
             {
@@ -141,6 +129,18 @@ Redmine::MenuManager.map :project_menu do |menu|
               },
               :parent_menu => :reports,
               :if => Proc.new {|p| User.current.allowed_to?(:view_time_entries, p) }
+            })
+  menu.push(:issue_summary,
+            { :controller => 'reports', :action => 'issue_report' },
+            {
+              :caption => :field_issue_summary,
+              :parent_menu => :reports
+            })
+  menu.push(:issue_changelog,
+            { :controller => 'projects', :action => 'changelog' },
+            {
+              :caption => :label_change_log,
+              :parent_menu => :reports
             })
   menu.push(:time_reports,
             { :controller => 'timelog', :action => 'report' },
