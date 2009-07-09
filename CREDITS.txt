@@ -1,0 +1,8 @@
+Thanks go to the following people for patches and contributions:
+
+* Eric Davis of Little Stream Software - Project Maintainer
+* Peter Chester of Shane and Peter, Inc - Project sponsorship
+* Shane Pearlman of Shane and Peter, Inc - Project sponsorship
+* Brandon Jones of Epicera Studios
+* Matt Wiebe of Soma Design
+* Reid Peifer
