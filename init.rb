@@ -1,14 +1,14 @@
 require 'redmine'
 
-require 'shane_and_peter_design_themes_patch'
-require 'shane_and_peter_design_themes_wiki_formatting_patch'
+require 'shane_and_peter_design/themes_patch'
+require 'shane_and_peter_design/themes_wiki_formatting_patch'
 
 # Patches to the Redmine core.
 require 'dispatcher'
-require 'shane_and_peter_design_application_helper_patch'
+require 'shane_and_peter_design/application_helper_patch'
 Dispatcher.to_prepare do
-  ApplicationHelper.send(:include, ShaneAndPeterDesignApplicationHelperPatch)
-  Redmine::MenuManager::MenuHelper.send(:include, ShaneAndPeterDesignMenuHelperPatch)
+  ApplicationHelper.send(:include, ShaneAndPeterDesign::ApplicationHelperPatch)
+  Redmine::MenuManager::MenuHelper.send(:include, ShaneAndPeterDesign::MenuHelperPatch)
 end
 
 
