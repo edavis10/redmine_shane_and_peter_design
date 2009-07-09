@@ -8,6 +8,7 @@ require 'dispatcher'
 require 'shane_and_peter_design_application_helper_patch'
 Dispatcher.to_prepare do
   ApplicationHelper.send(:include, ShaneAndPeterDesignApplicationHelperPatch)
+  Redmine::MenuManager::MenuHelper.send(:include, ShaneAndPeterDesignMenuHelperPatch)
 end
 
 
