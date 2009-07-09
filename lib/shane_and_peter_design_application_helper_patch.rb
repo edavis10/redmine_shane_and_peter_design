@@ -14,6 +14,10 @@ module ShaneAndPeterDesignApplicationHelperPatch
           "reports"
         when params[:controller] == 'issues' && ['calendar','gantt'].include?(params[:action])
           "reports"
+        when params[:controller] == 'projects' && params[:action] == 'roadmap'
+          'roadmap'
+        when params[:controller] == 'versions' && params[:action] == 'show'
+          'roadmap'
         else
           params[:controller]
         end
