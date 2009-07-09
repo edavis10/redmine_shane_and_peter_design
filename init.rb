@@ -226,7 +226,6 @@ Redmine::MenuManager.map :project_menu do |menu|
   menu.push(:new_deliverable,
             { :controller => 'deliverables', :action => 'index' },
             {
-              :param => :project_id,
               :caption => :label_new_deliverable,
               :parent_menu => :budget,
               :if => Proc.new {|p| User.current.allowed_to?(:manage_budget, p) }
