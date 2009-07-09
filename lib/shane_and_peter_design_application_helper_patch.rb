@@ -20,6 +20,8 @@ module ShaneAndPeterDesignApplicationHelperPatch
           'roadmap'
         when params[:controller] == 'projects' && params[:action] == 'settings'
           'settings'
+        when params[:controller] == 'deliverables'
+          'budget'
         else
           params[:controller]
         end
