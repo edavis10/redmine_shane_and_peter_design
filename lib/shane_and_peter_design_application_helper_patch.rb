@@ -18,6 +18,8 @@ module ShaneAndPeterDesignApplicationHelperPatch
           'roadmap'
         when params[:controller] == 'versions' && params[:action] == 'show'
           'roadmap'
+        when params[:controller] == 'projects' && params[:action] == 'settings'
+          'settings'
         else
           params[:controller]
         end
