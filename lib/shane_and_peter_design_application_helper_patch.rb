@@ -6,8 +6,20 @@ module ShaneAndPeterDesignApplicationHelperPatch
   module InstanceMethods
     # Expands the current menu item using jQuery.
     def expand_current_menu
-      current_menu_class = params[:controller]
-      javascript_tag("jQuery(document).ready(function($) { $.menu_expand({ menuItem: '.#{current_menu_class}.selected' }) });")
+      current_menu_class =
+        case 
+        when params[:controller] == "timelog"
+          "reports"
+        when params[:controller] == 'projects' && params[:action] == 'changelog'
+          "reports"
+        when params[:controller] == 'issues' && ['calendar','gantt'].include?(params[:action])
+          "reports"
+        else
+          params[:controller]
+        end
+
+                             
+      javascript_tag("jQuery(document).ready(function($) { $.menu_expand({ menuItem: '.#{current_menu_class}' }) });")
     end
   end
 end
