@@ -154,5 +154,15 @@ jQuery(document).ready(function($) {
 		});
 	}
 
+    // Connect new issue lightbox to the New Issue link but only when
+    // on the issues list.
+    $('a.issues.selected + ul a.new-issue').click(function() {
+        tb_show("Open a new issue", "#TB_inline?inlineId=issue-form-wrap&amp;height=510&amp;width=735", false);
 
+        // Taken from the custom override code
+        // call the resize function after 350 milliseconds. should be enough time to have it load, but not too much so that there's lag.
+        setTimeout(resizeNewIssue,350);
+
+        return false;
+    });
 });

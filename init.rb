@@ -72,7 +72,7 @@ Redmine::MenuManager.map :project_menu do |menu|
             {
               :param => :project_id,
               :caption => :label_issue_new,
-              :html => { :accesskey => Redmine::AccessKeys.key_for(:new_issue), :onclick => "return toggleNewIssue();" },
+              :html => { :accesskey => Redmine::AccessKeys.key_for(:new_issue) },
               :parent_menu => :issues
             })
   menu.push(:all_open_issues,
