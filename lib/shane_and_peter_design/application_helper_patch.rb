@@ -30,6 +30,18 @@ module ShaneAndPeterDesign
         
         javascript_tag("jQuery(document).ready(function($) { $.menu_expand({ menuItem: '.#{current_menu_class}' }) });")
       end
+
+      def link_to_attachment_with_thumbnail_preview(attachment, options={})
+        text = options.delete(:text) || attachment.filename
+        action = options.delete(:download) ? 'download' : 'show'
+        options = options.merge({:class => 'has-thumb'})
+        
+        thumbnail_image = image_tag(url_for({:controller => 'attachments', :action => 'show', :id => attachment.thumbnail, :filename => attachment.thumbnail.filename }))
+        
+        link_to(h(text) + thumbnail_image,
+                {:controller => 'attachments', :action => action, :id => attachment, :filename => attachment.filename },
+                options)
+      end
     end
   end
 end
