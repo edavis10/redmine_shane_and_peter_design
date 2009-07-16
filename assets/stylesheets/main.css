@@ -307,6 +307,8 @@ a:hover {
 /* Mimic ".icon .icon-time" */
 #main-menu li a.time-details { background-image:url(../../../images/time.png); background-position:30px 40%; background-repeat:no-repeat; padding-left:50px; }
 
+#main-menu p.password { font-weight: bold; margin: 25px 0; }
+
 
 
 /*-------------------------------------------------------------------------------
