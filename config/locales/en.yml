@@ -4,3 +4,5 @@ en:
   label_issue_view_all_open: "All Open Issues"
   field_issue_summary: "Issue Summary"
   label_change_log: "Issue Change Log"
+  button_edit_query: "Edit Query"
+  button_delete_query: "Delete Query"
