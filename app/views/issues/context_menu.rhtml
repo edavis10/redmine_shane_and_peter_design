@@ -16,7 +16,7 @@
 		                              :selected => (s == @issue.status), :disabled => !(@can[:update] && @allowed_statuses.include?(s)) %></li>
 		<% end -%>
 		</ul>
-        <div class="submenu" />
+        <div class="submenu"></div>
 	</li>
 <% else %>
 	<li><%= context_menu_link l(:button_edit), {:controller => 'issues', :action => 'bulk_edit', :ids => @issues.collect(&:id)},
@@ -31,7 +31,7 @@
 		                              :selected => (@issue && p == @issue.priority), :disabled => !@can[:edit] %></li>
 		<% end -%>
 		</ul>
-        <div class="submenu" />
+        <div class="submenu"></div>
 	</li>
 	<% unless @project.nil? || @project.versions.empty? -%>
 	<li class="folder fixed_version">			
@@ -44,7 +44,7 @@
 		    <li><%= context_menu_link l(:label_none), {:controller => 'issues', :action => 'bulk_edit', :ids => @issues.collect(&:id), 'fixed_version_id' => 'none', :back_to => @back}, :method => :post,
 		                              :selected => (@issue && @issue.fixed_version.nil?), :disabled => !@can[:update] %></li>
 		</ul>
-        <div class="submenu" />
+        <div class="submenu"></div>
 	</li>
 	<% end %>
 	<% unless @assignables.nil? || @assignables.empty? -%>
@@ -58,7 +58,7 @@
 		    <li><%= context_menu_link l(:label_nobody), {:controller => 'issues', :action => 'bulk_edit', :ids => @issues.collect(&:id), 'assigned_to_id' => 'none', :back_to => @back}, :method => :post,
 		                              :selected => (@issue && @issue.assigned_to.nil?), :disabled => !@can[:update] %></li>
 		</ul>
-        <div class="submenu" />
+        <div class="submenu"></div>
 	</li>
 	<% end %>
 	<% unless @project.nil? || @project.issue_categories.empty? -%>
@@ -72,7 +72,7 @@
 		    <li><%= context_menu_link l(:label_none), {:controller => 'issues', :action => 'bulk_edit', :ids => @issues.collect(&:id), 'category_id' => 'none', :back_to => @back}, :method => :post,
 		                              :selected => (@issue && @issue.category.nil?), :disabled => !@can[:update] %></li>
 		</ul>
-        <div class="submenu" />
+        <div class="submenu"></div>
 	</li>
 	<% end -%>
   <% unless Setting.issue_status_for_done_ratio? %>
@@ -84,7 +84,7 @@
 		                                  :selected => (@issue && p == @issue.done_ratio), :disabled => !@can[:edit] %></li>
 		<% end -%>
 		</ul>
-        <div class="submenu" />
+        <div class="submenu"></div>
 	</li>
   <% end %>
 	
