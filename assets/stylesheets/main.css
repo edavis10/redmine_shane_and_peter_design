@@ -10,6 +10,7 @@
  * 07 - Behavior Styles
  * 08 - Reusable classes
  * 09 - New Issue Form 
+ * 10 - Plugins and misc
 */
 
 /*-------------------------------------------------------------------------------
@@ -1212,3 +1213,9 @@ html > body .tabular p {
 #TB_ajaxContent #issue-form #attachments_fields input[type=file] {
 	margin-right:10px;
 }
+
+/*-------------------------------------------------------------------------------
+ * =10 - Plugins and misc
+ ------------------------------------------------------------------------------*/
+/* Billing */
+div#floating-counter { z-index: 10; } /* so dropdown menus will not mask it */
