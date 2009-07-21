@@ -33,33 +33,30 @@ module ShaneAndPeterDesign
 
       def link_to_attachment_with_thumbnail_preview(attachment, options={})
         text = options.delete(:text) || attachment.filename
-        action = options.delete(:download) ? 'download' : 'show'
         options = options.merge({:class => 'has-thumb'})
-        
+
         thumbnail_image = image_tag(url_for({:controller => 'attachments', :action => 'show', :id => attachment.thumbnail, :filename => attachment.thumbnail.filename }))
-        
-        link_to(h(text) + thumbnail_image,
-                {:controller => 'attachments', :action => action, :id => attachment, :filename => attachment.filename },
-                options)
+        link_to_attachment_without_html_escape(attachment, h(text) + thumbnail_image, options)
       end
 
       def link_to_attachment_as_thumbnail(attachment, options={})
         text = options.delete(:text) || attachment.filename
-        action = options.delete(:download) ? 'download' : 'show'
 
         thumbnail_image = image_tag(url_for({:controller => 'attachments', :action => 'show', :id => attachment.thumbnail, :filename => attachment.thumbnail.filename }))
-
-        link_to(thumbnail_image + h(text), {:controller => 'attachment', :action => action, :id => attachment, :filename => attachment.filename }, options)
-        
-      end
+        link_to_attachment_without_html_escape(attachment, thumbnail_image + h(text), options)
+       end
 
       def link_to_attachment_with_mimetype_icon(attachment, options={})
         text = options.delete(:text) || attachment.filename
-        action = options.delete(:download) ? 'download' : 'show'
 
         mime_type_icon = image_tag(mime_type_icon(attachment.content_type), :plugin => 'redmine_shane_and_peter_design')
+        link_to_attachment_without_html_escape(attachment, mime_type_icon + h(text), options)
+      end
 
-        link_to(mime_type_icon + h(text), {:controller => 'attachment', :action => action, :id => attachment, :filename => attachment.filename }, options)
+      def link_to_attachment_without_html_escape(attachment, text, options={})
+        action = options.delete(:download) ? 'download' : 'show'
+        
+        link_to(text, {:controller => 'attachment', :action => action, :id => attachment, :filename => attachment.filename }, options)
       end
 
       def mime_type_icon(content_type)
