@@ -630,14 +630,14 @@ div.issue h3 {
 	float:left;
 	width:58%;
 }
-#watchers {
+.issue #watchers {
 	float:right;
 	width:37%;
 }
-#watchers .contextual {
+.issue #watchers .contextual {
 	float:right;
 }
-#watchers li.user {
+.issue #watchers li.user {
 	float:left;
 	margin-right:6px;
 }
