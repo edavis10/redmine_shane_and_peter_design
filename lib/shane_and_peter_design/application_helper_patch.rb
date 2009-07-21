@@ -56,7 +56,7 @@ module ShaneAndPeterDesign
       def link_to_attachment_without_html_escape(attachment, text, options={})
         action = options.delete(:download) ? 'download' : 'show'
         
-        link_to(text, {:controller => 'attachment', :action => action, :id => attachment, :filename => attachment.filename }, options)
+        link_to(text, {:controller => 'attachments', :action => action, :id => attachment, :filename => attachment.filename }, options)
       end
 
       def mime_type_icon(content_type)
