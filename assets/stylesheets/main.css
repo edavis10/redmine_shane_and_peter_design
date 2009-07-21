@@ -772,6 +772,7 @@ blockquote {
 .file-thumbs {
 	margin:20px 0 0;
 	overflow:hidden;
+    float: left;
 }
 .file-thumbs a {
 	display:block;
