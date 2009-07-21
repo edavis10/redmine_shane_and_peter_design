@@ -9,21 +9,18 @@ module ShaneAndPeterDesign
 
     module InstanceMethods
       def show_detail_with_attachment_previews(detail, no_html=false)
-        if detail.property == 'attachment' && !no_html
-          if !detail.value.blank? && a = Attachment.find_by_id(detail.prop_key)
-            if a.thumbnail?
-              value = content_tag(:div, link_to_attachment_as_thumbnail(a), :class => 'file-thumbs')
-            else
-              value = content_tag(:div, link_to_attachment_with_mimetype_icon(a), :class => 'file-thumbs')
-            end
+        return show_detail_without_attachment_previews(detail, no_html) if detail.property !='attachment' || no_html
 
-            return value
+        if !detail.value.blank? && a = Attachment.find_by_id(detail.prop_key)
+          if a.thumbnail?
+            value = content_tag(:div, link_to_attachment_as_thumbnail(a), :class => 'file-thumbs')
           else
-            value = content_tag("i", h(value)) if value
-            return "#{l(:label_attachment)} #{detail.old_value} #{l(:label_deleted)}"
+            value = content_tag(:div, link_to_attachment_with_mimetype_icon(a), :class => 'file-thumbs')
           end
+
+          return value
         else
-          show_detail_without_attachment_previews(detail, no_html)
+          return "#{l(:label_attachment)} #{detail.old_value} #{l(:label_deleted)}"
         end
       end
     end
