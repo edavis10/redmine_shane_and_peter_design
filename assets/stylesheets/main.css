@@ -1219,3 +1219,4 @@ html > body .tabular p {
  ------------------------------------------------------------------------------*/
 /* Billing */
 div#floating-counter { z-index: 10; } /* so dropdown menus will not mask it */
+div#floating-counter h3 { margin-top: 0px; }
