@@ -1221,3 +1221,5 @@ html > body .tabular p {
 /* Billing */
 div#floating-counter { z-index: 10; } /* so dropdown menus will not mask it */
 div#floating-counter h3 { margin-top: 0px; }
+/* JS Calendar popup */
+div.calendar { z-index: 120 !important;} /* So it's above the lightbox overlay */
