@@ -67,7 +67,9 @@
 
 <% unless @project.nil? %>
 <div id="issue-form-wrap" style="display:none;">
-<%= render :partial => 'issues/new_issue', :locals => { :show => false } %>
+  <div id="new_issue">
+    <%= render :partial => 'issues/new_issue', :locals => { :show => false } %>
+  </div>
 </div>
 <% end %>
 

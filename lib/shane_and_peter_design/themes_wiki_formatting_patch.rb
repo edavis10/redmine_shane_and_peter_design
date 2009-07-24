@@ -17,8 +17,9 @@ module Redmine
             link_to(l(:label_help), url,
                     :onclick => "window.open(\"#{ url }\", \"\", \"resizable=yes, location=no, width=300, height=640, menubar=no, status=no, scrollbars=yes\"); return false;")
 
-            js = <<-EOJS
-                 if (typeof tb == "undefined") {
+          # tb (toolbar) not defined and the field_id isn't already an editor
+          js = <<-EOJS
+                 if (typeof tb == "undefined" && !$('#{field_id}').parentNode.hasClassName('jstEditor')) {
                    var tb = new jsToolBar($('#{field_id}'));
                    tb.setHelpLink('#{help_link}');
                    tb.draw();
