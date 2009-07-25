@@ -11,6 +11,7 @@
  * 08 - Reusable classes
  * 09 - New Issue Form 
  * 10 - Plugins and misc
+ * 11 - Appended from staging
 */
 
 /*-------------------------------------------------------------------------------
@@ -1223,3 +1224,390 @@ div#floating-counter { z-index: 10; } /* so dropdown menus will not mask it */
 div#floating-counter h3 { margin-top: 0px; }
 /* JS Calendar popup */
 div.calendar { z-index: 120 !important;} /* So it's above the lightbox overlay */
+
+/*-------------------------------------------------------------------------------
+ * =11 - Appended from staging
+ ------------------------------------------------------------------------------*/
+/* ***** 2009-07-24 ***** */
+/* tooltip fix */
+form#issue-list {
+	display:block;
+}
+.js-tooltip, .js-tooltip-inner {width:100%;}
+.js-tooltip-inner {
+	max-height:none;
+}
+.js-tooltip .issue-tooltip-description {
+	max-height:200px;
+	overflow:hidden;
+}
+
+
+
+
+
+/* roadmap breathing */
+#roadmap h3 {
+	margin:21px 0 12px;
+}
+div#roadmap fieldset.related-issues {
+	border:1px solid #E6E6E6;
+	margin: 12px 0;
+	padding:6px 12px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+}
+#roadmap fieldset legend {
+	font-style: italic;
+}
+
+
+#TB_ajaxContent #issue-form div.box {
+	border:0;
+}
+#TB_ajaxContent #issue-form p {
+	padding:3px 0 5px 145px !important;
+}
+#TB_ajaxContent #preview .preview {
+	margin-left:130px;
+	border:1px solid #aaa;
+	padding:10px 15px;
+	width:550px;
+}
+#TB_ajaxContent #issue-form .preview p {
+	padding:0 !important;
+	margin-bottom:5px;
+}
+
+#TB_ajaxContent #issue_subject {
+	width:566px;
+}
+
+tr.context-menu-selection td.priority {
+	background:none !important;
+}
+
+/* Blue dots killed */
+.nosidebar ul li {
+	background:none;
+	list-style: disc outside none;
+}
+.nosidebar ul {
+	margin:12px 0 12px 18px;
+}
+
+/* login form cleanup */
+#login-form form {
+	background:#ECF6F9;
+	border:1px solid #6DABC2;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+	display:block;
+	padding:10px;
+}
+ul.projects div.root a.project {
+	font-family:inherit;
+}
+#content #login-form table {
+	border:0 none;
+	background:none;
+	margin:0;
+}
+#content #login-form table tr:hover {
+	background:none;
+}
+#login-form table td, #login-form table th {
+	border:0 none;
+}
+
+/* tables don't all need border you know */
+#relations table td, #relations table th {
+	border:0 none;
+}
+
+
+/* sidebar cleanup */
+h1, h2, h3, h4, h5, h6 {
+	font-family:'lucida grande','lucida sans unicode',tahoma,arial,sans-serif !important;
+}
+div#sidebar {
+	width:150px;
+}
+#sidebar h3 {
+	margin:18px 0 6px;
+}
+#sidebar a {
+	padding:0;
+	line-height:1.5;
+}
+#sidebar a:hover {
+	background:none !important;
+	text-decoration:underline;
+}
+#sidebar input.button-small {
+	margin-top:6px;
+}
+#main-menu li a {
+	white-space:normal;
+}
+#main-menu li li a {
+	padding-left:40px;
+	padding-right:3px;
+	text-indent:-6px;
+	letter-spacing:-.01em;
+}
+#main-menu {
+	border-right:1px solid #E6E6E6;
+}
+#main-menu li a.time-details {
+	padding-left:40px;
+	background-position:12px 45%;
+}
+
+/* custom query page */
+#content .box fieldset {
+	border:1px solid #ddd;
+	margin:18px 10px 6px;
+	padding:10px;
+}
+#content .box fieldset legend {
+	font-weight:bold;
+}
+.box fieldset li.filter {
+	padding-top:6px;
+	overflow:hidden;
+}
+.box fieldset select {
+	margin-right:6px;
+}
+.box fieldset #add_filter_select {
+	margin-bottom:6px;
+}
+.box li.filter label {
+	clear:left;
+	float:left;
+	width:170px;
+}
+fieldset#columns table {
+	width:auto;
+}
+fieldset#columns td {
+	border:0;
+	vertical-align:middle;
+}
+
+/* Flash notices */
+div.flash {
+	margin:0 0 10px;
+	border:1px solid;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+}
+div.flash.notice {
+	background-color:#ECF8E8;
+	border-color:#C1CBBE;
+	color:#406633;
+}
+div.flash.error {
+	background-color:#F8EEE8;
+	border-color:#CBA58F;
+	color:#664633;
+}
+div.flash.warning {
+	background-color:#F8F8E8;
+	border-color:#CBCB8E;
+	color:#666634;
+}
+
+/* my account */
+#my_account_form .splitcontentleft, #my_account_form .splitcontentright {
+	float:none;
+	width:auto;
+}
+#user_firstname, #user_lastname, #user_mail, #my_account_form select {
+	width:auto;
+}
+
+
+/* all kinds of wonderful tweaks */
+
+#account li li:last-child a:hover {
+	-moz-border-radius-bottomleft:5px;
+	-moz-border-radius-bottomright:5px;
+	-webkit-border-bottom-left-radius:5px;
+	-webkit-border-bottom-right-radius:5px;
+	border-bottom-left-radius:5px;
+	border-bottom-right-radius:5px;
+}
+.question pre {
+	color:#111;
+}
+.box p {
+	padding-top:5px;
+	padding-bottom:8px;
+}
+#content .box h3 {
+	margin-top:3px;
+}
+div.issue hr {
+	width:auto;
+}
+.question .wiki {
+	margin:0;
+}
+.wiki {
+	font-size:12px;
+}
+.wiki ol, .wiki ul {
+	margin-bottom:6px;
+}
+#content h3 {
+	margin:12px 0 6px;
+}
+#content h2 + h3 {
+	margin-top:12px;
+}
+#content .issue h3 {
+	margin:0 0 16px;
+}
+div.issue img.gravatar, #history img.gravatar {
+	float:none;
+	margin:0;
+	padding:0;
+}
+p.author {
+	margin-bottom:3px;
+	font-style:italic;
+}
+/* add filter select box on non-issue pages */
+fieldset#filters div.add-filter {
+	text-align:left;
+	margin:0 0 6px 0;
+}
+.nosidebar #add_filter_select {
+	margin-bottom:6px;
+}
+.nosidebar .box fieldset {
+	line-height:1.5;
+	margin:0 0 12px 180px;
+}
+.nosidebar .box fieldset legend {
+	margin-bottom:6px;
+}
+.nosidebar fieldset ul li {
+	background:none;
+}
+.title-bar-extras {
+	-moz-border-radius-bottomleft:5px;
+	-moz-border-radius-bottomright:5px;
+	background-color:#ECF6F9;
+	color:#FFFFFF;
+}
+.title-bar .add-filter.button-large {
+	background:none;
+	border:none;
+}
+.title-bar .contextual {
+	border-left:1px solid #237084;
+	height:100%;
+	padding:0 140px 0 12px;
+	position:absolute;
+	right:10px;
+	top:0;
+	margin:0;
+}
+.title-bar .contextual a.icon {
+	color:#fff;
+	font-size:11px;
+	line-height:3.5;
+	margin-right:16px;
+}
+.title-bar .grouping {
+	padding:0 10px 10px;
+}
+.title-bar-extras {
+	color:#333333;
+}
+.extras-actions a {
+	color:#333333;
+}
+.title-bar-extras ul {
+	border-bottom:none;
+}
+.extras-actions {
+	border-top:none;
+}
+.title-bar-actions span a {
+	background:none;
+	padding:0;
+}
+#content .meta table.progress {
+	border:1px solid #bbb;
+	border-collapse:separate;
+	-moz-border-radius:3px;
+	-webkit-border-radius:3px;
+	border-radius:3px;
+}
+table.progress td.closed {
+	background-color:#277D94;
+}
+fieldset#filters, fieldset#date-range {
+	margin-left:15px;
+}
+.nosidebar fieldset ul {
+	margin-left:0;
+}
+#content table tr:hover {
+	background:#F3F3F3;
+}
+#content table tr.context-menu-selection, #content table tr.context-menu-selection td {
+	background:#277D94 !important;
+}
+.nosidebar ol.ui-sortable li {
+	list-style: none outside none;
+}
+tr.time-entry {
+	white-space:normal;
+}
+.meta td.priority {
+	background:none !important;
+}
+
+/*===== Replacement Images =====*/
+
+.icon-edit, .title-bar .update a {
+	background-image:url(../images/pencil.png);
+}
+.icon-del {
+	background-image:url(../images/delete.png);
+}
+.journal .contextual a[title=Edit] img {
+	display:none;
+}
+.journal .contextual a[title=Edit] {
+	background:url(../images/pencil.png) no-repeat;
+}
+
+
+/* -- New #main-menu toggle CSS */
+#main-menu .toggle-follow {
+	padding:5px 5px 5px 0;
+}
+#main-menu .toggle-follow:hover {
+	text-decoration:underline;
+}
+
+
+
+/* IE6 is the bane */
+* html #TB_ajaxContent #issue-form div.box {
+	margin:0;
+}
+* html #TB_ajaxContent #issue-form {
+	right:0;
+	width:765px;
+}
+/* ***** END 2009-07-24 ***** */
