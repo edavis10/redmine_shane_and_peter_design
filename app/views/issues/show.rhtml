@@ -139,7 +139,13 @@ end %>
       <% if @issue.attachments.any? %>
       <%   @issue.attachments.each do |attachment| %>
       <tr>
-		<td>
+  		<td>
+          <%= link_to l(:button_delete), {:controller => 'attachments', :action => 'destroy', :id => attachment},
+                                             :confirm => l(:text_are_you_sure),
+                                             :method => :post,
+                                             :class => 'icon icon-delete',
+                                             :title => l(:button_delete) %>
+
           <% if attachment.thumbnail? %>
           <%= link_to_attachment_with_thumbnail_preview attachment %>
           <% else %>
