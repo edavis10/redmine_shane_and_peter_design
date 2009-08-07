@@ -307,7 +307,7 @@ a:hover {
 #sidebar { padding-left: 24px; }
 #main-menu #sidebar a { display: inline; }
 /* Mimic ".icon .icon-time" */
-#main-menu li a.time-details { background-image:url(../../../images/time.png); background-position:30px 40%; background-repeat:no-repeat; padding-left:50px; }
+#main-menu li a.time-details, #main-menu li a.billable-time-details, #main-menu li a.overhead-time-details { background-image:url(../../../images/time.png); background-position:30px 40%; background-repeat:no-repeat; padding-left:50px; }
 
 #main-menu p.password { font-weight: bold; margin: 25px 0; }
 
@@ -1361,7 +1361,7 @@ div#sidebar {
 #main-menu {
 	border-right:1px solid #E6E6E6;
 }
-#main-menu li a.time-details {
+#main-menu li a.time-details, #main-menu li a.overhead-time-details, #main-menu li a.billable-time-details {
 	padding-left:40px;
 	background-position:12px 45%;
 }

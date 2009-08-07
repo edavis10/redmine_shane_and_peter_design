@@ -126,12 +126,54 @@ Redmine::MenuManager.map :project_menu do |menu|
                                                :conditions => p.project_condition(Setting.display_subprojects_issues?)).to_f
                 end
 
-                l_hours(@total_hours)
+                # Check for plugin and it's strings
+                if Redmine::Plugin.registered_plugins.keys.include?(:redmine_overhead)
+                  l(:overhead_field_total) + ' ' + l_hours(@total_hours)
+                else
+                  l_hours(@total_hours)
+                end
 
               },
               :parent_menu => :reports,
               :if => Proc.new {|p| User.current.allowed_to?(:view_time_entries, p) }
             })
+
+  if Redmine::Plugin.registered_plugins.keys.include?(:redmine_overhead)
+    menu.push(:billable_time_details,
+              { :controller => 'timelog', :action => 'details' },
+              {
+                :param => :project_id,
+                :caption => Proc.new {|p|
+                  TimeEntry.visible_by(User.current) do
+                    @time_entries = TimeEntry.all(:include => [:project, {:activity => :custom_values}],
+                                                  :conditions => p.project_condition(Setting.display_subprojects_issues?))
+                  end
+                  @total_hours = @time_entries.collect {|te| te.billable? ? te.hours : 0}.sum
+
+                  l(:overhead_field_billable) + ' ' + l_hours(@total_hours)
+                },
+                :parent_menu => :reports,
+                :if => Proc.new {|p| User.current.allowed_to?(:view_time_entries, p) }
+              })
+    menu.push(:overhead_time_details,
+              { :controller => 'timelog', :action => 'details' },
+              {
+                :param => :project_id,
+                :caption => Proc.new {|p|
+                  TimeEntry.visible_by(User.current) do
+                    @time_entries = TimeEntry.all(:include => [:project, {:activity => :custom_values}],
+                                                  :conditions => p.project_condition(Setting.display_subprojects_issues?))
+                  end
+                  @total_hours = @time_entries.collect {|te| te.billable? ? 0 : te.hours}.sum
+
+                  l(:overhead_field_overhead) + ' ' + l_hours(@total_hours)
+
+                },
+                :parent_menu => :reports,
+                :if => Proc.new {|p| User.current.allowed_to?(:view_time_entries, p) }
+              })
+  end
+
   menu.push(:issue_summary,
             { :controller => 'reports', :action => 'issue_report' },
             {
