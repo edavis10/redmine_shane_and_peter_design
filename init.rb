@@ -112,7 +112,8 @@ Redmine::MenuManager.map :project_menu do |menu|
               :if => Proc.new {|p| User.current.allowed_to?(:view_time_entries, p) }
             })
 
-  if Redmine::Plugin.registered_plugins.keys.include?(:redmine_overhead)
+  # TODO: Pull for release
+  if false && Redmine::Plugin.registered_plugins.keys.include?(:redmine_overhead)
     menu.push(:billable_time_details,
               { :controller => 'timelog', :action => 'details' },
               {
