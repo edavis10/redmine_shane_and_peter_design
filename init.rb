@@ -103,9 +103,6 @@ Redmine::MenuManager.map :project_menu do |menu|
     # question_plugin is not installed, skip
   end
   
-  # TODO: Need double line bar
-
-  
   menu.push(:reports,
             { :controller => 'timelog', :action => 'details' },
             {
@@ -144,6 +141,7 @@ Redmine::MenuManager.map :project_menu do |menu|
               {
                 :param => :project_id,
                 :caption => Proc.new {|p|
+                  # OPTIMIZE
                   TimeEntry.visible_by(User.current) do
                     @time_entries = TimeEntry.all(:include => [:project, {:activity => :custom_values}],
                                                   :conditions => p.project_condition(Setting.display_subprojects_issues?))
@@ -160,6 +158,7 @@ Redmine::MenuManager.map :project_menu do |menu|
               {
                 :param => :project_id,
                 :caption => Proc.new {|p|
+                  # OPTIMIZE
                   TimeEntry.visible_by(User.current) do
                     @time_entries = TimeEntry.all(:include => [:project, {:activity => :custom_values}],
                                                   :conditions => p.project_condition(Setting.display_subprojects_issues?))
