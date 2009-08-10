@@ -111,29 +111,6 @@ Redmine::MenuManager.map :project_menu do |menu|
               :after => :issues,
               :if => Proc.new {|p| User.current.allowed_to?(:view_time_entries, p) }
             })
-  menu.push(:time_details,
-            { :controller => 'timelog', :action => 'details' },
-            {
-              :param => :project_id,
-              :caption => Proc.new {|p|
-                # Taken from ProjectsController#show.
-                TimeEntry.visible_by(User.current) do
-                  @total_hours = TimeEntry.sum(:hours, 
-                                               :include => :project,
-                                               :conditions => p.project_condition(Setting.display_subprojects_issues?)).to_f
-                end
-
-                # Check for plugin and it's strings
-                if Redmine::Plugin.registered_plugins.keys.include?(:redmine_overhead)
-                  l(:overhead_field_total) + ' ' + l_hours(@total_hours)
-                else
-                  l_hours(@total_hours)
-                end
-
-              },
-              :parent_menu => :reports,
-              :if => Proc.new {|p| User.current.allowed_to?(:view_time_entries, p) }
-            })
 
   if Redmine::Plugin.registered_plugins.keys.include?(:redmine_overhead)
     menu.push(:billable_time_details,
