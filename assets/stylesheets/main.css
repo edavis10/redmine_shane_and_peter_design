@@ -1611,3 +1611,4 @@ tr.time-entry {
 	width:765px;
 }
 /* ***** END 2009-07-24 ***** */
+#TB_window #errorExplanation {position: absolute;}

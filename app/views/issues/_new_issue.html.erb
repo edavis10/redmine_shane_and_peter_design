@@ -1,10 +1,10 @@
 <% remote_form_for :issue, @issue, :url => {:controller => 'issues', :action => 'new', :create => "true", :project_id => @project },
                            :method => :post, :builder => TabularFormBuilder, :lang => current_language,
                            :html => {:multipart => true, :id => 'issue-form', :class => 'tabular'} do |f| %>
-    <%= error_messages_for 'issue' %>
     <%= render :partial => 'issues/form', :locals => {:f => f, :update_field => :new_issue, :hide_attachments => true} %>
     <%= send_notification_option %>
     <div class="submit">
+    <%= error_messages_for 'issue' %>
     <%= submit_to_remote 'preview', l(:label_preview), 
                        { :url => { :controller => 'issues', :action => 'preview', :project_id => @project, :id => @issue },
                          :method => 'post',
