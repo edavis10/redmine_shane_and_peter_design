@@ -19,7 +19,7 @@
 
 <% end %>
 
-<div class="box">
+<div class="box" id="issue-field-box">
 
 <div id="issue_descr_fields" <%= 'style="display:none"' unless @issue.new_record? || @issue.errors.any? %>>
 <p><%= f.text_field :subject, :size => 80, :required => true %></p>
