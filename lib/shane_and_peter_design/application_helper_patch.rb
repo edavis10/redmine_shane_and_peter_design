@@ -39,7 +39,7 @@ module ShaneAndPeterDesign
           end
 
         
-        javascript_tag("jQuery(document).ready(function($) { $.menu_expand({ menuItem: '.#{current_menu_class}' }) });")
+        javascript_tag("jQuery.menu_expand({ menuItem: '.#{current_menu_class}' });")
       end
 
       def link_to_attachment_with_thumbnail_preview(attachment, options={})

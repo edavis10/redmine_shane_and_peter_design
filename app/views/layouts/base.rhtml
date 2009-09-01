@@ -119,6 +119,7 @@
         <%= call_hook :view_layouts_base_sidebar %>
       </div>
     </div>
+    <%= expand_current_menu %>
     <% end %>
 
     <div class="<%= display_sidebar ? '' : "nosidebar" %>" id="content">
@@ -133,5 +134,4 @@
 </div>
 <%= call_hook :view_layouts_base_body_bottom %>
 </body>
-<%= expand_current_menu %>
 </html>
