@@ -1,0 +1,23 @@
+# If there is no issue list, refresh the page
+page << "if ($('issue-list-body') == null) {document.location.reload()}"
+
+# Add issue to list
+page.insert_html :top, 'issue-list-body', :partial => 'issues/issue', :locals => {:issue => @issue, :query => @query}
+
+# Remove errors if found
+page.select('#errorExplanation').each do |value|
+  page.remove value
+end
+
+# Clear subject and description on new issue form
+page['issue_subject'].clear
+page['issue_description'].clear
+
+# Add a fading out flash
+page.insert_html :top, 'content', content_tag(:div, @flash, :class => "flash notice", :id => 'rjs-flash')
+page.delay(3) do
+  page.visual_effect :fade, 'rjs-flash'
+end
+
+# Clear preview
+page.replace_html 'preview', ''
