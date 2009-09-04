@@ -17,9 +17,12 @@ module Redmine
             link_to(l(:label_help), url,
                     :onclick => "window.open(\"#{ url }\", \"\", \"resizable=yes, location=no, width=300, height=640, menubar=no, status=no, scrollbars=yes\"); return false;")
 
-          # tb (toolbar) not defined and the field_id isn't already an editor
+          # Render the jsToolbar if:
+          # * the thickbox isn't loaded (TB_ajaxContent), or
+          # * the thickbox is loaded but the field_id isn't in the thickbox
+          # 
           js = <<-EOJS
-                 if (typeof tb == "undefined" && !$('#{field_id}').parentNode.hasClassName('jstEditor')) {
+                 if (!$('TB_ajaxContent') || ($('TB_ajaxContent') && !$('#{field_id}').descendantOf('TB_ajaxContent'))) {
                    var tb = new jsToolBar($('#{field_id}'));
                    tb.setHelpLink('#{help_link}');
                    tb.draw();
