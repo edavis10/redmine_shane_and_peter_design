@@ -3,6 +3,7 @@
                            :html => {:multipart => true, :id => 'issue-form', :class => 'tabular'} do |f| %>
     <%= render :partial => 'issues/form', :locals => {:f => f, :update_field => :new_issue, :hide_attachments => true} %>
     <%= send_notification_option %>
+    <%= hidden_field_tag "save_and_close", 0 %>
     <div class="submit">
     <%= error_messages_for 'issue' %>
     <%= submit_to_remote 'preview', l(:label_preview), 
@@ -12,7 +13,8 @@
                          :with => "Form.serialize('issue-form')",
                          :complete => "Element.scrollTo('preview')"} %>
 
-    <%= submit_tag l(:button_save_and_new) %>
+    <%= submit_tag(l(:button_save_and_new), :onclick => "setCloseAfterSave(false);") %>
+    <%= submit_tag(l(:button_save_and_close), :onclick => "setCloseAfterSave(true);") %>
     <input type="submit" value="Cancel" name="cancel" onclick="tb_remove(); return false;"/>
 
     </div>

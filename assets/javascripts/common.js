@@ -332,3 +332,16 @@ jQuery(document).ready(function($) {
 
 
 });
+
+// Sets the save_and_close field to tell Redmine to either keep the
+// thickbox open or close it when a New Issue is saved successfully.
+function setCloseAfterSave(on) {
+    var field = $('save_and_close');
+    if (field) {
+        if (on) {
+            field.value = '1';
+        } else {
+            field.value = '0';
+        }
+    }
+}

@@ -9,18 +9,28 @@ page.select('#errorExplanation').each do |value|
   page.remove value
 end
 
+# Remove rjs-flash if it's still there
+page.select('#rjs-flash').each do |value|
+  page.remove value
+end
+
 # Clear subject and description on new issue form
 page['issue_subject'].clear
 page['issue_description'].clear
 
-# Add a fading out flash
-page.insert_html :before, 'issue_descr_fields', content_tag(:div, @flash, :class => "flash notice", :id => 'rjs-flash')
-# Scroll to the top of the thickbox
-page << "document.getElementById('issue-field-box').scrollTop = 0"
+# Clear preview
+page.replace_html 'preview', ''
+
+if @close
+  page.insert_html :top, 'content', content_tag(:div, @flash, :class => "flash notice", :id => 'rjs-flash')
+  page << "tb_remove();"
+else
+  # Add a fading out flash
+  page.insert_html :before, 'issue_descr_fields', content_tag(:div, @flash, :class => "flash notice", :id => 'rjs-flash')
+  # Scroll to the top of the thickbox
+  page << "document.getElementById('issue-field-box').scrollTop = 0"
+end
 
 page.delay(3) do
   page.visual_effect :fade, 'rjs-flash'
 end
-
-# Clear preview
-page.replace_html 'preview', ''
