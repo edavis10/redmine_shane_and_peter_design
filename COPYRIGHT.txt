@@ -1,5 +1,4 @@
-Redmine Shane and Peter design is a plugin to implemente a custom design for
-Shane and Peter Inc
+This plugin is a custom Redmine design plugin for Shane and Peter Inc.
 
 Copyright (C) 2009 Eric Davis, Little Stream Software
 

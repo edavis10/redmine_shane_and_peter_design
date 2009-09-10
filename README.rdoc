@@ -1,27 +1,8 @@
-= Shane and Peter Design plugin
+= Shane and Peter Redmine Design
 
-This is a plugin to implement a custom design for Shane and Peter.
+This plugin is a custom Redmine design plugin for {Shane and Peter Inc}[http://www.shaneandpeter.com].  It requires massive modifications to Redmine, which are in the process of being submitted back to the Redmine core as patches.
 
-
-== Features
-
-* __FEATURE__
-
-== Getting the plugin
-
-A copy of the plugin can be downloaded from {Little Stream Software}[https://projects.littlestreamsoftware.com/projects/___TODO___/files] or from {GitHub}[http://github.com/edavis10/___TODO___]
-
-
-== Installation and Setup
-
-1. Follow the Redmine plugin installation steps at: http://www.redmine.org/wiki/redmine/Plugins 
-2. Run the plugin migrations +rake db:migrate_plugins+
-3. Restart your Redmine web servers (e.g. mongrel, thin, mod_rails)
-4. __TODO__
-
-== Usage
-
-__TODO__
+Feel free to use the included code here in your own plugins but don't expect to be able to run any of this code yet.
 
 == License
 
@@ -29,5 +10,4 @@ This plugin is licensed under the GNU GPL v2.  See COPYRIGHT.txt and GPL.txt for
 
 == Project help
 
-If you need help you can contact the maintainer at the Bug Tracker.  The bug tracker is located at  https://projects.littlestreamsoftware.com
-
+This plugin is not supported.  You can contact {me}[http://www.littlestreamsoftware.com/contact.html] if you would like a similar plugin built.
