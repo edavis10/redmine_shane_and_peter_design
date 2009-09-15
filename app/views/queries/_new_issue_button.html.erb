@@ -1,24 +1,5 @@
 <% if @project %>
 <div class="new-issue button-large">
-  <%# :zzzzz is needed because thickbox's regex doesn't split the
-    # anchor correctly so you get something like this
-    # 
-    # issues?height=510&inlineId=issue-form-wrap&width=735#TB_inline
-    #
-    # ["height=510", "inlineId=issue-form-wrap", "width=735#TB_inline"]
-    #
-    # instead of what it should be:
-    # ["height=510", "inlineId=issue-form-wrap", "width=735", "#TB_inline"]
-    # %>
-  <%= link_to("Open a New Issue",
-              url_for(
-                      params.merge({
-                                     :anchor => 'TB_inline',
-                                     :inlineId=>'issue-form-wrap',
-                                     :height => '510',
-                                     :width => '735',
-                                     :zzzzz => '1'})),
-              :title => "Open a New Issue",
-              :class => 'thickbox') %>
+  <%= link_to("Open a New Issue", {:controller => 'issues', :action => 'new', :project_id => @project}, :title => "Open a New Issue", :class => '') %>
 </div>
 <% end %>
