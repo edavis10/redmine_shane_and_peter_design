@@ -2,13 +2,6 @@
 <% hide_attachments ||= nil %>
 
 <% if @issue.new_record? %>
-<% if @issue.copied %>
-   <p><%= f.select :project_id, @allowed_projects.collect {|t| [t.name, t.id]}, :required => true %></p>
-   <%= f.hidden_field :copied %>
-   <%= observe_field :issue_project_id, :url => { :action => :new },
-                                  :update => update_field || params[:update_field] || :content,
-                                  :with => "Form.serialize('issue-form')" %>
-<% end %>
 <div class="tracker">
 <p><%= f.select :tracker_id, @project.trackers.collect {|t| [t.name, t.id]}, :required => true %></p>
 <%= observe_field :issue_tracker_id, :url => { :action => :new },
