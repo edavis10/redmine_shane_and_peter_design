@@ -53,7 +53,6 @@
 <p class="nodata"><%= l(:label_no_data) %></p>
 <% else %>
 <%= render :partial => 'issues/list', :locals => {:issues => @issues, :query => @query} %>
-<%= render :partial => 'issues/multiple_actions' %>
 <p class="pagination"><%= pagination_links_full @issue_pages, @issue_count %></p>
 <% end %>
 
