@@ -35,7 +35,8 @@
 <%= call_hook :view_layouts_base_html_head %>
 <!-- page specific tags -->
 <%= yield :header_tags -%>
-<%= custom_theme_includes %>
+<%= content_tag(:style, Setting.plugin_redmine_shane_and_peter_design['custom_css'], :type => 'text/css') %>
+<%= javascript_tag(Setting.plugin_redmine_shane_and_peter_design['custom_javascript']) %>
 </head>
 <body>
 <div id="wrapper">

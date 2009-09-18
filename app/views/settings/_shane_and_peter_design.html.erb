@@ -1,0 +1,15 @@
+<fieldset>
+  <%= content_tag(:legend, l(:shane_and_peter_design_text_settings)) %>
+
+  <%= content_tag(:p, l(:shane_and_peter_design_settings_help)) %>
+
+  <p>
+    <%= content_tag(:label, l(:shane_and_peter_design_custom_css_label)) %>
+    <%= text_area_tag("settings[custom_css]", @settings['custom_css'], :size => '80x20') %>
+  </p>
+
+  <p>
+    <%= content_tag(:label, l(:shane_and_peter_design_custom_javascript_label)) %>
+    <%= text_area_tag("settings[custom_javascript]", @settings['custom_javascript'], :size => '80x20') %>
+  </p>
+</fieldset>

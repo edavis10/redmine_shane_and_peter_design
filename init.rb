@@ -24,6 +24,13 @@ Redmine::Plugin.register :redmine_shane_and_peter_design do
   version '0.1.0'
 
   requires_redmine :version_or_higher => '0.8.0'
+
+  settings({
+             :partial => 'settings/shane_and_peter_design',
+             :default => {
+               'custom_css' => '',
+               'custom_javascript' => ''
+             }})
 end
 
 require 'redmine/i18n'
