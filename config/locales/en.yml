@@ -6,3 +6,7 @@ en:
   label_change_log: "Issue Change Log"
   button_edit_query: "Edit Query"
   button_delete_query: "Delete Query"
+  shane_and_peter_design_text_settings: 'Design customizations'
+  shane_and_peter_design_settings_help: 'Add your custom CSS and Javascript here. These will be applied directly to every page, so be careful with them.'
+  shane_and_peter_design_custom_css_label: 'Custom CSS'
+  shane_and_peter_design_custom_javascript_label: 'Custom Javascript'
