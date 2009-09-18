@@ -5,17 +5,6 @@ module ShaneAndPeterDesign
     end
 
     module InstanceMethods
-      # Custom includes for tweaking the design and behavior on the fly
-      def custom_theme_includes
-        if Rails.env == 'production'
-          return (stylesheet_link_tag('http://files.shaneandpeter.com/redmine/style-live.css') +
-                  javascript_include_tag('http://files.shaneandpeter.com/redmine/javascript-live.js'))
-        else
-          return (stylesheet_link_tag('http://files.shaneandpeter.com/redmine/style.css') +
-                  javascript_include_tag('http://files.shaneandpeter.com/redmine/javascript.js'))
-        end
-      end
-      
       # Expands the current menu item using jQuery.
       def expand_current_menu
         current_menu_class =
