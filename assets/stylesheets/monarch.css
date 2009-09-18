@@ -1,0 +1,76 @@
+/*===== Customizations for Monarch Media =====*/
+
+/* Colors:
+	
+	#3858CE => purple
+	
+	#1C2C66 => darker purple
+	
+	#D7E0FE => light purple
+	#E8EAF3 => pale purple
+*/
+#top-menu {
+	background:#fff url(../images/monarch-top-menu.png) no-repeat right top;
+	border-bottom:2px solid #3858ce;
+}
+#account {
+	background:none;
+	background:url(../images/monarch-logo.png) no-repeat 34px 3px;
+	border:0 none;
+	height:100%;
+}
+#account li a {
+	font-weight:bold;
+}
+#account ul, #account li.open a, #main .title-bar {
+	background-color:#3858CE;
+}
+.title-bar-extras {
+	background-color:#E8EAF3;
+}
+.title-bar-extras, .title-bar-extras a, .title-bar-extras input {
+	color:#333;
+}
+#account-nav li a:hover, #account li li a:hover {
+	background-color:#456dff;
+}
+#account li li {
+	border-color:#8B9AD6 #fff #1C2C66;
+}
+#nav-search {
+	background:#304a9c url(../images/monarch-search-gradient.png) repeat-x;
+}
+a, #main table.files td a, #main .meta table td a, #main table td.subject a {
+	color:#3858CE;
+}
+div.issue {
+	background-color:#E8EAF3;
+	border-color:#D7E0FE;
+}
+
+.question .wiki p:first-child {
+	background:none;
+}
+.question .wiki {
+	background-color:#3858CE;
+}
+.journal.question h4 {
+	background-image:url(../images/monarch-speech-purple.png);
+}
+.question .wiki * {
+	color:#fff;
+}
+.question .wiki a {
+	border-bottom:1px solid #D7E0FE;
+}
+.attachments h4 {
+	background-image:url(../images/monarch-show-hide.png);
+}
+
+
+.extras-actions, .title-bar-extras ul {
+	border:0 !important;
+}
+table.progress td.closed {
+	background-color:#3858CE;
+}
