@@ -31,21 +31,25 @@ ContextMenu.addMethods({
     if (window.opera && e.altKey) {	return; }
 
     var tr = Event.findElement(e, 'tr');
-    if (tr!=null && tr!=document && tr.hasClassName('hascontextmenu') && !tr.hasClassName('no-select')) {
-      // a row was clicked, check if the click was on checkbox
-      var box = Event.findElement(e, 'input');
-      if (box!=document && box!=undefined) {
-        // a checkbox may be clicked
-        if (box.checked) {
-          tr.addClassName('context-menu-selection');
+    if (tr!=null && tr!=document && tr.hasClassName('hascontextmenu')) {
+        if (!tr.hasClassName('no-select')) {
+            // a row was clicked, check if the click was on checkbox
+            var box = Event.findElement(e, 'input');
+            if (box!=document && box!=undefined) {
+                // a checkbox may be clicked
+                if (box.checked) {
+                    tr.addClassName('context-menu-selection');
+                } else {
+                    tr.removeClassName('context-menu-selection');
+                }
+            } else {
+                // Checkbox wasn't checked so see if the menu should open.
+                this.OpenMenuWrapper(e, tr);
+            }
         } else {
-          tr.removeClassName('context-menu-selection');
+            // Header clicked
+            this.OpenMenuWrapper(e, tr);
         }
-      } else {
-        // Checkbox wasn't checked so see if the menu should open.
-        this.OpenMenuWrapper(e, tr);
-      }
-
     } else {
       // click is outside the rows
       this.removeSingleSelectedItem();
@@ -66,18 +70,29 @@ ContextMenu.addMethods({
   },
 
   // Theme: Open the context menu if the clicked column is the issue ID column and at least
-  //        one row is checked.
+  //        one row is checked.  Or if the issue header is clicked.
   OpenMenuWrapper: function(e, tr) {
-    var issue_cell = $(Event.element(e));
-    var tdClicked = Event.findElement(e,'td');
+      if (!tr.hasClassName('no-select')) {
+          var issue_cell = $(Event.element(e));
+          var tdClicked = Event.findElement(e,'td');
 
-    if (issue_cell && issue_cell.hasClassName('issue')) {
-      this.addSelection(tr);
-      this.lastSelected = tr;
-      this.showMenu(e);
-    } else {
-      // Menu wasn't requested on a selected item, see about removing the single item selection.
-      this.removeSingleSelectedItem();
-    }
+          if (issue_cell && issue_cell.hasClassName('issue')) {
+              this.addSelection(tr);
+              this.lastSelected = tr;
+              this.showMenu(e);
+          } else {
+              // Menu wasn't requested on a selected item, see about removing the single item selection.
+              this.removeSingleSelectedItem();
+          }
+      } else {
+          // block clicking on the All Issues toggle
+          if (!Event.findElement(e, 'a')) {
+              // Remove selected items
+              this.removeSingleSelectedItem();
+              this.addSelection(tr);
+              this.lastSelected = tr;
+              this.showMenu(e);
+          }
+      }
   }
 });
