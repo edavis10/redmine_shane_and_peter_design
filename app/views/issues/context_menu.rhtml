@@ -89,8 +89,6 @@
   <% end %>
 	
 <% if !@issue.nil? %>
-	<li class="copy"><%= context_menu_link l(:button_copy), {:controller => 'issues', :action => 'new', :project_id => @project, :copy_from => @issue},
-	        :class => 'context_item', :disabled => !@can[:copy] %></li>
 	<% if @can[:log_time] -%>
 	<li class="log_time"><%= context_menu_link l(:button_log_time), {:controller => 'timelog', :action => 'edit', :issue_id => @issue},
 	        :class => 'context_item' %></li>
