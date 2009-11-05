@@ -222,11 +222,34 @@ Redmine::MenuManager.map :project_menu do |menu|
             })
   
   # Wiki submenu
+  wiki_pages_watched_proc = Proc.new {|p|
+    if p && p.wiki
+      returning [] do |menu_items|
+        p.wiki.pages.watched_by(User.current).each do |page|
+          menu_items << Redmine::MenuManager::MenuItem.new(
+                                                           "wiki-page-#{page.id}".to_sym,
+                                                           { :controller => 'wiki', :action => 'index', :id => p, :page => page.title},
+                                                           {
+                                                             :caption => page.pretty_title,
+                                                             :param => :id,
+                                                             :parent_menu => :wiki_home
+                                                           })
+        end
+      end
+    end
+  }
+  menu.delete(:wiki)
+  menu.push(:wiki,
+            { :controller => 'wiki', :action => 'index', :page => nil },
+            {
+              :if => Proc.new { |p| p.wiki && !p.wiki.new_record? },
+              :child_menus => wiki_pages_watched_proc
+            })
   menu.push(:wiki_home,
             { :controller => 'wiki', :action => 'index', :page => nil },
             {
               :caption => :field_start_page,
-              :parent_menu => :wiki
+              :parent_menu => :wiki,
             })
   menu.push(:wiki_by_title,
             { :controller => 'wiki', :action => 'special', :page => 'Page_index' },
