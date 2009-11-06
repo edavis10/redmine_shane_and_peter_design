@@ -8,8 +8,11 @@ module ShaneAndPeterDesign
     end
 
     module InstanceMethods
-      def show_detail_with_attachment_previews(detail, no_html=false)
-        return show_detail_without_attachment_previews(detail, no_html) if detail.property !='attachment' || no_html
+      def show_detail_with_attachment_previews(detail, no_html=false, options={})
+        # Not attachment
+        return show_detail_without_attachment_previews(detail, no_html) if detail.property !='attachment'
+        # No html
+        return show_detail_without_attachment_previews(detail, no_html) if no_html
 
         if !detail.value.blank? && a = Attachment.find_by_id(detail.prop_key)
           if a.thumbnail?
