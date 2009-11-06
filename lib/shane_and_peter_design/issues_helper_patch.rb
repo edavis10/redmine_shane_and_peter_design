@@ -15,6 +15,10 @@ module ShaneAndPeterDesign
         return show_detail_without_attachment_previews(detail, no_html) if no_html
 
         if !detail.value.blank? && a = Attachment.find_by_id(detail.prop_key)
+          if options.delete(:show_link_only)
+            return link_to(h(a.filename), {:controller => 'attachments', :action => 'show', :id => a, :filename => a.filename, :only_path => false })
+          end
+
           if a.thumbnail?
             value = content_tag(:div, link_to_attachment_as_thumbnail(a), :class => 'file-thumbs')
           else
