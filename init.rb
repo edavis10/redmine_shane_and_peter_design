@@ -266,9 +266,8 @@ Redmine::MenuManager.map :project_menu do |menu|
             })
   
   # Budget submenu
-  # TODO: plugin needs a new deliverable endpoint
   menu.push(:new_deliverable,
-            { :controller => 'deliverables', :action => 'index' },
+            { :controller => 'deliverables', :action => 'index', :new => 't' },
             {
               :caption => :label_new_deliverable,
               :parent_menu => :budget,
