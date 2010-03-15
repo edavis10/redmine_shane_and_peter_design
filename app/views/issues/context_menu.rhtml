@@ -75,6 +75,8 @@
         <div class="submenu"></div>
 	</li>
 	<% end -%>
+
+  <% if Issue.use_field_for_done_ratio? %>
 	<li class="folder done_ratio">
 		<a href="#" class="context_item"><%= l(:field_done_ratio) %></a>
 		<ul>
@@ -85,6 +87,7 @@
 		</ul>
         <div class="submenu"></div>
 	</li>
+  <% end %>
 	
 <% if !@issue.nil? %>
 	<li class="copy"><%= context_menu_link l(:button_copy), {:controller => 'issues', :action => 'new', :project_id => @project, :copy_from => @issue},
