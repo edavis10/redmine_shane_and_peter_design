@@ -75,7 +75,7 @@
         <div class="submenu"></div>
 	</li>
 	<% end -%>
-  <% unless Setting.issue_status_for_done_ratio? %>
+  <% if Issue.use_field_for_done_ratio? %>
 	<li class="folder done_ratio">
 		<a href="#" class="context_item"><%= l(:field_done_ratio) %></a>
 		<ul>
