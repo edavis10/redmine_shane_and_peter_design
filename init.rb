@@ -5,9 +5,15 @@ require 'shane_and_peter_design/themes_wiki_formatting_patch'
 
 # Patches to the Redmine core.
 require 'dispatcher'
-require 'shane_and_peter_design/application_helper_patch'
 Dispatcher.to_prepare do
-  ApplicationHelper.send(:include, ShaneAndPeterDesign::ApplicationHelperPatch)
+  begin
+    require_dependency 'application'
+  rescue LoadError
+    require_dependency 'application_controller' # Rails 2.3
+  end
+  ApplicationController.send(:include, ShaneAndPeterDesign::ApplicationControllerPatch)
+
+  IssuesHelper.send(:include, ShaneAndPeterDesign::IssuesHelperPatch)
   unless Redmine::MenuManager::MenuHelper.included_modules.include? ShaneAndPeterDesign::MenuHelperPatch
     Redmine::MenuManager::MenuHelper.send(:include, ShaneAndPeterDesign::MenuHelperPatch)
   end
