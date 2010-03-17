@@ -1,4 +1,4 @@
-<div id="issue_descr_fields" <%= 'style="display:none"' unless @issue.new_record? || @issue.errors.any? %>>
+<div id="issue_descr_fields" <%= 'style="display:none"' unless @issue.new_record? || @issue.errors.any? %> class="box">
 
 <% if @issue.copied %>
    <p><%= f.select :project_id, @allowed_projects.collect {|t| [t.name, t.id]}, :required => true %></p>
@@ -13,7 +13,6 @@
                                      :update => :attributes,
                                      :with => "Form.serialize('issue-form')" %>
 
-<div class="box" id="issue-field-box">
 
 <p><%= f.text_field :subject, :size => 80, :required => true %></p>
 <p><%= f.text_area :description,
@@ -43,4 +42,4 @@
 
 <%= wikitoolbar_for 'issue_description' %>
 
-</div>
+
