@@ -58,7 +58,7 @@ Redmine::MenuManager.map :project_menu do |menu|
                                     {
                                       :caption => query.name,
                                       :param => :project_id,
-                                      :parent_menu => :issues
+                                      :parent => :issues
                               })
       end
     end
@@ -71,7 +71,7 @@ Redmine::MenuManager.map :project_menu do |menu|
             {
               :param => :project_id,
               :caption => :label_issue_plural,
-              :child_menus => query_proc,
+              :children => query_proc,
               :after => :overview
             })
   
@@ -83,20 +83,20 @@ Redmine::MenuManager.map :project_menu do |menu|
               :param => :project_id,
               :caption => :label_issue_new,
               :html => { :accesskey => Redmine::AccessKeys.key_for(:new_issue) },
-              :parent_menu => :issues
+              :parent => :issues
             })
   menu.push(:all_open_issues,
             { :controller => 'issues', :action => 'index', :set_filter => 1 },
             {
               :param => :project_id,
               :caption => :label_issue_view_all_open,
-              :parent_menu => :issues
+              :parent => :issues
             })
   menu.push(:all_issues,
             { :controller => 'all_issues', :action => 'index' },
             {
               :caption => :label_issue_view_all,
-              :parent_menu => :issues
+              :parent => :issues
             })
   begin
     require 'question' unless Object.const_defined?('Question')
@@ -106,7 +106,7 @@ Redmine::MenuManager.map :project_menu do |menu|
               {
                 :param => :project,
                 :caption => :text_questions_for_me,
-                :parent_menu => :issues
+                :parent => :issues
               })
   rescue LoadError
     # question_plugin is not installed, skip
@@ -137,7 +137,7 @@ Redmine::MenuManager.map :project_menu do |menu|
 
                   l(:overhead_field_billable) + ' ' + l_hours(@total_hours)
                 },
-                :parent_menu => :reports,
+                :parent => :reports,
                 :if => Proc.new {|p| User.current.allowed_to?(:view_time_entries, p) }
               })
     menu.push(:overhead_time_details,
@@ -155,7 +155,7 @@ Redmine::MenuManager.map :project_menu do |menu|
                   l(:overhead_field_overhead) + ' ' + l_hours(@total_hours)
 
                 },
-                :parent_menu => :reports,
+                :parent => :reports,
                 :if => Proc.new {|p| User.current.allowed_to?(:view_time_entries, p) }
               })
   end
@@ -164,20 +164,20 @@ Redmine::MenuManager.map :project_menu do |menu|
             { :controller => 'reports', :action => 'issue_report' },
             {
               :caption => :field_issue_summary,
-              :parent_menu => :reports
+              :parent => :reports
             })
   menu.push(:issue_changelog,
             { :controller => 'projects', :action => 'changelog' },
             {
               :caption => :label_change_log,
-              :parent_menu => :reports
+              :parent => :reports
             })
   menu.push(:time_reports,
             { :controller => 'timelog', :action => 'report' },
             {
               :param => :project_id,
               :caption => :label_report,
-              :parent_menu => :reports,
+              :parent => :reports,
               :if => Proc.new {|p| User.current.allowed_to?(:view_time_entries, p) }
             })
   menu.push(:calendar,
@@ -185,7 +185,7 @@ Redmine::MenuManager.map :project_menu do |menu|
             {
               :param => :project_id,
               :caption => :label_calendar,
-              :parent_menu => :reports,
+              :parent => :reports,
               :if => Proc.new {|p| User.current.allowed_to?(:view_calendar, p, :global => true) }
             })
   menu.push(:gantt,
@@ -193,7 +193,7 @@ Redmine::MenuManager.map :project_menu do |menu|
             {
               :param => :project_id,
               :caption => :label_gantt,
-              :parent_menu => :reports,
+              :parent => :reports,
               :if => Proc.new {|p| User.current.allowed_to?(:view_gantt, p, :global => true) }
             })
 
@@ -202,7 +202,7 @@ Redmine::MenuManager.map :project_menu do |menu|
             { :controller => 'projects', :action => 'roadmap' },
             {
               :if => Proc.new { |p| p.versions.any? },
-              :child_menus => Proc.new { |p|
+              :children => Proc.new { |p|
                 returning [] do |children|
                   p.versions.each do |version|
 
@@ -211,7 +211,7 @@ Redmine::MenuManager.map :project_menu do |menu|
                               { :controller => 'versions', :action => 'show', :id => version },
                               {
                                 :caption => version.name,
-                                :parent_menu => :roadmap
+                                :parent => :roadmap
                               })
                     
                   end
@@ -231,7 +231,7 @@ Redmine::MenuManager.map :project_menu do |menu|
                                                            {
                                                              :caption => page.pretty_title,
                                                              :param => :id,
-                                                             :parent_menu => :wiki_home
+                                                             :parent => :wiki_home
                                                            })
         end
       end
@@ -242,25 +242,25 @@ Redmine::MenuManager.map :project_menu do |menu|
             { :controller => 'wiki', :action => 'index', :page => nil },
             {
               :if => Proc.new { |p| p.wiki && !p.wiki.new_record? },
-              :child_menus => wiki_pages_watched_proc
+              :children => wiki_pages_watched_proc
             })
   menu.push(:wiki_home,
             { :controller => 'wiki', :action => 'index', :page => nil },
             {
               :caption => :field_start_page,
-              :parent_menu => :wiki,
+              :parent => :wiki,
             })
   menu.push(:wiki_by_title,
             { :controller => 'wiki', :action => 'special', :page => 'Page_index' },
             {
               :caption => :label_index_by_title,
-              :parent_menu => :wiki
+              :parent => :wiki
             })
   menu.push(:wiki_by_date,
             { :controller => 'wiki', :action => 'index', :page => 'Date_index' },
             {
               :caption => :label_index_by_date,
-              :parent_menu => :wiki
+              :parent => :wiki
             })
 
 
@@ -270,7 +270,7 @@ Redmine::MenuManager.map :project_menu do |menu|
             {
               :param => :project_id,
               :caption => :label_news_new,
-              :parent_menu => :news,
+              :parent => :news,
               :if => Proc.new {|p| User.current.allowed_to?(:manage_news, p) }
             })
   
@@ -279,7 +279,7 @@ Redmine::MenuManager.map :project_menu do |menu|
             { :controller => 'deliverables', :action => 'index', :new => 't' },
             {
               :caption => :label_new_deliverable,
-              :parent_menu => :budget,
+              :parent => :budget,
               :if => Proc.new {|p| User.current.allowed_to?(:manage_budget, p) }
             })
 
@@ -288,7 +288,7 @@ Redmine::MenuManager.map :project_menu do |menu|
             { :controller => 'projects', :action => 'settings' },
             {
               :last => true,
-              :child_menus => Proc.new { |p|
+              :children => Proc.new { |p|
                 returning [] do |children|
                   @project = p # @project used in the helper
                   project_settings_tabs.each do |tab|
