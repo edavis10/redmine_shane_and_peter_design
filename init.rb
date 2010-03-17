@@ -166,12 +166,6 @@ Redmine::MenuManager.map :project_menu do |menu|
               :caption => :field_issue_summary,
               :parent => :reports
             })
-  menu.push(:issue_changelog,
-            { :controller => 'projects', :action => 'changelog' },
-            {
-              :caption => :label_change_log,
-              :parent => :reports
-            })
   menu.push(:time_reports,
             { :controller => 'timelog', :action => 'report' },
             {
