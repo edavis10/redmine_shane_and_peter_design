@@ -90,13 +90,6 @@ Redmine::MenuManager.map :project_menu do |menu|
               :html => { :accesskey => Redmine::AccessKeys.key_for(:new_issue) },
               :parent => :issues
             })
-  menu.push(:all_open_issues,
-            { :controller => 'issues', :action => 'index', :set_filter => 1 },
-            {
-              :param => :project_id,
-              :caption => :label_issue_view_all_open,
-              :parent => :issues
-            })
   menu.push(:all_issues,
             { :controller => 'all_issues', :action => 'index' },
             {
@@ -204,10 +197,10 @@ Redmine::MenuManager.map :project_menu do |menu|
   menu.push(:roadmap,
             { :controller => 'projects', :action => 'roadmap' },
             {
-              :if => Proc.new { |p| p.versions.any? },
+              :if => Proc.new { |p| p.versions.open.any? },
               :children => Proc.new { |p|
                 returning [] do |children|
-                  p.versions.each do |version|
+                  p.versions.open.each do |version|
 
                     children << Redmine::MenuManager::MenuItem.new(
                                                        "version-#{version.id}".to_sym,
