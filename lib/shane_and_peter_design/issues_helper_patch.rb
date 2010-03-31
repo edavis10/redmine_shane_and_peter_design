@@ -20,7 +20,7 @@ module ShaneAndPeterDesign
           end
 
           if a.thumbnail?
-            value = content_tag(:div, link_to_attachment_as_thumbnail(a), :class => 'file-thumbs')
+            value = content_tag(:div, link_to_attachment_as_thumbnail(a), :class => 'file-thumbs', :style => "height: #{a.thumbnail_div_height}px;")
           else
             value = content_tag(:div, link_to_attachment_with_mimetype_icon(a), :class => 'file-thumbs')
           end
