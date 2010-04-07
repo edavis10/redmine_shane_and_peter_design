@@ -1732,19 +1732,19 @@ a.has-thumb img {
 	overflow-y:auto;
 }
 
-/* Remove icons from core for SAP theme */
-#admin-menu a.projects { background-image: none; }
-#admin-menu a.users { background-image: none; }
-#admin-menu a.groups { background-image: none; }
-#admin-menu a.roles { background-image: none; }
-#admin-menu a.trackers { background-image: none; }
-#admin-menu a.issue_statuses { background-image: none; }
-#admin-menu a.workflows { background-image: none; }
-#admin-menu a.custom_fields { background-image: none; }
-#admin-menu a.enumerations { background-image: none; }
-#admin-menu a.settings { background-image: none; }
-#admin-menu a.plugins { background-image: none; }
-#admin-menu a.info { background-image: none; }
+/* Make icons non repeating - does this need to be in core */
+#admin-menu a.projects { background-repeat: no-repeat;}
+#admin-menu a.users { background-repeat: no-repeat; }
+#admin-menu a.groups { background-repeat: no-repeat; }
+#admin-menu a.roles { background-repeat: no-repeat; }
+#admin-menu a.trackers { background-repeat: no-repeat; }
+#admin-menu a.issue_statuses { background-repeat: no-repeat; }
+#admin-menu a.workflows { background-repeat: no-repeat; }
+#admin-menu a.custom_fields { background-repeat: no-repeat; }
+#admin-menu a.enumerations { background-repeat: no-repeat; }
+#admin-menu a.settings { background-repeat: no-repeat; }
+#admin-menu a.plugins { background-repeat: no-repeat; }
+#admin-menu a.info { background-repeat: no-repeat; }
 
 /* ***** End Pulled 2009-09-17 ***** */
 
