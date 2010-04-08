@@ -90,12 +90,19 @@ Redmine::MenuManager.map :project_menu do |menu|
               :html => { :accesskey => Redmine::AccessKeys.key_for(:new_issue) },
               :parent => :issues
             })
-  menu.push(:all_issues,
-            { :controller => 'all_issues', :action => 'index' },
+  menu.push(:all_open_issues,
+            { :controller => 'issues', :action => 'index', :set_filter => 1 },
             {
-              :caption => :label_issue_view_all,
+              :param => :project_id,
+              :caption => :label_issue_view_all_open,
               :parent => :issues
-            })
+            })  
+  # menu.push(:all_issues,
+  #           { :controller => 'all_issues', :action => 'index' },
+  #           {
+  #             :caption => :label_issue_view_all,
+  #             :parent => :issues
+  #           })
   begin
     require 'question' unless Object.const_defined?('Question')
 
