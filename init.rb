@@ -203,7 +203,10 @@ Redmine::MenuManager.map :project_menu do |menu|
               :if => Proc.new { |p| p.versions.open.any? },
               :children => Proc.new { |p|
                 returning [] do |children|
-                  p.versions.open.each do |version|
+                  versions = p.shared_versions.sort
+                  versions.reject! {|version| version.closed? || version.completed? }
+
+                  versions.each do |version|
 
                     children << Redmine::MenuManager::MenuItem.new(
                                                        "version-#{version.id}".to_sym,
