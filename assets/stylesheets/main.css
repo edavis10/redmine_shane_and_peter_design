@@ -1732,6 +1732,8 @@ a.has-thumb img {
 	overflow-y:auto;
 }
 
+/* ***** End Pulled 2009-09-17 ***** */
+
 /* Make icons non repeating - does this need to be in core */
 #admin-menu a.projects { background-repeat: no-repeat;}
 #admin-menu a.users { background-repeat: no-repeat; }
@@ -1746,5 +1748,5 @@ a.has-thumb img {
 #admin-menu a.plugins { background-repeat: no-repeat; }
 #admin-menu a.info { background-repeat: no-repeat; }
 
-/* ***** End Pulled 2009-09-17 ***** */
+#more-menu.drop-down ul li a.projects { border-top:1px solid #555; }
 
