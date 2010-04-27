@@ -4,7 +4,7 @@
    <p><%= f.select :project_id, @allowed_projects.collect {|t| [t.name, t.id]}, :required => true %></p>
    <%= f.hidden_field :copied %>
    <%= observe_field :issue_project_id, :url => { :action => :new },
-                                  :update => update_field || params[:update_field] || :content,
+                                  :update => :content,
                                   :with => "Form.serialize('issue-form')" %>
 <% end %>
 
