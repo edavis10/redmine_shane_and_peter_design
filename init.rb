@@ -97,6 +97,13 @@ Redmine::MenuManager.map :project_menu do |menu|
               :caption => :label_issue_view_all_open,
               :parent => :issues
             })  
+  menu.push(:new_query,
+            { :controller => 'queries', :action => 'new'},
+            {
+              :param => :project_id,
+              :caption => :label_query_new,
+              :parent => :issues
+            })
   # menu.push(:all_issues,
   #           { :controller => 'all_issues', :action => 'index' },
   #           {
