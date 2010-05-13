@@ -8,14 +8,27 @@
     <div id="query_form_content">
       <div class="title-bar-extras">
         <%= render :partial => 'queries/filters', :locals => {:query => @query, :show_new_issue => true} %>
-        <div class="grouping">
-          <%= l(:field_group_by) %>
-          <%= select_tag('group_by', options_for_select([[]] + @query.groupable_columns.collect {|c| [c.caption, c.name.to_s]}, @query.group_by)) %>
-        </div>
+        <fieldset class="collapsible collapsed">
+    	  <legend onclick="toggleFieldset(this);"><%= l(:label_options) %></legend>
+    	  <div style="display: none;">
+    		<table>
+    		  <tr>
+    			<td><%= l(:field_column_names) %></td>
+				<td><%= render :partial => 'queries/columns', :locals => {:query => @query} %></td>
+			  </tr>
+			  <tr>
+				<td><%= l(:field_group_by) %></td>
+				<td><%= select_tag('group_by', options_for_select([[]] + @query.groupable_columns.collect {|c| [c.caption, c.name.to_s]}, @query.group_by)) %></td>
+			  </tr>
+			</table>
+		  </div>
+		</fieldset>
+
         <div class="extras-actions">
 
     <%= link_to_remote l(:button_apply), 
                        { :url => { :set_filter => 1 },
+                         :before => 'selectAllOptions("selected_columns");',
                          :update => "content",
                          :with => "Form.serialize('query_form')"
                        }, :class => 'icon icon-checked' %>
