@@ -177,6 +177,8 @@ Redmine::MenuManager.map :project_menu do |menu|
               :parent_menu => :reports,
               :if => Proc.new {|p| User.current.allowed_to?(:view_time_entries, p) }
             })
+  # Moved to Reports
+  menu.delete(:calendar)
   menu.push(:calendar,
             { :controller => 'issues', :action => 'calendar' },
             {
@@ -185,6 +187,8 @@ Redmine::MenuManager.map :project_menu do |menu|
               :parent_menu => :reports,
               :if => Proc.new {|p| User.current.allowed_to?(:view_calendar, p, :global => true) }
             })
+  # Moved to Reports
+  menu.delete(:gantt)
   menu.push(:gantt,
             { :controller => 'issues', :action => 'gantt' },
             {
