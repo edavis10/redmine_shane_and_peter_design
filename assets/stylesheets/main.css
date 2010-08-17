@@ -1735,18 +1735,8 @@ a.has-thumb img {
 /* ***** End Pulled 2009-09-17 ***** */
 
 /* Make icons non repeating - does this need to be in core */
-#admin-menu a.projects { background-repeat: no-repeat;}
-#admin-menu a.users { background-repeat: no-repeat; }
-#admin-menu a.groups { background-repeat: no-repeat; }
-#admin-menu a.roles { background-repeat: no-repeat; }
-#admin-menu a.trackers { background-repeat: no-repeat; }
-#admin-menu a.issue_statuses { background-repeat: no-repeat; }
-#admin-menu a.workflows { background-repeat: no-repeat; }
-#admin-menu a.custom_fields { background-repeat: no-repeat; }
-#admin-menu a.enumerations { background-repeat: no-repeat; }
-#admin-menu a.settings { background-repeat: no-repeat; }
-#admin-menu a.plugins { background-repeat: no-repeat; }
-#admin-menu a.info { background-repeat: no-repeat; }
+#admin-menu li a { background-repeat: no-repeat;}
+
 
 #more-menu.drop-down ul li a.projects { border-top:1px solid #555; }
 
