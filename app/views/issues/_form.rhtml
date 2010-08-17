@@ -1,13 +1,5 @@
 <div id="issue_descr_fields" <%= 'style="display:none"' unless @issue.new_record? || @issue.errors.any? %> class="box">
 
-<% if @issue.copied %>
-   <p><%= f.select :project_id, @allowed_projects.collect {|t| [t.name, t.id]}, :required => true %></p>
-   <%= f.hidden_field :copied %>
-   <%= observe_field :issue_project_id, :url => { :action => :new },
-                                  :update => :content,
-                                  :with => "Form.serialize('issue-form')" %>
-<% end %>
-
 <p><%= f.select :tracker_id, @project.trackers.collect {|t| [t.name, t.id]}, :required => true %></p>
 <%= observe_field :issue_tracker_id, :url => { :action => :update_form, :project_id => @project, :id => @issue },
                                      :update => :attributes,
