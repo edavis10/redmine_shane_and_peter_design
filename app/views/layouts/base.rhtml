@@ -92,7 +92,9 @@
             <% end %>
             <%# TODO: Redmine defines these in a view, should be moved to a helper or data structure %>
             <% if User.current.admin? %>
-              <%= render_menu :admin_menu %>
+              <% menu_items_for(:admin_menu, @project) do |node| %>
+                <%= render_menu_node(node, @project) %>
+              <% end %>
             <% end %>
           </ul>
         </li>
