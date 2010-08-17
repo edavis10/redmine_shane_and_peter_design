@@ -16,6 +16,20 @@ Dispatcher.to_prepare do
   unless Redmine::MenuManager::MenuHelper.included_modules.include? ShaneAndPeterDesign::MenuHelperPatch
     Redmine::MenuManager::MenuHelper.send(:include, ShaneAndPeterDesign::MenuHelperPatch)
   end
+
+  # Patch the redmine_wiki_extensions plugin on the fly.
+  #
+  # It's monkey-patching ActionView::Base in such a way that prevents our
+  # helpers from being added to the view.
+  begin
+    require_dependency 'wiki_extensions_setting'
+    ActionView::Base.class_eval do
+      include ShaneAndPeterDesignHelper
+    end
+  rescue LoadError
+    # Plugin not loaded, no-op
+  end
+  
 end
 
 
