@@ -12,8 +12,8 @@
     <span class="meta-sep"> | </span>
     <% end %>
 
-    <% if authorize_for('issues', 'move') %>
-    <%= content_tag(:span, link_to_if_authorized(l(:button_move), {:controller => 'issues', :action => 'move', :id => @issue })) %>
+    <% if authorize_for('issue_moves', 'new') %>
+    <%= content_tag(:span, link_to_if_authorized(l(:button_move), new_issue_move_path(:id => @issue))) %>
     <span class="meta-sep"> | </span>
     <% end %>
 

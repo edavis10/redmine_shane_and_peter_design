@@ -83,7 +83,7 @@
 
 <% content_for :header_tags do %>
     <%= auto_discovery_link_tag(:atom, {:query_id => @query, :format => 'atom', :page => nil, :key => User.current.rss_key}, :title => l(:label_issue_plural)) %>
-    <%= auto_discovery_link_tag(:atom, {:action => 'changes', :query_id => @query, :format => 'atom', :page => nil, :key => User.current.rss_key}, :title => l(:label_changes_details)) %>
+    <%= auto_discovery_link_tag(:atom, {:controller => 'journals', :action => 'index', :query_id => @query, :format => 'atom', :page => nil, :key => User.current.rss_key}, :title => l(:label_changes_details)) %>
     <%= javascript_include_tag 'context_menu' %>
     <%= stylesheet_link_tag 'context_menu' %>
     <%= stylesheet_link_tag 'context_menu-reset', :plugin => 'redmine_shane_and_peter_design' %>
@@ -93,7 +93,7 @@
 <%# Override a few methods to add in left click behavior and only open context menu when on the ID column %>
 <%# TODO: Move to asset file after this is completed %>
 <%= javascript_include_tag 'context_menu_overrides', :plugin => 'redmine_shane_and_peter_design' %>
-<%= javascript_tag "var context_menu = new ContextMenu('#{url_for(:controller => 'issues', :action => 'context_menu')}')" %>
+<%= javascript_tag "var context_menu = new ContextMenu('#{ issues_context_menu_path }')" %>
 
 <%= javascript_tag 'issuesPageActions()' %>
 
