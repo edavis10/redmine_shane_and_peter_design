@@ -14,8 +14,8 @@ module ShaneAndPeterDesignHelper
         'roadmap'
       when params[:controller] == 'projects' && params[:action] == 'settings'
         'settings'
-      when params[:controller] == 'deliverables'
-        'budget'
+      when params[:controller] == 'contracts' || params[:controller] == 'deliverables'
+        'contracts'
       else
         params[:controller]
       end
