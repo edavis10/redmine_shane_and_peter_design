@@ -605,17 +605,18 @@ div.issue h3 {
 #content .meta table tr:hover {
 	background:none;
 }
-#content .meta table td {
+#content .meta table td, #content .meta table th {
+  background: none;
 	border:0 none;
 	padding:0 3px;
 }
-#content .meta table td.title {
+#content .meta table .title {
 	font-weight:bold;
 }
-#content .meta table td a {
+#content .meta table td a, #content .meta table th a {
 	color:#226D81;
 }
-#content .meta table td a:hover {
+#content .meta table td a:hover, #content .meta table th a:hover {
 	text-decoration:underline;
 }
 #content .meta table td.priority {
@@ -1224,6 +1225,9 @@ div#floating-counter { z-index: 10; } /* so dropdown menus will not mask it */
 div#floating-counter h3 { margin-top: 0px; }
 /* JS Calendar popup */
 div.calendar { z-index: 120 !important;} /* So it's above the lightbox overlay */
+
+/* Contracts use the newer Redmine th/td in the issues list */
+#content .meta table th.deliverable { font-weight: bold; }
 
 /*-------------------------------------------------------------------------------
  * =11 - Appended from staging
