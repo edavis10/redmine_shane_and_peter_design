@@ -287,15 +287,6 @@ Redmine::MenuManager.map :project_menu do |menu|
               :if => Proc.new {|p| User.current.allowed_to?(:manage_news, p) }
             })
   
-  # Budget submenu
-  menu.push(:new_deliverable,
-            { :controller => 'deliverables', :action => 'index', :new => 't' },
-            {
-              :caption => :label_new_deliverable,
-              :parent => :budget,
-              :if => Proc.new {|p| User.current.allowed_to?(:manage_budget, p) }
-            })
-
   menu.delete :settings
   menu.push(:settings,
             { :controller => 'projects', :action => 'settings' },
