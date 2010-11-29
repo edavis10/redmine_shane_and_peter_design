@@ -35,6 +35,7 @@
 </div>
 
 <div class="splitcontentright">
+  <% if User.current.allowed_to?(:view_members, @project) %>
   <% if @users_by_role.any? %>
 	<div class="box">
 		<h3 class="icon22 icon22-users"><%=l(:label_member_plural)%></h3>	
@@ -43,6 +44,7 @@
 		<% end %></p>
 	</div>
 	<% end %>
+  <% end %>
     
   <% if @news.any? && authorize_for('news', 'index') %>
   <div class="box">

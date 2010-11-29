@@ -49,6 +49,8 @@ Redmine::Plugin.register :redmine_shane_and_peter_design do
                'custom_css' => '',
                'custom_javascript' => ''
              }})
+  # Show/hide the Members box on the Project overview
+  permission :view_members, {}
 end
 
 require 'redmine/i18n'
