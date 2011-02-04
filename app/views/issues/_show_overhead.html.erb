@@ -1,0 +1,19 @@
+<tr class="overhead-plugin">
+  <td class="billable-hours">
+    <strong>
+      <%= l(:overhead_billable_time) -%>:
+    </strong>
+  </td>
+  <td>
+    <%= l_hours(issue.billable_time_spent) %>
+  </td>
+
+  <td class="overhead-hours">
+    <strong>
+      <%= l(:overhead_overhead_time) -%>:
+    </strong>
+  </td>
+  <td>
+    <%= l_hours(issue.overhead_time_spent) %>
+  </td>
+</tr>
