@@ -12,7 +12,7 @@
 		<a href="#" class="context_item" onclick="return false;"><%= l(:field_status) %></a>
 		<ul>
 		<% @statuses.each do |s| -%>
-		    <li><%= context_menu_link s.name, {:controller => 'issues', :action => 'edit', :id => @issue, :issue => {:status_id => s}, :back_to => @back}, :method => :post,
+		    <li><%= context_menu_link s.name, {:controller => 'issues', :action => 'bulk_edit', :ids => @issue.id, :status_id => s, :back_to => @back}, :method => :post,
 		                              :selected => (s == @issue.status), :disabled => !(@can[:update] && @allowed_statuses.include?(s)) %></li>
 		<% end -%>
 		</ul>
