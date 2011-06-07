@@ -19,3 +19,6 @@ ul.projects ul {border: none; }
 
 /* Reset Questions */
 div.question { background: none; border: none; margin-bottom: 15px; padding: 0;}
+
+/* Allow wrapping in the issue list */
+tr.issue { white-space: normal; }
