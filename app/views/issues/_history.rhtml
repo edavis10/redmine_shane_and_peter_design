@@ -1,22 +1,4 @@
 <% reply_links = authorize_for('issues', 'edit') -%>
 <% for journal in journals %>
-  <div id="change-<%= journal.id %>" class="journal">
-    <h4>
-      <%= link_to "##{journal.indice}", {:anchor => "note-#{journal.indice}"}, :class => 'history-id' %>
-      <div style="float:right; margin-right: 5px;"></div> <%# Used by Question plugin %>
-      <%= content_tag('a', '', :name => "note-#{journal.indice}")%>
-      <%= authoring journal.created_on, journal.user, :label => :label_updated_time_by %>
-    </h4>
-
-    <div class="profile-wrap">
-      <%= avatar(journal.user, :size => "40") %>
-    </div>
-    <%= render_notes(journal, :reply_links => reply_links) unless journal.notes.blank? %>
-    <ul class="journal-attributes">
-    <% for detail in journal.details %>
-       <li><%= show_detail(detail) %></li>
-    <% end %>
-    </ul>
-  </div>
-  <%= call_hook(:view_issues_history_journal_bottom, { :journal => journal }) %>
+  <%= render :partial => 'journals/change', :locals => {:journal => journal, :reply_links => reply_links} %>
 <% end %>

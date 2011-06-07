@@ -15,6 +15,9 @@
 
   <p class="author">
     <%= authoring @issue.created_on, @issue.author %>.
+    <% unless @issue.entered_by_author? %>
+      <%= l(:label_entered_by, :who => link_to_user(@issue.entered_by)) %>
+    <% end %>
     <%= l(:label_updated_time, distance_of_time_in_words(Time.now, @issue.updated_on)) + '.' if @issue.created_on != @issue.updated_on %>
   </p>
   <hr />
