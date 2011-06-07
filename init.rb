@@ -16,8 +16,11 @@ Dispatcher.to_prepare do
   if defined?(InheritedResources::Base)
     InheritedResources::Base.send(:include, ShaneAndPeterDesign::ApplicationControllerPatch)
   end
+  require_dependency 'issues_helper'
+  unless IssuesHelper.included_modules.include? ShaneAndPeterDesign::IssuesHelperPatch
+    IssuesHelper.send(:include, ShaneAndPeterDesign::IssuesHelperPatch)
+  end
   
-  IssuesHelper.send(:include, ShaneAndPeterDesign::IssuesHelperPatch)
   unless Redmine::MenuManager::MenuHelper.included_modules.include? ShaneAndPeterDesign::MenuHelperPatch
     Redmine::MenuManager::MenuHelper.send(:include, ShaneAndPeterDesign::MenuHelperPatch)
   end
