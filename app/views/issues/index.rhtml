@@ -24,7 +24,7 @@
 		  </div>
 		</fieldset>
 
-        <div class="extras-actions">
+        <div class="extras-actions hide-when-print">
 
     <%= link_to_remote l(:button_apply), 
                        { :url => { :set_filter => 1 },
@@ -39,8 +39,8 @@
                          :update => "content",
                        }, :class => 'icon icon-reload'  %>
                        
-    <% if User.current.allowed_to?(:save_queries, @project, :global => true) %>
-    <%= link_to l(:button_save), {}, :onclick => "$('query_form').submit(); return false;", :class => 'icon icon-save' %>
+    <% if @query.new_record? && User.current.allowed_to?(:save_queries, @project, :global => true) %>
+    <%= link_to l(:button_save), {}, :onclick => "selectAllOptions('selected_columns'); $('query_form').submit(); return false;", :class => 'icon icon-save' %>
     <% end %>
         </div>
       </div>

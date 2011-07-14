@@ -26,17 +26,17 @@
     <table border="0" cellspacing="0" cellpadding="0">
       <tr>
         <td class="title status"><%=l(:field_status)%>:</td>
-        <td class="status"><%= @issue.status.name %></td>
+        <td class="status"><%= h @issue.status.name %></td>
 
         <td class="title category"><%=l(:field_category)%>:</td>
-        <td class="category"><%=h @issue.category ? @issue.category.name : "-" %></td>
+        <td class="category"><%=h(@issue.category ? @issue.category.name : "-") %></td>
 
         <td class="title due-date"><%=l(:field_due_date)%>:</td>
         <td class="due-date"><%= format_date(@issue.due_date) %></td>
       </tr>
       <tr>
         <td class="title priority"><%=l(:field_priority)%>:</td>
-        <td class="priority"><%= @issue.priority.name %></td>
+        <td class="priority"><%= h(@issue.priority.name) %></td>
 
         <td class="title fixed-version"><%=l(:field_fixed_version)%>:</td>
         <td class="fixed-version"><%= @issue.fixed_version ? link_to_version(@issue.fixed_version) : "-" %></td>
@@ -63,18 +63,7 @@
         <td colspan="2">&nbsp;</td>
         <% end %>
       </tr>
-<tr>
-<% n = 0 -%>
-<% @issue.custom_values.each do |value| -%>
-    <td class="title"><%=h value.custom_field.name %>:</td>
-    <td><%= simple_format(h(show_value(value))) %></td>
-<% n = n + 1
-   if (n > 2) 
-        n = 0 %>
-        </tr><tr>
- <%end
-end %>
-</tr>
+      <%= render_custom_fields_rows(@issue) %>
 <%= call_hook(:view_issues_show_details_bottom, :issue => @issue) %>
 </table>
   </div>
@@ -142,6 +131,17 @@ end %>
 
 <%= call_hook(:view_issues_show_description_bottom, :issue => @issue) %>
 
+<% if !@issue.leaf? || User.current.allowed_to?(:manage_subtasks, @project) %>
+<hr />
+<div id="issue_tree">
+<div class="contextual">
+  <%= link_to(l(:button_add), {:controller => 'issues', :action => 'new', :project_id => @project, :issue => {:parent_issue_id => @issue}}) if User.current.allowed_to?(:manage_subtasks, @project) %>
+</div>
+<p><strong><%=l(:label_subtask_plural)%></strong></p>
+<%= render_descendants_tree(@issue) unless @issue.leaf? %>
+</div>
+<% end %>
+
 <% if authorize_for('issue_relations', 'new') || @issue.relations.any? %>
 <hr />
 <div id="relations">
@@ -197,4 +197,9 @@ end %>
 <% content_for :header_tags do %>
     <%= auto_discovery_link_tag(:atom, {:format => 'atom', :key => User.current.rss_key}, :title => "#{@issue.project} - #{@issue.tracker} ##{@issue.id}: #{@issue.subject}") %>
     <%= stylesheet_link_tag 'scm' %>
+    <%= javascript_include_tag 'context_menu' %>
+    <%= stylesheet_link_tag 'context_menu' %>
+    <%= stylesheet_link_tag 'context_menu_rtl' if l(:direction) == 'rtl' %>
 <% end %>
+<div id="context-menu" style="display: none;"></div>
+<%= javascript_tag "new ContextMenu('#{issues_context_menu_path}')" %>
