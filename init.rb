@@ -132,7 +132,7 @@ Redmine::MenuManager.map :project_menu do |menu|
   end
   
   menu.push(:reports,
-            { :controller => 'timelog', :action => 'details' },
+            { :controller => 'timelog', :action => 'index' },
             {
               :param => :project_id,
               :caption => :label_report_plural,
@@ -186,23 +186,25 @@ Redmine::MenuManager.map :project_menu do |menu|
               :parent => :reports
             })
   menu.push(:time_reports,
-            { :controller => 'timelog', :action => 'report' },
+            { :controller => 'time_entry_reports', :action => 'report' },
             {
               :param => :project_id,
               :caption => :label_report,
               :parent => :reports,
               :if => Proc.new {|p| User.current.allowed_to?(:view_time_entries, p) }
             })
+  menu.delete(:calendar)
   menu.push(:calendar,
-            { :controller => 'issues', :action => 'calendar' },
+            { :controller => 'calendars', :action => 'show' },
             {
               :param => :project_id,
               :caption => :label_calendar,
               :parent => :reports,
               :if => Proc.new {|p| User.current.allowed_to?(:view_calendar, p, :global => true) }
             })
+  menu.delete(:gantt)
   menu.push(:gantt,
-            { :controller => 'issues', :action => 'gantt' },
+            { :controller => 'gantts', :action => 'show' },
             {
               :param => :project_id,
               :caption => :label_gantt,
@@ -212,9 +214,10 @@ Redmine::MenuManager.map :project_menu do |menu|
 
   menu.delete(:roadmap)
   menu.push(:roadmap,
-            { :controller => 'projects', :action => 'roadmap' },
+            { :controller => 'versions', :action => 'index' },
             {
-              :if => Proc.new { |p| p.versions.open.any? },
+              :param => :project_id,
+              :if => Proc.new { |p| p.shared_versions.any? },
               :children => Proc.new { |p|
                 returning [] do |children|
                   versions = p.shared_versions.sort
@@ -243,10 +246,10 @@ Redmine::MenuManager.map :project_menu do |menu|
         p.wiki.pages.watched_by(User.current).each do |page|
           menu_items << Redmine::MenuManager::MenuItem.new(
                                                            "wiki-page-#{page.id}".to_sym,
-                                                           { :controller => 'wiki', :action => 'index', :id => p, :page => page.title},
+                                                           { :controller => 'wiki', :action => 'show', :project_id => p, :id => page.title},
                                                            {
                                                              :caption => page.pretty_title,
-                                                             :param => :id,
+                                                             :param => :project_id,
                                                              :parent => :wiki_home
                                                            })
         end
@@ -255,28 +258,32 @@ Redmine::MenuManager.map :project_menu do |menu|
   }
   menu.delete(:wiki)
   menu.push(:wiki,
-            { :controller => 'wiki', :action => 'index', :page => nil },
+            { :controller => 'wiki', :action => 'show', :id => nil },
             {
               :if => Proc.new { |p| p.wiki && !p.wiki.new_record? },
-              :children => wiki_pages_watched_proc
+              :children => wiki_pages_watched_proc,
+              :param => :project_id
             })
   menu.push(:wiki_home,
-            { :controller => 'wiki', :action => 'index', :page => nil },
+            { :controller => 'wiki', :action => 'show', :page => nil },
             {
               :caption => :field_start_page,
               :parent => :wiki,
+              :param => :project_id
             })
   menu.push(:wiki_by_title,
-            { :controller => 'wiki', :action => 'special', :page => 'Page_index' },
+            { :controller => 'wiki', :action => 'index' },
             {
               :caption => :label_index_by_title,
-              :parent => :wiki
+              :parent => :wiki,
+              :param => :project_id
             })
   menu.push(:wiki_by_date,
-            { :controller => 'wiki', :action => 'index', :page => 'Date_index' },
+            { :controller => 'wiki', :action => 'date_index'},
             {
               :caption => :label_index_by_date,
-              :parent => :wiki
+              :parent => :wiki,
+              :param => :project_id
             })
 
 
