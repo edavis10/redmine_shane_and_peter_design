@@ -8,6 +8,7 @@
 <link href="/plugin_assets/redmine_shane_and_peter_design/images/favicon.ico" type="image/x-icon" rel="shortcut icon"/>
 
 <%= stylesheet_link_tag 'application', :media => 'all' %>
+<%= stylesheet_link_tag 'rtl', :media => 'all' if l(:direction) == 'rtl' %>
 <%= stylesheet_link_tag 'redmine-reset', :media => 'all', :plugin => 'redmine_shane_and_peter_design' %>
 <%= stylesheet_link_tag 'reset', :media => 'all', :plugin => 'redmine_shane_and_peter_design' %>
 <%= stylesheet_link_tag 'main', :media => 'all', :plugin => 'redmine_shane_and_peter_design' %>
@@ -38,7 +39,7 @@
 <%= content_tag(:style, Setting.plugin_redmine_shane_and_peter_design['custom_css'], :type => 'text/css') %>
 <%= javascript_tag(Setting.plugin_redmine_shane_and_peter_design['custom_javascript']) %>
 </head>
-<body>
+<body class="<%= body_css_classes %>">
 <div id="wrapper">
   <div id="top-menu">
     <div id="account">
