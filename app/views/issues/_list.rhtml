@@ -24,7 +24,7 @@
         </tr>
 		<% previous_group = group %>
       <% end %>
-      <%= render :partial => 'issue', :object => issue, :locals => { :query => query, :group => group } %>
+      <%= render :partial => 'issue', :object => issue, :locals => { :query => query, :group => group, :level => level } %>
       <% end %>
 	</tbody>
 </table>
