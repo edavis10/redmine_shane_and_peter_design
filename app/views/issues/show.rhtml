@@ -18,7 +18,9 @@
     <% unless @issue.entered_by_author? %>
       <%= l(:label_entered_by, :who => link_to_user(@issue.entered_by)) %>
     <% end %>
-    <%= l(:label_updated_time, distance_of_time_in_words(Time.now, @issue.updated_on)) + '.' if @issue.created_on != @issue.updated_on %>
+    <% if @issue.created_on != @issue.updated_on %>
+      <%= l(:label_updated_time, time_tag(@issue.updated_on)) %>.
+    <% end %>
   </p>
   <hr />
 
@@ -118,7 +120,7 @@
           <%= link_to_attachment attachment %>
           <% end %>
         </td>
-		<td><%= distance_of_time_in_words Time.now, attachment.created_on %></td>
+		<td><%= distance_of_time_in_words Time.now, attachment.created_on.to_date %></td>
 		<td><%= link_to_user(attachment.author) %></td>
         <td><%= h attachment.description %></td>
       </tr>

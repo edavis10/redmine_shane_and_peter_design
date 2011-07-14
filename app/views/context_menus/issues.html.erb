@@ -6,10 +6,10 @@
   <%= call_hook(:view_issues_context_menu_start, {:issues => @issues, :can => @can, :back => @back }) %>
 
 <% if !@issue.nil? -%>
-	<li class="edit">><%= context_menu_link l(:button_edit), {:controller => 'issues', :action => 'edit', :id => @issue},
+	<li class="edit"><%= context_menu_link l(:button_edit), {:controller => 'issues', :action => 'edit', :id => @issue},
 	        :class => 'icon-edit', :disabled => !@can[:edit] %></li>
 <% else %>
-	<li class="edit">><%= context_menu_link l(:button_edit), {:controller => 'issues', :action => 'bulk_edit', :ids => @issues.collect(&:id)},
+	<li class="edit"><%= context_menu_link l(:button_edit), {:controller => 'issues', :action => 'bulk_edit', :ids => @issues.collect(&:id)},
 	        :class => 'icon-edit', :disabled => !@can[:edit] %></li>
 <% end %>
 

@@ -94,7 +94,7 @@
 <%# Override a few methods to add in left click behavior and only open context menu when on the ID column %>
 <%# TODO: Move to asset file after this is completed %>
 <%= javascript_include_tag 'context_menu_overrides', :plugin => 'redmine_shane_and_peter_design' %>
-<%= javascript_tag "var context_menu = new ContextMenu('#{url_for(:controller => 'issues', :action => 'context_menu')}')" %>
+<%= javascript_tag "var context_menu = new ContextMenu('#{url_for(issues_context_menu_path)}')" %>
 
 <%= javascript_tag 'issuesPageActions()' %>
 
