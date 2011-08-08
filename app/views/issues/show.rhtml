@@ -11,7 +11,7 @@
   <div class="profile-wrap">
     <%= avatar(@issue.author, :size => "40") %>
   </div>
-  <h3><%= @issue.tracker.name %> #<%= @issue.id %></h2>
+  <h3><%= h @issue.tracker.name %> #<%= h @issue.id %></h2>
 
   <p class="author">
     <%= authoring @issue.created_on, @issue.author %>.
@@ -190,7 +190,7 @@
 	<%= f.link_to 'PDF' %>
 <% end %>
 
-<% html_title "#{@issue.tracker.name} ##{@issue.id}: #{@issue.subject}" %>
+<% html_title h("#{@issue.tracker.name} ##{@issue.id}: #{@issue.subject}") %>
 
 <% content_for :sidebar do %>
     <%= render :partial => 'issues/sidebar' %>
