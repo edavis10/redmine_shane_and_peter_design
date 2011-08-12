@@ -1,6 +1,6 @@
   <div id="change-<%= journal.id %>" class="<%= journal.css_classes %>">
     <h4>
-      <%= link_to "##{journal.indice}", {:anchor => "note-#{journal.indice}"}, :class => 'history-id' %>
+      <%= link_to "##{journal.indice}", {:anchor => "note-#{journal.indice}"}, :class => 'journal-link history-id' %>
       <div style="float:right; margin-right: 5px;"></div> <%# Used by Question plugin %>
       <%= content_tag('a', '', :name => "note-#{journal.indice}")%>
       <%= authoring journal.created_on, journal.user, :label => :label_updated_time_by %>
