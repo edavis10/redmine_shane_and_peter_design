@@ -124,7 +124,7 @@
 	        :class => 'icon-duplicate', :disabled => !@can[:copy] %></li>
 <% end %>
 
-  <li class="move"><%= context_menu_link l(:button_move), {:controller => 'issues', :action => 'move', :ids => @issues.collect(&:id)},
+  <li class="move"><%= context_menu_link l(:button_move), {:controller => 'issue_moves', :action => 'new', :ids => @issues.collect(&:id)},
 	                        :class => 'context_item', :disabled => !@can[:move]  %></li>
   <%# All users can copy because the copy acton will check their permissions on the target project %>
   <li class="copy"><%= context_menu_link l(:button_copy), {:controller => 'issues', :action => 'bulk_copy', :project_id => @project, :ids => @issues.collect(&:id)},

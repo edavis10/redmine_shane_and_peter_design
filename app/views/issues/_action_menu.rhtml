@@ -8,12 +8,17 @@
     <span class="meta-sep"> | </span>
 
     <% if authorize_for('issues', 'new') %>
-    <%= content_tag(:span, link_to_if_authorized(l(:button_copy), {:controller => 'issues', :action => 'new', :project_id => @project, :copy_from => @issue })) %>
+    <%= content_tag(:span, link_to_if_authorized(l(:button_duplicate), {:controller => 'issues', :action => 'new', :project_id => @project, :copy_from => @issue })) %>
     <span class="meta-sep"> | </span>
     <% end %>
 
-    <% if authorize_for('issues', 'move') %>
-    <%= content_tag(:span, link_to_if_authorized(l(:button_move), {:controller => 'issues', :action => 'move', :id => @issue })) %>
+    <% if authorize_for('issue_moves', 'new') %>
+    <%= content_tag(:span, link_to_if_authorized(l(:button_copy), {:controller => 'issue_moves', :action => 'new', :id => @issue, :copy_options => {:copy => 't'} })) %>
+    <span class="meta-sep"> | </span>
+    <% end %>
+
+    <% if authorize_for('issue_moves', 'new') %>
+    <%= content_tag(:span, link_to_if_authorized(l(:button_move), {:controller => 'issue_moves', :action => 'new', :id => @issue })) %>
     <span class="meta-sep"> | </span>
     <% end %>
 
