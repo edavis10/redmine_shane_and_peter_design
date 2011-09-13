@@ -45,7 +45,7 @@
 
         <% if User.current.allowed_to?(:view_time_entries, @project) %>
         <td class="title spent-time"><%=l(:label_spent_time)%>:</td>
-        <td class="spent-time"><%= @issue.spent_hours > 0 ? (link_to l_hours(@issue.spent_hours), {:controller => 'timelog', :action => 'details', :project_id => @project, :issue_id => @issue}) : "-" %></td>
+        <td class="spent-time"><%= @issue.spent_hours > 0 ? (link_to l_hours(@issue.spent_hours), {:controller => 'timelog', :action => 'new', :project_id => @project, :issue_id => @issue}) : "-" %></td>
         <% else %>
         <td colspan="2">&nbsp;</td>
         <% end %>
