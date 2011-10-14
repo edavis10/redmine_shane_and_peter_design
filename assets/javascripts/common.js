@@ -20,7 +20,7 @@ jQuery(document).ready(function($) {
 
 		$(this).toggleClass("open");
 		$("#nav-search").width(searchWidth).slideToggle(animRate, function(){
-			$("#nav-search-box").select();
+			$("#q").select();
 		});
 
 		return false;
