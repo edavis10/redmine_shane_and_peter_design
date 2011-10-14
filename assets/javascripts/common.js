@@ -15,7 +15,7 @@ jQuery(document).ready(function($) {
 	});
 
 	// show/hide header search box
-	$("#account a.search").click(function() {
+	$("#account a.search").live('click', function() {
 		var searchWidth = $("#account-nav").width();
 
 		$(this).toggleClass("open");
