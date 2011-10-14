@@ -181,22 +181,6 @@ jQuery.viewportHeight = function() {
         document.body.clientHeight;
 };
 
-// resizes the new issue box.
-function resizeNewIssue() {
-
-	jQuery("#TB_window").height(jQuery.viewportHeight() - 40).css({top: '20px', marginTop: '0' });
-	jQuery("#TB_ajaxContent").height(jQuery("#TB_window").height() - jQuery("#TB_title").height() );
-	jQuery("#TB_window #issue-form").height(jQuery("#TB_ajaxContent").height() );
-	jQuery("#TB_window #issue-form .box").height(jQuery("#TB_ajaxContent").height() - jQuery("#issue-form .tracker").outerHeight() - jQuery("#issue-form .submit").outerHeight() - 20 );
-
-	// hacks for thickbox not picking up the proper width from the query string
-	if (jQuery("#TB_ajaxContent").width() < 735 ) {
-		jQuery("#TB_ajaxContent").width(735);
-		jQuery("#TB_window").css({width: 765, marginLeft: -(765/2)});
-	}
-
-}
-
 function issuesPageActions() {
 
 
