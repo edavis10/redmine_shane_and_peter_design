@@ -501,7 +501,7 @@ table td, table th {
 #content table tr.context-menu-selection {
 	background:#FEFBD0 url(../images/selected-gradient.jpg) repeat-x left top;
 }
-#content table td a {
+table td a {
 	color:#333;
 	text-decoration:none;
 }
