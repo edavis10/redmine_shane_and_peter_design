@@ -1753,3 +1753,7 @@ a.has-thumb img {
 #admin-menu a.info { background-repeat: no-repeat; }
 
 #more-menu.drop-down ul li a.projects { border-top:1px solid #555; }
+
+/* S&P #12423 - signup flash message */
+body.controller-account.action-login div.flash { font-size: 18pt;}
+
