@@ -14,3 +14,4 @@ en:
   text_are_you_sure: "Are you sure you want to delete this item?"
   label_new_saved_query: "New Saved Query"
   label_my_account: "Settings"
+  notice_account_pending: "Your account is being reviewed and must be approved by a moderator. Please contact your Project Manager if you do not get access within 24 hours."
