@@ -13,3 +13,4 @@ en:
   # Translation overrides
   text_are_you_sure: "Are you sure you want to delete this item?"
   label_new_saved_query: "New Saved Query"
+  label_my_account: "Settings"
