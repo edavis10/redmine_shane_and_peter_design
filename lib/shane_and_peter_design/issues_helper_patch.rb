@@ -3,7 +3,7 @@ module ShaneAndPeterDesign
     def self.included(base) # :nodoc:
       base.send(:include, InstanceMethods)
       base.class_eval do
-        alias_method_chain :show_detail, :attachment_previews
+        #alias_method_chain :show_detail, :attachment_previews
       end
     end
 
