@@ -51,72 +51,6 @@ require 'projects_helper'
 extend ProjectsHelper
 
 Redmine::MenuManager.map :project_menu do |menu|
-  query_proc = Proc.new { |p|
-    ##### Taken from IssuesHelper
-    # User can see public queries and his own queries
-    visible = ARCondition.new(["is_public = ? OR user_id = ?", true, (User.current.logged? ? User.current.id : 0)])
-    # Project specific queries and global queries
-    visible << (p.nil? ? ["project_id IS NULL"] : ["project_id IS NULL OR project_id = ?", p.id])
-    sidebar_queries = Query.find(:all, 
-                                 :select => 'id, name',
-                                 :order => "name ASC",
-                                 :conditions => visible.conditions)
-
-    returning [] do |menu_items|
-      sidebar_queries.each do |query|
-        menu_items <<  Redmine::MenuManager::MenuItem.new(
-                                    "query-#{query.id}".to_sym,
-                                    { :controller => 'issues', :action => 'index', :project_id => p, :query_id => query },
-                                    {
-                                      :caption => query.name,
-                                      :param => :project_id,
-                                      :parent => :issues
-                              })
-      end
-    end
-  }
-    
-  # Add Queries as child_submenus
-  menu.delete(:issues)
-  menu.push(:issues,
-            { :controller => 'issues', :action => 'index' },
-            {
-              :param => :project_id,
-              :caption => :label_issue_plural,
-              :children => query_proc,
-              :after => :overview
-            })
-  
-  # Move "New Issue" to be under the Issues group
-  menu.delete(:new_issue)
-  menu.push(:new_issue,
-            { :controller => 'issues', :action => 'new' },
-            {
-              :param => :project_id,
-              :caption => :label_issue_new,
-              :html => { :accesskey => Redmine::AccessKeys.key_for(:new_issue) },
-              :parent => :issues
-            })
-  menu.push(:all_open_issues,
-            { :controller => 'issues', :action => 'index', :set_filter => 1 },
-            {
-              :param => :project_id,
-              :caption => :label_issue_view_all_open,
-              :parent => :issues
-            })  
-  menu.push(:new_query,
-            { :controller => 'queries', :action => 'new'},
-            {
-              :param => :project_id,
-              :caption => :label_new_saved_query,
-              :parent => :issues
-            })
-  # menu.push(:all_issues,
-  #           { :controller => 'all_issues', :action => 'index' },
-  #           {
-  #             :caption => :label_issue_view_all,
-  #             :parent => :issues
-  #           })
   begin
     require 'question' unless Object.const_defined?('Question')
 
@@ -140,45 +74,8 @@ Redmine::MenuManager.map :project_menu do |menu|
               :if => Proc.new {|p| User.current.allowed_to?(:view_time_entries, p) }
             })
 
-  # TODO: Pull for release
-  if false && Redmine::Plugin.registered_plugins.keys.include?(:redmine_overhead)
-    menu.push(:billable_time_details,
-              { :controller => 'timelog', :action => 'details' },
-              {
-                :param => :project_id,
-                :caption => Proc.new {|p|
-                  # OPTIMIZE
-                  TimeEntry.visible_by(User.current) do
-                    @time_entries = TimeEntry.all(:include => [:project, {:activity => :custom_values}],
-                                                  :conditions => p.project_condition(Setting.display_subprojects_issues?))
-                  end
-                  @total_hours = @time_entries.collect {|te| te.billable? ? te.hours : 0}.sum
-
-                  l(:overhead_field_billable) + ' ' + l_hours(@total_hours)
-                },
-                :parent => :reports,
-                :if => Proc.new {|p| User.current.allowed_to?(:view_time_entries, p) }
-              })
-    menu.push(:overhead_time_details,
-              { :controller => 'timelog', :action => 'details' },
-              {
-                :param => :project_id,
-                :caption => Proc.new {|p|
-                  # OPTIMIZE
-                  TimeEntry.visible_by(User.current) do
-                    @time_entries = TimeEntry.all(:include => [:project, {:activity => :custom_values}],
-                                                  :conditions => p.project_condition(Setting.display_subprojects_issues?))
-                  end
-                  @total_hours = @time_entries.collect {|te| te.billable? ? 0 : te.hours}.sum
-
-                  l(:overhead_field_overhead) + ' ' + l_hours(@total_hours)
-
-                },
-                :parent => :reports,
-                :if => Proc.new {|p| User.current.allowed_to?(:view_time_entries, p) }
-              })
-  end
-
+  # Move issue summary to reports
+  menu.delete(:issue_summary)
   menu.push(:issue_summary,
             { :controller => 'reports', :action => 'issue_report' },
             {
@@ -212,33 +109,6 @@ Redmine::MenuManager.map :project_menu do |menu|
               :if => Proc.new {|p| User.current.allowed_to?(:view_gantt, p, :global => true) }
             })
 
-  menu.delete(:roadmap)
-  menu.push(:roadmap,
-            { :controller => 'versions', :action => 'index' },
-            {
-              :param => :project_id,
-              :if => Proc.new { |p| p.shared_versions.any? },
-              :children => Proc.new { |p|
-                returning [] do |children|
-                  versions = p.shared_versions.sort
-                  versions.reject! {|version| version.closed? || version.completed? }
-
-                  versions.each do |version|
-
-                    children << Redmine::MenuManager::MenuItem.new(
-                                                       "version-#{version.id}".to_sym,
-                              { :controller => 'versions', :action => 'show', :id => version },
-                              {
-                                :caption => version.name,
-                                :parent => :roadmap
-                              })
-                    
-                  end
-                end
-              },
-              :after => :reports
-            })
-  
   # Wiki submenu
   wiki_pages_watched_proc = Proc.new {|p|
     if p && p.wiki
@@ -257,6 +127,7 @@ Redmine::MenuManager.map :project_menu do |menu|
     end
   }
   menu.delete(:wiki)
+  # Adds watches wiki pages as a child menu
   menu.push(:wiki,
             { :controller => 'wiki', :action => 'show', :id => nil },
             {
@@ -264,59 +135,4 @@ Redmine::MenuManager.map :project_menu do |menu|
               :children => wiki_pages_watched_proc,
               :param => :project_id
             })
-  menu.push(:wiki_home,
-            { :controller => 'wiki', :action => 'show', :page => nil },
-            {
-              :caption => :field_start_page,
-              :parent => :wiki,
-              :param => :project_id
-            })
-  menu.push(:wiki_by_title,
-            { :controller => 'wiki', :action => 'index' },
-            {
-              :caption => :label_index_by_title,
-              :parent => :wiki,
-              :param => :project_id
-            })
-  menu.push(:wiki_by_date,
-            { :controller => 'wiki', :action => 'date_index'},
-            {
-              :caption => :label_index_by_date,
-              :parent => :wiki,
-              :param => :project_id
-            })
-
-
-  # News submenu
-  menu.push(:new_news,
-            { :controller => 'news', :action => 'new' },
-            {
-              :param => :project_id,
-              :caption => :label_news_new,
-              :parent => :news,
-              :if => Proc.new {|p| User.current.allowed_to?(:manage_news, p) }
-            })
-  
-  menu.delete :settings
-  menu.push(:settings,
-            { :controller => 'projects', :action => 'settings' },
-            {
-              :last => true,
-              :children => Proc.new { |p|
-                returning [] do |children|
-                  @project = p # @project used in the helper
-                  project_settings_tabs.each do |tab|
-
-                    children << Redmine::MenuManager::MenuItem.new(
-                              "settings-#{tab[:name]}".to_sym,
-                              { :controller => 'projects', :action => 'settings', :id => p, :tab => tab[:name] },
-                              {
-                                :caption => tab[:label]
-                              })
-                    
-                  end
-                end
-              }
-            })
-
 end
