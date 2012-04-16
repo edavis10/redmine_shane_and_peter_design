@@ -95,4 +95,9 @@ module ShaneAndPeterDesignHelper
 
     return file
   end
+
+  # Override core method: use custom image_path for favicon
+  def favicon
+    "<link rel='shortcut icon' href='#{image_path('/favicon.ico', :plugin => 'redmine_shane_and_peter_design')}' />"
+  end
 end
