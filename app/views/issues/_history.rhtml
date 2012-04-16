@@ -1,4 +1,0 @@
-<% reply_links = authorize_for('issues', 'edit') -%>
-<% for journal in journals %>
-  <%= render :partial => 'journals/change', :locals => {:journal => journal, :reply_links => reply_links} %>
-<% end %>
