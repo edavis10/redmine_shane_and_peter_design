@@ -1,6 +1,5 @@
 require 'redmine'
 
-require 'shane_and_peter_design/themes_patch'
 require 'shane_and_peter_design/themes_wiki_formatting_patch'
 
 # Patches to the Redmine core.
@@ -23,6 +22,11 @@ Dispatcher.to_prepare do
   
   unless Redmine::MenuManager::MenuHelper.included_modules.include? ShaneAndPeterDesign::MenuHelperPatch
     Redmine::MenuManager::MenuHelper.send(:include, ShaneAndPeterDesign::MenuHelperPatch)
+  end
+  # Add custom theme
+  require_dependency 'redmine/themes'
+  unless Redmine::Themes.included_modules.include? RedmineShaneAndPeterDesign::Patches::ThemesPatch
+    Redmine::Themes.send(:include, RedmineShaneAndPeterDesign::Patches::ThemesPatch)
   end
 end
 
