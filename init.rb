@@ -65,6 +65,7 @@ Redmine::MenuManager.map :project_menu do |menu|
     # question_plugin is not installed, skip
   end
   
+  menu.delete(:time_entries)
   menu.push(:reports,
             { :controller => 'timelog', :action => 'index' },
             {
@@ -73,15 +74,6 @@ Redmine::MenuManager.map :project_menu do |menu|
               :after => :issues,
               :if => Proc.new {|p| User.current.allowed_to?(:view_time_entries, p) }
             })
-
-  # Move issue summary to reports
-  menu.delete(:issue_summary)
-  menu.push(:issue_summary,
-            { :controller => 'reports', :action => 'issue_report' },
-            {
-              :caption => :field_issue_summary,
-              :parent => :reports
-            })
   menu.push(:time_reports,
             { :controller => 'time_entry_reports', :action => 'report' },
             {
@@ -89,24 +81,6 @@ Redmine::MenuManager.map :project_menu do |menu|
               :caption => :label_report,
               :parent => :reports,
               :if => Proc.new {|p| User.current.allowed_to?(:view_time_entries, p) }
-            })
-  menu.delete(:calendar)
-  menu.push(:calendar,
-            { :controller => 'calendars', :action => 'show' },
-            {
-              :param => :project_id,
-              :caption => :label_calendar,
-              :parent => :reports,
-              :if => Proc.new {|p| User.current.allowed_to?(:view_calendar, p, :global => true) }
-            })
-  menu.delete(:gantt)
-  menu.push(:gantt,
-            { :controller => 'gantts', :action => 'show' },
-            {
-              :param => :project_id,
-              :caption => :label_gantt,
-              :parent => :reports,
-              :if => Proc.new {|p| User.current.allowed_to?(:view_gantt, p, :global => true) }
             })
 
   # Wiki submenu
