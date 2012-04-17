@@ -95,20 +95,22 @@ Redmine::MenuManager.map :project_menu do |menu|
 
   # Wiki submenu
   wiki_pages_watched_proc = Proc.new {|p|
+    menu_items = []
+    
     if p && p.wiki
-      returning [] do |menu_items|
-        p.wiki.pages.watched_by(User.current).each do |page|
-          menu_items << Redmine::MenuManager::MenuItem.new(
-                                                           "wiki-page-#{page.id}".to_sym,
-                                                           { :controller => 'wiki', :action => 'show', :project_id => p, :id => page.title},
-                                                           {
-                                                             :caption => page.pretty_title,
-                                                             :param => :project_id,
-                                                             :parent => :wiki_home
-                                                           })
-        end
+      p.wiki.pages.watched_by(User.current).each do |page|
+        menu_items << Redmine::MenuManager::MenuItem.new(
+                                                         "wiki-page-#{page.id}".to_sym,
+                                                         { :controller => 'wiki', :action => 'show', :project_id => p, :id => page.title},
+                                                         {
+                                                           :caption => page.pretty_title,
+                                                           :param => :project_id,
+                                                           :parent => :wiki_home
+                                                         })
       end
     end
+
+    menu_items
   }
   menu.delete(:wiki)
   # Adds watches wiki pages as a child menu
