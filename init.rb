@@ -15,10 +15,6 @@ Dispatcher.to_prepare do
   if defined?(InheritedResources::Base)
     InheritedResources::Base.send(:include, ShaneAndPeterDesign::ApplicationControllerPatch)
   end
-  require_dependency 'issues_helper'
-  unless IssuesHelper.included_modules.include? ShaneAndPeterDesign::IssuesHelperPatch
-    IssuesHelper.send(:include, ShaneAndPeterDesign::IssuesHelperPatch)
-  end
   
   unless Redmine::MenuManager::MenuHelper.included_modules.include? ShaneAndPeterDesign::MenuHelperPatch
     Redmine::MenuManager::MenuHelper.send(:include, ShaneAndPeterDesign::MenuHelperPatch)
@@ -28,6 +24,16 @@ Dispatcher.to_prepare do
   unless Redmine::Themes.included_modules.include? RedmineShaneAndPeterDesign::Patches::ThemesPatch
     Redmine::Themes.send(:include, RedmineShaneAndPeterDesign::Patches::ThemesPatch)
   end
+
+  require_dependency 'journal_formatter'
+  unless JournalFormatter.included_modules.include? RedmineShaneAndPeterDesign::Patches::JournalFormatterPatch
+    JournalFormatter.send(:include, RedmineShaneAndPeterDesign::Patches::JournalFormatterPatch)
+  end
+
+  # Thumbnail support.
+  require_dependency 'journal'
+  Journal.send(:include, ActionView::Helpers::AssetTagHelper)
+  Journal.send(:include, ShaneAndPeterDesignHelper)
 end
 
 
