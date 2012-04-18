@@ -1,5 +1,10 @@
 @import url(../../../../../stylesheets/application.css);
 
+/* Issue attributes table */
+#content .meta table.attributes {
+  table-layout: fixed;
+}
+
 /* Large update button on issues' title bar */
 body.controller-issues #content .title-bar-actions .contextual {
   padding-right: 80px; /* Shift other items to the left */
